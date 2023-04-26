@@ -8,7 +8,7 @@ import "keen-slider/keen-slider.min.css";
 export const HomeSlider = () => {
   const [slider, { current, moveTo }] = createSlider({
     vertical: false,
-    mode: 'snap',
+    mode: 'free-snap',
     slides: {
       perView: 2,
       spacing: 15,

@@ -42,29 +42,32 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div class="h-64 flex justify-center align-middle p-9">
+      <div class="h-48 flex justify-center align-middle p-9">
         <span class="text-xs text-textSecondary text-center inline-flex self-center">
-          Ideally located in Tbilisi City, Hotel offers a buffet breakfast and
-          free WiFi throughout the property. Each accommodation at the 4-star
-          hotel has city views, and guests can enjoy access to a shared lounge
-          and to a terrace. Private parking is available on site.
+          Discover the vibrant spirit of Tbilisi, Georgia from the comfort of
+          Hotel Flower, a 4-star luxury hotel nestled in the very center of the
+          city. Boasting stunning panoramic views of the city skyline, Hotel
+          Flower is an exquisite retreat for travelers seeking the perfect blend
+          of modern elegance and authentic Georgian charm.
         </span>
       </div>
       <HomeSlider />
       <div class="h-64 bg-secondary flex p-14">
         <span class="text-white text-center text-sm self-center inline-flex">
-          WIRED is where tomorrow is realized. It is the essential source of
-          information and ideas that make sense of a world in constant
-          transformation. The WIRED conversation illuminates how technology is
-          changing every aspect of our lives—from culture to business, science
-          to design. The
+          Our spacious, well-appointed guestrooms and suites provide a sanctuary
+          of comfort and style, each offering breathtaking city views that
+          capture the essence of Tbilisi. Revel in the rich, warm tones and
+          contemporary furnishings, while enjoying complimentary high-speed
+          WiFi, premium amenities, and the utmost in personalized service.
         </span>
       </div>
       <div class="h-56 bg-zinc-900 flex p-14">
         <span class="text-white text-center text-sm self-center inline-flex">
-          The accommodation provides an ironing service, as well as business
-          facilities like fax and photocopying. Non-stop information is
-          available at the reception, where staff speak
+          Start your day with a sumptuous buffet breakfast, featuring a wide
+          array of local and international favorites to tantalize your taste
+          buds. In the evenings, unwind in our stylish shared lounge, where you
+          can sip on a perfectly crafted cocktail, savor light bites, and mingle
+          with fellow travelers.
         </span>
       </div>
       <div class="h-64 bg-secondary flex p-14"></div>
