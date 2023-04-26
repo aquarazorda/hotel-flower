@@ -3,7 +3,8 @@ import { For, createSignal, onMount } from "solid-js";
 import { Slider } from "solid-slider";
 import { Outlet } from "solid-start";
 import { Header } from "~/components/Header";
-import { HomeSlider } from "~/components/HomeSlider";
+import { HomeSlider } from "~/components/Home/HomeSlider";
+import { HomeSecondarySlider } from '~/components/Home/SecondarySlider';
 import { roomsData } from "~/data/rooms";
 import { cld } from "~/lib/cloudinary";
 
@@ -61,6 +62,7 @@ export default function Home() {
           WiFi, premium amenities, and the utmost in personalized service.
         </span>
       </div>
+      <HomeSecondarySlider />
       <div class="h-56 bg-zinc-900 flex p-14">
         <span class="text-white text-center text-sm self-center inline-flex">
           Start your day with a sumptuous buffet breakfast, featuring a wide

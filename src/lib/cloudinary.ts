@@ -11,7 +11,7 @@ export const cld = new Cloudinary({
   },
 });
 
-export const getImageUrl = (path: string, width: number) => {
+export const getImageUrl = (path: string, width: number | (() => number)) => {
   const [url, setUrl] = createSignal('');
   
   onMount(() => {
@@ -19,7 +19,7 @@ export const getImageUrl = (path: string, width: number) => {
       .image("hotel-flower" + path)
       .quality("auto")
       .format("webp")
-      .resize(scale().width(width))
+      .resize(scale().width(typeof width === 'function' ? width() : width))
       .toURL())
   })
 
