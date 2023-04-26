@@ -1,0 +1,22 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  theme: {
+    fontFamily: {
+      roboto: ["Roboto", "sans-serif"],
+      rufina: ["Rufina", "serif"],
+      shippori: ["Shippori Mincho", "serif"]
+    },
+    extend: {
+      colors: {
+        secondary: "#788473",
+        textSecondary: '#63736C'
+      },
+      backgroundImage: {
+        'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.609375) 42.71%, rgba(15, 23, 23, 0.65) 46.88%, rgba(10, 23, 23, 0) 100%)",
+        'text-gradient': 'linear-gradient(180deg,#fff,hsla(0,0%,100%,.75))'
+      },
+    }
+  },
+  plugins: []
+};
