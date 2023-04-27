@@ -1,50 +1,24 @@
 import { scale } from "@cloudinary/url-gen/actions/resize";
-import { For, createSignal, onMount } from "solid-js";
-import { Slider } from "solid-slider";
+import { Show, createSignal, onMount } from "solid-js";
 import { Outlet } from "solid-start";
-import { Header } from "~/components/Header";
+import { MobileHeader } from "~/components/Header/mobile";
 import { HomeSlider } from "~/components/Home/HomeSlider";
-import { HomeSecondarySlider } from '~/components/Home/SecondarySlider';
-import { roomsData } from "~/data/rooms";
-import { cld } from "~/lib/cloudinary";
+import { HomeMainBox } from '~/components/Home/MainBox';
+import { HomeSecondarySlider } from "~/components/Home/SecondarySlider";
+import { useDevice } from "~/lib/device";
 
 export default function Home() {
-  const [imageSrc, setImageSrc] = createSignal("");
-
-  onMount(() =>
-    setImageSrc(
-      cld
-        .image("hotel-flower/main_mizqwd")
-        .quality("auto")
-        .format("webp")
-        .resize(scale().width(window.innerWidth * 2))
-        .toURL()
-    )
-  );
+  const { isDesktop } = useDevice();
 
   return (
     <main class="font-roboto">
-      <Header />
-      <div class="w-full bg-secondary justify-center p-2">
-        <h3 class="uppercase text-center text-white text-xs font-semibold">
-          Book Now
-        </h3>
-      </div>
+      <Show when={!isDesktop()}>
+        <MobileHeader />
+      </Show>
       {/* Main Page Start */}
-      <div
-        class="bg-cover bg-right"
-        style={{ "background-image": `url(${imageSrc()})` }}
-      >
-        <div class="bg-landing-gradient flex flex-col justify-center gap-12 items-center h-64">
-          <div class="font-rufina text-2xl w-52">
-            <h2 class="text-transparent bg-text-gradient bg-clip-text text-center">
-              Where Something Incredible Happens
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="h-48 flex justify-center align-middle p-9">
-        <span class="text-xs text-textSecondary text-center inline-flex self-center">
+      <HomeMainBox />
+      <div class="h-48 flex justify-center align-middle p-9 xl:p-16 xl:h-52 xl:m-16">
+        <span class="text-xs text-textSecondary text-center inline-flex self-center xl:text-lg xl:w-1/2">
           Discover the vibrant spirit of Tbilisi, Georgia from the comfort of
           Hotel Flower, a 4-star luxury hotel nestled in the very center of the
           city. Boasting stunning panoramic views of the city skyline, Hotel
@@ -53,8 +27,8 @@ export default function Home() {
         </span>
       </div>
       <HomeSlider />
-      <div class="h-64 bg-secondary flex p-14">
-        <span class="text-white text-center text-sm self-center inline-flex">
+      <div class="h-64 bg-secondary flex p-14 xl:p-16 xl:h-52 justify-center">
+        <span class="text-white text-center text-sm self-center inline-flex xl:text-lg xl:w-1/2">
           Our spacious, well-appointed guestrooms and suites provide a sanctuary
           of comfort and style, each offering breathtaking city views that
           capture the essence of Tbilisi. Revel in the rich, warm tones and
@@ -63,8 +37,8 @@ export default function Home() {
         </span>
       </div>
       <HomeSecondarySlider />
-      <div class="h-56 bg-zinc-900 flex p-14">
-        <span class="text-white text-center text-sm self-center inline-flex">
+      <div class="h-56 bg-zinc-900 flex p-14 justify-center">
+        <span class="text-white text-center text-sm self-center inline-flex xl:text-lg xl:w-1/2">
           Start your day with a sumptuous buffet breakfast, featuring a wide
           array of local and international favorites to tantalize your taste
           buds. In the evenings, unwind in our stylish shared lounge, where you

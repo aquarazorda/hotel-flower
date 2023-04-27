@@ -17,9 +17,9 @@ export const HomeSecondarySlider = () => {
   });
 
   return (
-    <div class="h-80 flex">
+    <div class="h-80 flex xl:h-[calc(100vh*0.8)]">
       <div class="flex-1">
-        <div use:slider class="h-full">
+        <div use:slider class="h-full cursor-pointer">
           <For each={data}>
             {(room) => {
               const url = getImageUrl(
@@ -36,11 +36,11 @@ export const HomeSecondarySlider = () => {
           </For>
         </div>
       </div>
-      <div class="flex-1 flex justify-center align-middle gap-3">
-        <div class="flex flex-col gap-2 pl-2 justify-center">
+      <div class="flex-1 flex justify-center align-middle gap-3 xl:justify-normal">
+        <div class="flex flex-col gap-2 pl-2 justify-center xl:ml-8">
           <Index each={data}>
             {(room, idx) => <div
-                class="w-2 h-2 rounded-full"
+                class="w-2 h-2 rounded-full cursor-pointer hover:bg-neutral-400"
                 onClick={() => moveTo(idx)}
                 classList={{
                   "bg-neutral-400": idx === current(),
@@ -49,9 +49,9 @@ export const HomeSecondarySlider = () => {
               />}
           </Index>
         </div>
-        <div class="flex flex-col justify-center pr-3">
-          <span class="text-sm text-center">Suites</span>
-          <span class="text-xs text-center">
+        <div class="flex flex-col justify-center pr-3 xl:gap-5 xl:w-2/3 xl:mx-auto">
+          <span class="text-sm text-center xl:text-4xl">Suites</span>
+          <span class="text-xs text-center xl:text-lg">
             WIRED is where tomorrow is realized. It is the essential source of
             information and ideas that make sense of a world in constant
             transformation.{" "}
