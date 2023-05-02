@@ -1,13 +1,11 @@
 import solid from "solid-start/vite";
-import vercel from 'solid-start-vercel';
+import cloudflare from "solid-start-cloudflare-pages";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [solid({
-    adapter: vercel({
-      prerender: {
-        expiration: 60
-      }
+    adapter: cloudflare({
+      kvNamespaces: ["hotel-flower"]
     })
   })],
 });
