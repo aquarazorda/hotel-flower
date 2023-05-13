@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      roboto: ["Roboto", "sans-serif"],
+      inter: ["Inter", "sans-serif"],
       rufina: ["Rufina", "serif"],
       shippori: ["Shippori Mincho", "serif"]
     },

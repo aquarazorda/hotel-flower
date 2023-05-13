@@ -1,7 +1,6 @@
 // @refresh reload
-import { Suspense, createEffect } from "solid-js";
+import { Suspense } from "solid-js";
 import {
-  useLocation,
   A,
   Body,
   ErrorBoundary,
@@ -15,6 +14,9 @@ import {
   Link,
 } from "solid-start";
 import "./root.css";
+import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
+
+const queryClient = new QueryClient();
 
 export default function Root() {
   return (
@@ -39,7 +41,7 @@ export default function Root() {
         <Link
           as="style"
           rel="stylesheet preload prefetch"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&subset=latin"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap&subset=latin"
           crossorigin="anonymous"
           type="text/css"
         />
@@ -51,12 +53,14 @@ export default function Root() {
           type="text/css"
         />
       </Head>
-      <Body class="font-roboto">
+      <Body class="font-inter">
         <Suspense>
           <ErrorBoundary>
-            <Routes>
-              <FileRoutes />
-            </Routes>
+            <QueryClientProvider client={queryClient}>
+              <Routes>
+                <FileRoutes />
+              </Routes>
+            </QueryClientProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />

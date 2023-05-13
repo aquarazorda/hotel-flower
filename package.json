@@ -18,8 +18,10 @@
   "dependencies": {
     "@cloudinary/url-gen": "^1.10.0",
     "@solid-primitives/media": "^2.2.1",
+    "@solid-primitives/scroll": "^2.0.15",
     "@solidjs/meta": "^0.28.5",
     "@solidjs/router": "^0.8.2",
+    "@tanstack/solid-query": "^4.29.5",
     "cheerio": "^1.0.0-rc.12",
     "eslint": "^8.40.0",
     "eslint-plugin-solid": "^0.12.1",
