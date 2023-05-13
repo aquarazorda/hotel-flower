@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/otelms_generate_bookings",
-      "schedule": "*/10 * * * *"
-    }
-  ]
-}
