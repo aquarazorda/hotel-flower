@@ -1,6 +1,5 @@
-import { createScheduled, debounce } from "@solid-primitives/scheduled";
 import { useWindowScrollPosition } from "@solid-primitives/scroll";
-import { For, createEffect, createMemo, on } from "solid-js";
+import { For, createMemo } from "solid-js";
 import { isServer } from "solid-js/web";
 import { A } from "solid-start";
 import { headerNavItems } from "~/data/header-navigation";
