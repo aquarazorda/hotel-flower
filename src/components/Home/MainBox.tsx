@@ -22,38 +22,38 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      class="bg-cover bg-right overflow-hidden"
+      class="overflow-hidden bg-cover bg-right"
       style={{ "background-image": `url(${imageSrc()})` }}
     >
-      <div class="bg-landing-gradient flex flex-col justify-center xl:justify-normal gap-12 xl:gap-16 items-center h-64 xl:h-[80vh]">
+      <div class="flex h-64 flex-col items-center justify-center gap-12 bg-landing-gradient xl:h-[80vh] xl:justify-normal xl:gap-16">
         <Show when={isDesktop()}>
-          <h1 class="font-shippori uppercase text-7xl w-1/3 text-center text-transparent bg-text-gradient bg-clip-text leading-extra-tight p-2 mt-[calc(80vh*0.2)]">
+          <h1 class="mt-[calc(80vh*0.2)] w-1/3 bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent">
             Hotel Flower
           </h1>
         </Show>
-        <div class="font-rufina text-2xl w-52 xl:w-full xl:text-4xl">
-          <h2 class="text-transparent bg-text-gradient bg-clip-text text-center">
+        <div class="w-2/3 font-rufina text-2xl xl:w-full xl:text-4xl">
+          <h2 class="bg-text-gradient bg-clip-text text-center uppercase text-transparent">
             Where Something Incredible Happens
           </h2>
         </div>
         <Show when={isDesktop()}>
           <div class="mt-[5%]">
-            <div class="flex justify-center gap-14 uppercase text-base text-white text-center font-bold mt-18">
+            <div class="mt-16 flex justify-center gap-14 text-center text-base font-bold uppercase text-white">
               <For each={headerNavItems}>
                 {(item) => (
                   <A
                     href={item.path}
-                    class="min-w-[160px] py-10 px-7 rounded-xl shadow-landing-btn bg-[#1E2726] bg-opacity-50 hover:bg-opacity-90 duration-200"
+                    class="min-w-[160px] rounded-xl bg-[#1E2726]/50 px-7 py-10 shadow-landing-btn duration-200 hover:bg-[#1E2726]/90"
                   >
                     {item.name}
                   </A>
                 )}
               </For>
             </div>
-            <div class="w-full flex justify-center mt-12">
+            <div class="mt-12 flex w-full justify-center">
               <A
                 href="/booking"
-                class="font-bold text-white uppercase text-xs rounded-xl bg-secondary hover:bg-secondaryHover px-8 py-4 duration-200 shadow-landing-btn"
+                class="rounded-xl bg-secondary px-8 py-4 text-xs font-bold uppercase text-white shadow-landing-btn duration-200 hover:bg-secondaryHover"
               >
                 Book Now
               </A>

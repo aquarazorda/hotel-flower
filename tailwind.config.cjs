@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         secondary: "#788473",
         secondaryHover: '#535850',
+        textPrimary: '#798781',
         textSecondary: '#63736C',
       },
       lineHeight: {

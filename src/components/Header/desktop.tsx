@@ -10,19 +10,19 @@ export const Header = () => {
 
   return (
     <header
-      class="flex fixed justify-between items-center px-6 w-full z-10 top-0 transition-all duration-200"
+      class="fixed top-0 z-10 flex w-full items-center justify-between px-6 transition-all duration-200"
       classList={{
         "h-14 bg-white backdrop-blur bg-opacity-80 shadow-gray-500": isScrolled(),
         "h-16": !isScrolled(),
       }}
     >
-      <A href="/" class="uppercase font-shippori cursor-pointer">Hotel Flower</A>
+      <A href="/" class="cursor-pointer font-shippori uppercase">Hotel Flower</A>
       <nav class="flex gap-11 text-sm font-medium">
         <For each={headerNavItems}>
           {(item) => (
             <A
               href={item.path}
-              class="text-gray-700 opacity-80 hover:text-gray-900 hover:opacity-95 ease-in duration-200"
+              class="text-gray-700 opacity-80 duration-200 ease-in hover:text-gray-900 hover:opacity-95"
             >
               {item.name}
             </A>
@@ -35,3 +35,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;
