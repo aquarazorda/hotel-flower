@@ -1,22 +1,39 @@
-import { Index, createEffect } from "solid-js";
+import {
+  Index,
+  Suspense,
+  createEffect,
+  createMemo,
+  createSignal,
+} from "solid-js";
 import { createStore } from "solid-js/store";
 import { createSlider } from "solid-slider";
-import { Navigate, useParams } from "solid-start";
+import { Navigate, RouteDataArgs, useRouteData } from "solid-start";
+import { createServerData$ } from "solid-start/server";
+
 import { CancelRounded } from "~/assets/icons/CancelRounded";
+import { CheckRounded } from "~/assets/icons/CheckRounded";
+import { Button } from "~/components/Button";
+import DatePicker from "~/components/Date";
 import SliderDots from "~/components/Slider/Dots";
 import { roomsData } from "~/data/rooms";
+import { getBookings } from "~/db/db";
 import { getImageUrl } from "~/lib/cloudinary";
 import { useDevice } from "~/lib/device";
 
-export default function Room() {
-  const params = useParams<{ id: string }>();
-  const room = roomsData.find(({ id }) => String(id) === params.id);
+export const routeData = ({ params }: RouteDataArgs) => ({
+  blockedDates: createServerData$(getBookings, { key: () => params.id }),
+  room: createMemo(() => roomsData.find(({ id }) => String(id) === params.id)),
+});
 
-  if (!room) {
+export default function Room() {
+  const data = useRouteData<typeof routeData>();
+
+  if (!data.room()) {
     // eslint-disable-next-line
     return <Navigate href="/rooms" />;
   }
 
+  const [dateValues, setDateValues] = createSignal<Date[]>();
   const { isDesktop } = useDevice();
   const [loaded, setLoaded] = createStore<Record<number, boolean>>({ 0: true });
   const [slider, { moveTo, current }] = createSlider({
@@ -27,6 +44,11 @@ export default function Room() {
     },
   });
 
+  const calendarDisabled = createMemo(() => data.blockedDates()?.[0]?.dates || []);
+  const onCalendarChange = (selectedDates: Date[]) => {
+    setDateValues(selectedDates);
+  };
+
   createEffect(() => {
     setLoaded(current(), true);
   });
@@ -35,20 +57,20 @@ export default function Room() {
     <main class="flex flex-col gap-6">
       {/* @ts-ignore */}
       <div use:slider class="flex h-96">
-        <Index each={Array(room.pictures)}>
+        <Index each={Array(data.room()?.pictures)}>
           {(item, idx) => (
             <img
               loading="lazy"
               src={
                 loaded[idx]
                   ? getImageUrl(
-                    `/${room.id}/${idx + 1}`,
-                    isDesktop() ? 1900 : 980
-                  )
+                      `/${data.room()!.id}/${idx + 1}`,
+                      isDesktop() ? 1900 : 980
+                    )
                   : ""
               }
               class="object-cover"
-              alt={room.name + " Picture " + (idx + 1)}
+              alt={data.room()!.name + " Picture " + (idx + 1)}
             />
           )}
         </Index>
@@ -56,7 +78,7 @@ export default function Room() {
       <div class="flex flex-col gap-4 px-6">
         <div class="flex gap-2">
           <SliderDots
-            count={room.pictures}
+            count={data.room()?.pictures || 0}
             current={current()}
             moveTo={moveTo}
           />
@@ -75,11 +97,44 @@ export default function Room() {
           available at the reception, where staff speak English, Georgian and
           Russian.
         </p>
-        <ul class="flex list-none flex-col gap-6 text-zinc-600">
-          <li class="flex items-center gap-6">
-            <CancelRounded /> Non smoking rooms
-          </li>
-        </ul>
+        <div class="mt-5 flex flex-col gap-8">
+          <ul class="flex list-none flex-col gap-6 px-6 text-zinc-600">
+            <li class="flex items-center gap-6">
+              <CancelRounded /> Non smoking rooms
+            </li>
+            <li class="flex items-center gap-6">
+              <CheckRounded /> 24-hour front desk
+            </li>
+            <li class="flex items-center gap-6">
+              <CheckRounded /> Air conditioning
+            </li>
+            <li class="flex items-center gap-6">
+              <CheckRounded /> Tea/coffee maker in all rooms
+            </li>
+            <li class="flex items-center gap-6">
+              <CheckRounded /> Daily housekeeping
+            </li>
+          </ul>
+          <Button>See more</Button>
+        </div>
+        <p class="mt-5 text-sm text-textPrimary">
+          Book now and get 10% discount
+        </p>
+        <Suspense>
+          <div class="mt-6 flex flex-col items-center">
+            <DatePicker
+              inline
+              mode="range"
+              minDate={new Date()}
+              onChange={onCalendarChange}
+              dateFormat="Y-m-d"
+              disable={calendarDisabled()}
+            />
+            <Button class="mt-8" disabled={!dateValues()?.length}>
+              Book now
+            </Button>
+          </div>
+        </Suspense>
       </div>
     </main>
   );

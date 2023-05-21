@@ -6,5 +6,5 @@ export type Booking = {
   dates: {
     from: string,
     to: string
-  }
+  }[]
 }

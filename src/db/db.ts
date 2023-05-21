@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
-import server$ from 'solid-start/server';
-import { Booking } from '~/data/types';
+import server$ from "solid-start/server";
+import { Booking } from "~/data/types";
 
 const getClient = server$(async () => {
   const { DATABASE_URI } = process.env;
@@ -17,13 +17,15 @@ const getClient = server$(async () => {
   } catch (error) {
     return false;
   }
-})
+});
 
 export const saveBookings = server$(async (bookingsData: Booking[]) => {
   const client = await getClient();
 
   if (!client) {
-    return new Response(JSON.stringify({ success: false, message: "Can't get client" }));
+    return new Response(
+      JSON.stringify({ success: false, message: "Can't get client" })
+    );
   }
 
   try {
@@ -40,20 +42,21 @@ export const saveBookings = server$(async (bookingsData: Booking[]) => {
   }
 });
 
-export const getBookings = server$(async () => {
+export const getBookings = server$(async (id?: string) => {
   const client = await getClient();
 
   if (!client) {
-    return false;
+    return [];
   }
 
   try {
     const database = client.db("hotel");
     const bookings = database.collection("bookings");
-    const bookingsData = await bookings.find({}).toArray();
-    
+    const bookingsData = await bookings.find(id ? { name: id } : {}).toArray();
+
+    console.log(bookingsData);
     return bookingsData as Booking[];
   } catch (error) {
-    return false;
+    return [];
   }
 });

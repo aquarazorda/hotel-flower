@@ -1,0 +1,16 @@
+.flatpickr-calendar.inline {
+  box-shadow: none;
+}
+
+.flatpickr-calendar.inline::after, .flatpickr-calendar.inline::before {
+  display: none;
+}
+
+.flatpickr-days .selected {
+  background: #535850 !important;
+  border: none !important;
+}
+
+.flatpickr-days .nextMonthDay, .flatpickr-days .prevMonthDay {
+  color: black !important;
+}
