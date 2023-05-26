@@ -5,7 +5,7 @@
     "build": "solid-start build",
     "start": "solid-start start",
     "postinstall": "prisma generate",
-    "postbuild": "cp node_modules/@prisma/engines/*query* .vercel/output/functions/render.func/ && cp prisma/schema.prisma .vercel/output/functions/render.func/"
+    "postbuild": "cp node_modules/prisma/*engine*.node .vercel/output/functions/render.func/ && cp prisma/schema.prisma .vercel/output/functions/render.func/ && cp node_modules/prisma/*engine*.node .vercel/output/functions/api.func/ && cp prisma/schema.prisma .vercel/output/functions/api.func/"
   },
   "type": "module",
   "devDependencies": {
