@@ -2,8 +2,8 @@ import { scale } from "@cloudinary/url-gen/actions/resize";
 import { For, Show, createSignal, onMount } from "solid-js";
 import { A } from "solid-start";
 import { headerNavItems } from "~/data/header-navigation";
-import { cld } from "~/lib/cloudinary";
-import { useDevice } from "~/lib/device";
+import { cld } from "~/server/lib/cloudinary";
+import { useDevice } from "~/server/lib/device";
 
 export const HomeMainBox = () => {
   const [imageSrc, setImageSrc] = createSignal("");

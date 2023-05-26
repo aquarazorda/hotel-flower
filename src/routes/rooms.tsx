@@ -1,6 +1,5 @@
 import { Outlet } from 'solid-start'
-import Header from '~/components/Header';
-import { useDevice } from '~/lib/device';
+import Header from '~/client/components/Header';
 
 export default function Rooms() {
   return <>

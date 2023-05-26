@@ -1,5 +1,5 @@
 import { Show, lazy } from 'solid-js';
-import { useDevice } from '~/lib/device';
+import { useDevice } from '~/server/lib/device';
 
 const Mobile = lazy(() => import('./mobile'));
 const Desktop = lazy(() => import('./desktop'));

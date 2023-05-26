@@ -1,3 +1,13 @@
+export type Room = {
+  type: "room" | "suite";
+  id: number;
+  secondary?: number;
+  name: string;
+  pictures: number;
+  persons: number;
+  extraPerson?: boolean;
+}
+
 export const roomsData = [
   {
     type: "room",
@@ -53,4 +63,4 @@ export const roomsData = [
     pictures: 6,
     persons: 2
   }
-];
+] satisfies Room[];

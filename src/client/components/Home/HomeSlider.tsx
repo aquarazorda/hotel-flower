@@ -1,10 +1,10 @@
 import { For, Index, Show, createMemo } from "solid-js";
 import { createSlider } from "solid-slider";
 import { roomsData } from "~/data/rooms";
-import { getImageUrl } from "~/lib/cloudinary";
+import { getImageUrl } from "~/server/lib/cloudinary";
 
 import "keen-slider/keen-slider.min.css";
-import { useDevice } from "~/lib/device";
+import { useDevice } from "~/server/lib/device";
 import { A, useNavigate } from "solid-start";
 
 export const HomeSlider = () => {

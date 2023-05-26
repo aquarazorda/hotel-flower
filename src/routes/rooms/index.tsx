@@ -1,9 +1,9 @@
 import { For, Show } from "solid-js";
 import { roomsData } from "~/data/rooms";
-import { getImageUrl } from "~/lib/cloudinary";
+import { getImageUrl } from "~/server/lib/cloudinary";
 import { useNavigate } from "solid-start";
 
-import { SolarUserRoundedLinear } from "~/assets/icons/SolarRounded";
+import { SolarUserRoundedLinear } from "~/client/assets/icons/SolarRounded";
 
 const Rooms = () => {
   const navigate = useNavigate();

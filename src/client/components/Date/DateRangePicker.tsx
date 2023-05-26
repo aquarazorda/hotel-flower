@@ -1,11 +1,11 @@
 import flatpickr from "flatpickr";
-import { createEffect, onCleanup, onMount } from "solid-js";
-import { isServer } from "solid-js/web";
+import { createEffect, on, onCleanup, onMount } from "solid-js";
 
 import "flatpickr/dist/flatpickr.min.css";
 import "./calendar.css";
 
 type Props = {
+  isLoading: boolean;
   onChange?: (selectedDates: Date[]) => void; // eslint-disable-line
 } & Omit<flatpickr.Options.Options, "onChange">;
 
@@ -48,8 +48,8 @@ export const DateRangePicker = (props: Props) => {
   };
 
   onMount(async () => {
-    if (!isServer && ref) {
-      datePicker = flatpickr(ref, { ...props, onChange });
+    if (ref) {
+      datePicker = flatpickr(ref, props);
     }
   });
 
@@ -57,7 +57,11 @@ export const DateRangePicker = (props: Props) => {
     datePicker.destroy();
   });
 
-  createEffect(() => console.log(props.disable));
+  createEffect(on(() => props.isLoading ,() => {
+    if (!props.isLoading && ref) {
+      datePicker = flatpickr(ref, { ...props, onChange });
+    }
+  }));
 
   return <div ref={ref} />;
 };
