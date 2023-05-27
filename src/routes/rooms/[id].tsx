@@ -23,11 +23,11 @@ import { useDevice } from "~/server/lib/device";
 import { defaultQueryOptions } from "~/shared/utils";
 
 export const routeData = ({ params }: RouteDataArgs) => ({
-  blockedDates: createQuery(
-    () => ["room-bookings", params.id],
-    () => getBooking(Number(params.id)),
-    defaultQueryOptions
-  ),
+  blockedDates: createQuery(() => ({
+    queryKey: ["room-bookings", params.id],
+    queryFn: () => getBooking(Number(params.id)),
+    ...defaultQueryOptions,
+  })),
   room: createMemo(() => roomsData.find(({ id }) => String(id) === params.id)),
 });
 

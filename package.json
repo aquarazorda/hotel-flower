@@ -27,7 +27,7 @@
     "@solid-primitives/scroll": "^2.0.17",
     "@solidjs/meta": "^0.28.5",
     "@solidjs/router": "^0.8.2",
-    "@tanstack/solid-query": "^4.29.7",
+    "@tanstack/solid-query": "alpha",
     "cheerio": "^1.0.0-rc.12",
     "eslint": "^8.41.0",
     "eslint-plugin-solid": "^0.12.1",

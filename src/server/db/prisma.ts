@@ -22,8 +22,13 @@ export const getRooms = server$(async () => {
 });
 
 export const getBookings = server$(async () => {
-  const bookings = await prisma.blockedDate.findMany();
-
+  const bookings = await prisma.blockedDate.findMany({
+    select: {
+      roomId: true,
+      dates: true,
+    }
+  });
+  
   return bookings;
 });
 
