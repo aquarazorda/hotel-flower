@@ -39,9 +39,11 @@ export const getBooking = server$(async (roomId: number) => {
 
 export const saveBookings = server$(async () => {
   const data = await getBookedDates();
-  const q = await prisma.blockedDate.updateMany({
-    data,
-  });
+
+  const q = await prisma.blockedDate.deleteMany({})
+    .then(() => prisma.blockedDate.createMany({
+      data,
+    }))
 
   return new Response(JSON.stringify(q));
 });

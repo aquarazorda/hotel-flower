@@ -1,4 +1,4 @@
-import { createMutation, createQuery } from "@tanstack/solid-query";
+import { createMutation, createQuery, useQueryClient } from "@tanstack/solid-query";
 import { For } from "solid-js";
 import { useRouteData } from "solid-start";
 import CmsPage from "~/cms/Page";
@@ -14,9 +14,16 @@ export const routeData = () => {
 };
 
 export default function RoomsList() {
+  const queryClient = useQueryClient();
   const data = useRouteData<typeof routeData>();
 
   const update = createMutation(saveBookings);
+
+  const updateBookings = async () => {
+    update.mutateAsync().then(() => {
+      queryClient.invalidateQueries(["cms-bookings"]);
+    })
+  }
 
   return (
     <CmsPage title="Rooms List">
@@ -24,7 +31,7 @@ export default function RoomsList() {
         <button
           class="ml-auto rounded bg-green-800 px-6 py-2 text-white"
           disabled={update.isLoading}
-          onClick={() => update.mutateAsync()}
+          onClick={() => updateBookings()}
         >
           Update
         </button>
