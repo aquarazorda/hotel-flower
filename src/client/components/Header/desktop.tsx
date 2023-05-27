@@ -10,10 +10,10 @@ export const Header = () => {
 
   return (
     <header
-      class="fixed top-0 z-10 flex w-full items-center justify-between px-6 transition-all duration-200"
+      class="fixed top-0 z-10 flex w-full items-center justify-between bg-white px-6 backdrop-blur transition-all duration-200"
       classList={{
-        "h-14 bg-white backdrop-blur bg-opacity-80 shadow-gray-500": isScrolled(),
-        "h-16": !isScrolled(),
+        "h-14 bg-opacity-80 shadow-gray-500": isScrolled(),
+        "h-16 relative": !isScrolled(),
       }}
     >
       <A href="/" class="cursor-pointer font-shippori uppercase">Hotel Flower</A>

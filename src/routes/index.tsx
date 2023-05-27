@@ -2,7 +2,7 @@ import { Show } from "solid-js";
 import { Outlet } from "solid-start";
 import { MobileHeader } from "~/client/components/Header/mobile";
 import { HomeSlider } from "~/client/components/Home/HomeSlider";
-import { HomeMainBox } from '~/client/components/Home/MainBox';
+import { HomeMainBox } from "~/client/components/Home/MainBox";
 import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
 import { useDevice } from "~/server/lib/device";
 
@@ -13,11 +13,6 @@ export default function Home() {
     <main class="font-inter">
       <Show when={!isDesktop()}>
         <MobileHeader />
-        <div class="w-full justify-center bg-secondary p-2">
-        <h3 class="text-center text-xs font-semibold uppercase text-white">
-          Book Now
-        </h3>
-      </div>
       </Show>
       {/* Main Page Start */}
       <HomeMainBox />

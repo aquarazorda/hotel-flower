@@ -127,6 +127,7 @@ export default function Room() {
                 inline
                 mode="range"
                 minDate={new Date()}
+                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 8))}
                 onChange={onCalendarChange}
                 dateFormat="Y-m-d"
                 isLoading={data.blockedDates.isLoading}

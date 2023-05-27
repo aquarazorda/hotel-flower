@@ -4,14 +4,11 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [solid({
-    adapter: vercel({
-      prerender: {
-        expiration: 60
-      }
-    })
+    ssr: true,
+    adapter: vercel()
   })],
   ssr: {
     noExternal: ["@kobalte/core"],
     external: ["@prisma/client"]
-  }
+  },
 });
