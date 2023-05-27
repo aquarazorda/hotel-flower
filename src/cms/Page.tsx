@@ -6,6 +6,7 @@ import { capitalizeFirstLetter } from "~/shared/utils";
 type Props = {
   title: string;
   children: JSX.Element | JSX.Element[];
+  actionElement?: JSX.Element;
 };
 
 export default function CmsPage(props: Props) {
@@ -15,7 +16,12 @@ export default function CmsPage(props: Props) {
   return (
     <div class="flex flex-col gap-6 p-6">
       <div>
-        <h1 class="w-full text-2xl font-semibold">{props.title}</h1>
+        <div class="flex">
+          <h1 class="w-full text-2xl font-semibold">{props.title}</h1>
+          <Show when={props.actionElement}>
+            <div class="ml-auto">{props.actionElement}</div>
+          </Show>
+        </div>
         <hr class="mt-4" />
       </div>
       {/* <Breadcrumbs.Root

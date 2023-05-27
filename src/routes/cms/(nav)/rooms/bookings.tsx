@@ -30,15 +30,16 @@ export default function RoomsList() {
   }
 
   return (
-    <CmsPage title="Rooms List">
-      <div class="flex flex-col">
-        <button
-          class="ml-auto rounded bg-green-800 px-6 py-2 text-white"
+    <CmsPage title="Bookings List" actionElement={
+      <button
+          class="rounded bg-lime-600 px-6 py-2 font-semibold text-white transition-colors hover:bg-lime-500 disabled:bg-blue-500"
           disabled={update.isPending}
           onClick={() => updateBookings()}
         >
           Update
         </button>
+    }>
+      <div class="flex flex-col">
           <For each={data.data}>
             {(booking) => (
               <div class="flex justify-between border-b py-4">
