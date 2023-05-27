@@ -7,6 +7,9 @@ export default defineConfig({
     ssr: true,
     adapter: vercel()
   })],
+  optimizeDeps: {
+    exclude: ["@tanstack/solid-query"]
+  },
   ssr: {
     noExternal: ["@kobalte/core"],
     external: ["@prisma/client"]
