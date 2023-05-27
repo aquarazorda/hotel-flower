@@ -1,7 +1,7 @@
 import { createQuery } from '@tanstack/solid-query';
 import CmsPage from '~/cms/Page';
 import { getRooms } from '~/server/db/prisma';
-import { defaultQueryOptions } from '~/utils';
+import { defaultQueryOptions } from '~/shared/utils';
 
 export const routeData = () => {
   return createQuery(() => ['cms-rooms'], getRooms, defaultQueryOptions)

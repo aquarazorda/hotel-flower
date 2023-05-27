@@ -1,5 +1,5 @@
 import server$ from 'solid-start/server';
-import { Room } from '~/data/rooms';
+import { Room } from '~/shared/data/rooms';
 import { getImageUrl } from './cloudinary';
 import { User } from './user';
 

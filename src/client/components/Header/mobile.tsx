@@ -2,7 +2,7 @@ import { useWindowScrollPosition } from '@solid-primitives/scroll';
 import { For, createMemo } from "solid-js";
 import { isServer } from 'solid-js/web';
 import { A, useNavigate } from "solid-start";
-import { headerNavItems } from "~/data/header-navigation";
+import { headerNavItems } from "~/shared/data/header-navigation";
 
 export const MobileHeader = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { scale } from "@cloudinary/url-gen/actions/resize";
 import { For, Show, createSignal, onMount } from "solid-js";
 import { A } from "solid-start";
-import { headerNavItems } from "~/data/header-navigation";
+import { headerNavItems } from "~/shared/data/header-navigation";
 import { cld } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
 

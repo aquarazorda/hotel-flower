@@ -16,11 +16,11 @@ import { CheckRounded } from "~/client/assets/icons/CheckRounded";
 import { Button } from "~/client/components/Button";
 import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
-import { roomsData } from "~/data/rooms";
+import { roomsData } from "~/shared/data/rooms";
 import { getBooking } from "~/server/db/prisma";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
-import { defaultQueryOptions } from "~/utils";
+import { defaultQueryOptions } from "~/shared/utils";
 
 export const routeData = ({ params }: RouteDataArgs) => ({
   blockedDates: createQuery(

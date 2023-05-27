@@ -1,5 +1,5 @@
 import { For, Show } from "solid-js";
-import { roomsData } from "~/data/rooms";
+import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useNavigate } from "solid-start";
 

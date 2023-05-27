@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@kobalte/core";
 import { For, JSX, Show } from "solid-js";
 import { A, useLocation } from "solid-start";
-import { capitalizeFirstLetter } from "~/utils";
+import { capitalizeFirstLetter } from "~/shared/utils";
 
 type Props = {
   title: string;

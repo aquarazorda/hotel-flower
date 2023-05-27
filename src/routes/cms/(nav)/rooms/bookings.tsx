@@ -3,7 +3,7 @@ import { For } from "solid-js";
 import { useRouteData } from "solid-start";
 import CmsPage from "~/cms/Page";
 import { getBookings, saveBookings } from "~/server/db/prisma";
-import { defaultQueryOptions } from "~/utils";
+import { defaultQueryOptions } from "~/shared/utils";
 
 export const routeData = () => {
   return createQuery(

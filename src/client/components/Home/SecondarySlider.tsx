@@ -1,6 +1,6 @@
 import { For, Index } from "solid-js";
 import { createSlider } from "solid-slider";
-import { roomsData } from "~/data/rooms";
+import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 
 import "keen-slider/keen-slider.min.css";
