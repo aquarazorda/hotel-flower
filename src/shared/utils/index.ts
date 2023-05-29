@@ -14,3 +14,20 @@ export const defaultQueryOptions = {
   refetchOnReconnect: false,
   refetchOnWindowFocus: false,
 };
+
+export const addTwoMonths = (month: number, year: number) => {
+  const nextMonth = month + 2;
+  const nextYear = year;
+
+  if (nextMonth > 12) {
+    return {
+      nextMonth: nextMonth - 12,
+      nextYear: nextYear + 1,
+    };
+  }
+
+  return {
+    nextMonth,
+    nextYear,
+  };
+}
