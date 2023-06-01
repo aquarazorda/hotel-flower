@@ -10,8 +10,7 @@ export const MobileHeader = () => {
   const isScrolled = createMemo(() => scrollPosition.y >= 2);
 
   return (
-    <>
-      <div class="sticky top-0 z-10 flex flex-col bg-white/75 shadow-gray-500 backdrop-blur transition-all duration-300 ease-in-out">
+    <div class="sticky top-0 z-10 flex flex-col bg-white/75 shadow-gray-500 backdrop-blur transition-all duration-300 ease-in-out xl:hidden">
         <div class="mt-4 flex w-full justify-center">
           <div class="w-1/4 text-center" classList={{
             "w-full": isScrolled(),
@@ -31,7 +30,6 @@ export const MobileHeader = () => {
           </For>
         </nav>
       </div>
-    </>
   );
 };
 

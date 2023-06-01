@@ -1,6 +1,5 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { scale } from "@cloudinary/url-gen/actions/resize";
-import { createSignal, onMount } from "solid-js";
 
 export const cld = new Cloudinary({
   cloud: {

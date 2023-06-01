@@ -1,17 +1,10 @@
-import { createMutation, createQuery, useQueryClient } from "@tanstack/solid-query";
+import { createMutation, useQueryClient } from "@tanstack/solid-query";
 import { For } from "solid-js";
 import { useRouteData } from "solid-start";
 import CmsPage from "~/cms/Page";
-import { getBookings, saveBookings } from "~/server/db/prisma";
-import { defaultQueryOptions } from "~/shared/utils";
+import { getBookings, saveBookings } from "~/server/db/rooms";
 
-export const routeData = () => {
-  return createQuery(() => ({
-    queryKey: ["cms-bookings"],
-    queryFn: getBookings,
-    ...defaultQueryOptions
-  }));
-};
+export const routeData = () => getBookings(undefined, () => ({ staleTime: 1000 * 60 * 60 }));
 
 export default function RoomsList() {
   const queryClient = useQueryClient();

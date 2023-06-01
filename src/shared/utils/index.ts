@@ -31,3 +31,8 @@ export const addTwoMonths = (month: number, year: number) => {
     nextYear,
   };
 }
+
+export const toGmt4 = (date: Date) => {
+  const offset = date.getTimezoneOffset();
+  return new Date(date.getTime() - offset * 60 * 1000);
+}

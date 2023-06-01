@@ -1,4 +1,5 @@
 // @refresh reload
+import { QueryProvider } from "@prpc/solid";
 import { Suspense } from "solid-js";
 import {
   Body,
@@ -13,9 +14,6 @@ import {
   Link,
 } from "solid-start";
 import "./root.css";
-import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
-
-const queryClient = new QueryClient();
 
 export default function Root() {
   return (
@@ -55,11 +53,11 @@ export default function Root() {
       <Body class="font-inter">
         <Suspense>
           <ErrorBoundary>
-            <QueryClientProvider client={queryClient}>
+            <QueryProvider>
               <Routes>
                 <FileRoutes />
               </Routes>
-            </QueryClientProvider>
+            </QueryProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />

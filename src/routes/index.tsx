@@ -1,27 +1,20 @@
-import { Show } from "solid-js";
 import { Outlet } from "solid-start";
 import { MobileHeader } from "~/client/components/Header/mobile";
 import { HomeSlider } from "~/client/components/Home/HomeSlider";
 import { HomeMainBox } from "~/client/components/Home/MainBox";
 import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
-import { useDevice } from "~/server/lib/device";
 
 export default function Home() {
-  const { isDesktop } = useDevice();
-
   return (
     <main class="font-inter">
-      <Show when={!isDesktop()}>
-        <MobileHeader />
-      </Show>
+      <MobileHeader />
       {/* Main Page Start */}
       <HomeMainBox />
-      <div class="flex justify-center p-9 align-middle xl:m-16 xl:h-52 xl:p-16">
-        <span class="inline-flex self-center text-center text-xs text-textSecondary xl:w-1/2 xl:text-lg">
+      <div class="flex justify-center px-6 py-14 align-middle xl:m-16 xl:h-52 xl:p-16">
+        <span class="inline-flex self-center text-center text-sm text-textSecondary xl:w-1/2 xl:text-lg">
           Discover the vibrant spirit of Tbilisi, Georgia from the comfort of
           Hotel Flower, a 4-star luxury hotel nestled in the very center of the
-          city. Boasting stunning panoramic views of the city skyline, Hotel
-          Flower is an exquisite retreat for travelers seeking the perfect blend
+          city. Hotel Flower is an exquisite retreat for travelers seeking the perfect blend
           of modern elegance and authentic Georgian charm.
         </span>
       </div>

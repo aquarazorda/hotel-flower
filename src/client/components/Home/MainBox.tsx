@@ -1,13 +1,11 @@
 import { scale } from "@cloudinary/url-gen/actions/resize";
-import { For, Show, createSignal, onMount } from "solid-js";
+import { For, createSignal, onMount } from "solid-js";
 import { A } from "solid-start";
 import { headerNavItems } from "~/shared/data/header-navigation";
 import { cld } from "~/server/lib/cloudinary";
-import { useDevice } from "~/server/lib/device";
 
 export const HomeMainBox = () => {
   const [imageSrc, setImageSrc] = createSignal("");
-  const { isDesktop } = useDevice();
 
   onMount(() =>
     setImageSrc(
@@ -26,18 +24,15 @@ export const HomeMainBox = () => {
       style={{ "background-image": `url(${imageSrc()})` }}
     >
       <div class="flex h-64 flex-col items-center justify-center gap-12 bg-landing-gradient xl:h-[80vh] xl:justify-normal xl:gap-16">
-        <Show when={isDesktop()}>
-          <h1 class="mt-[calc(80vh*0.2)] w-1/3 bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent">
-            Hotel Flower
-          </h1>
-        </Show>
+        <h1 class="mt-[calc(80vh*0.2)] hidden w-1/3 bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent xl:block">
+          Hotel Flower
+        </h1>
         <div class="w-2/3 font-rufina text-2xl xl:w-full xl:text-4xl">
           <h2 class="bg-text-gradient bg-clip-text text-center uppercase text-transparent">
             Where Something Incredible Happens
           </h2>
         </div>
-        <Show when={isDesktop()}>
-          <div class="mt-[5%]">
+        <div class="mt-[5%] hidden xl:block">
             <div class="mt-16 flex justify-center gap-14 text-center text-base font-bold uppercase text-white">
               <For each={headerNavItems}>
                 {(item) => (
@@ -59,7 +54,6 @@ export const HomeMainBox = () => {
               </A>
             </div>
           </div>
-        </Show>
       </div>
     </div>
   );

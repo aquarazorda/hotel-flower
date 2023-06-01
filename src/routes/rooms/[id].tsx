@@ -17,10 +17,10 @@ import { Button } from "~/client/components/Button";
 import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
 import { roomsData } from "~/shared/data/rooms";
-import { getBooking } from "~/server/db/prisma";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
 import { defaultQueryOptions } from "~/shared/utils";
+import { getBooking } from '~/server/db/rooms';
 
 export const routeData = ({ params }: RouteDataArgs) => ({
   blockedDates: createQuery(() => ({
@@ -45,9 +45,30 @@ export default function Room() {
     },
   });
 
+  const price = createMemo(() => {
+    if (dateValues() && dateValues()!.length > 1) {
+      
+      console.log(dates);
+
+      // const months = dateValues()!.map((date) => date.getMonth()+1);
+      // const uniqueMonths = [...new Set(months)];
+      // const prices = uniqueMonths.map((month) => {
+      //   const days = dateValues()!.filter((date) => date.getMonth() === month);
+      //   console.log(uniqueMonths);
+      //   const pricePerDay = 200;
+      //   // const pricePerDay = data.room()?.price[month];
+      //   return days.length * pricePerDay;
+      // });
+
+      return 200;
+    }
+  });
+
   const onCalendarChange = (selectedDates: Date[]) => {
-    setDateValues(selectedDates);
+    setDateValues(selectedDates.length > 1 ? selectedDates : undefined);
   };
+
+  createEffect(() => console.log(price(), "SDSD"))
 
   createEffect(() => {
     setLoaded(current(), true);
@@ -66,7 +87,7 @@ export default function Room() {
                   loaded[idx]
                     ? getImageUrl(
                         `/${data.room()!.id}/${idx + 1}`,
-                        isDesktop() ? 1900 : 980
+                        isDesktop ? 1900 : 980
                       )
                     : ""
                 }
@@ -127,7 +148,7 @@ export default function Room() {
                 inline
                 mode="range"
                 minDate={new Date()}
-                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 8))}
+                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 6))}
                 onChange={onCalendarChange}
                 dateFormat="Y-m-d"
                 isLoading={data.blockedDates.isLoading}

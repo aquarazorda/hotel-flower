@@ -1,13 +1,13 @@
-import { Show, lazy } from 'solid-js';
-import { useDevice } from '~/server/lib/device';
+import { lazy } from "solid-js";
 
-const Mobile = lazy(() => import('./mobile'));
-const Desktop = lazy(() => import('./desktop'));
+const Mobile = lazy(() => import("./mobile"));
+const Desktop = lazy(() => import("./desktop"));
 
 export default function Header() {
-  const { isDesktop } = useDevice();
-  
-  return <Show when={isDesktop()} fallback={<Mobile />}>
-    <Desktop />
-  </Show>;
+  return (
+    <>
+      <Mobile />
+      <Desktop />
+    </>
+  );
 }

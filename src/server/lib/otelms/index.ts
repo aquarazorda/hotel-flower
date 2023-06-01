@@ -13,8 +13,8 @@ export const getLoginCookies = server$(async () => {
 
   var urlencoded = new URLSearchParams();
   urlencoded.append("action", "login");
-  urlencoded.append("login", "givi.gelashvili@protonmail.ch");
-  urlencoded.append("password", "Asdqwe123");
+  urlencoded.append("login", MS_LOGIN_EMAIL);
+  urlencoded.append("password", MS_LOGIN_PASSWORD);
 
   const response = await fetch(MS_LOGIN_URL, {
     headers,

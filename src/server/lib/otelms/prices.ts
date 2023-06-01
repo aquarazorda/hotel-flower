@@ -1,6 +1,7 @@
 import { Cheerio, CheerioAPI, Element, load } from "cheerio";
 import { getLoginCookies } from ".";
 import { addTwoMonths } from "~/shared/utils";
+import { Room } from '@prisma/client';
 
 const fetchPrices = (headers: Headers, month: number, year: number) => {
   const { MS_CALENDAR_URL } = process.env;
@@ -27,7 +28,7 @@ type Input = {
 };
 
 const generatePrices = (d: Input[]) => {
-  let data: { [key: number]: any[] } = {};
+  let data: { [key: number]: Record<string, string> } = {};
 
   d.forEach(({ $, rows, month, year }) => {
     rows.each((i, element) => {
@@ -38,16 +39,14 @@ const generatePrices = (d: Input[]) => {
 
       if (price !== "0") {
         if (!data[i]) {
-          data[i] = [];
+          data[i] = {};
         }
-        data[i].push({
-          [`${month}-${year}`]: rowData[1],
-          [`${month + 1}-${year}`]: rowData[6],
-        });
+        data[i][`${month}-${year}`] = rowData[1];
+        data[i][`${month + 1}-${year}`] = rowData[6];
       }
     });
   });
-  
+
   return data;
 };
 
@@ -80,3 +79,24 @@ export const getPrices = async () => {
 
   return generatePrices(data);
 };
+
+
+const calculatePrices = ([startDate, endDate]: [Date, Date], room: Room) => {
+  const dates_ = [];
+  let currentDate = startDate;
+
+  while (currentDate <= endDate) {
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    dates_.push({ month, year });
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  const dates = dates_.reduce((acc, { month, year }) => {
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+    acc[year].push(month);
+    return acc;
+  }, 0);
+}

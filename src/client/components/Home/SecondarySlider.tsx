@@ -1,4 +1,4 @@
-import { For, Index } from "solid-js";
+import { For } from "solid-js";
 import { createSlider } from "solid-slider";
 import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
@@ -29,7 +29,7 @@ export const HomeSecondarySlider = () => {
             {(room) => {
               const url = getImageUrl(
                 `/${room.id}/1`,
-                () => isDesktop() ? 1200 : 600
+                () => isDesktop ? 1200 : 600
               );
               return (
                 <div

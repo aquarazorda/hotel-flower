@@ -18,7 +18,7 @@ export const HomeSlider = () => {
     rtl: false,
     slides: {
       perView: "auto",
-      spacing: isDesktop() ? 110 : 40,
+      spacing: isDesktop ? 110 : 9,
     },
   })));
 
@@ -28,7 +28,7 @@ export const HomeSlider = () => {
       <div use:slider>
         <For each={data}>
           {(room) => {
-            const url = getImageUrl(`/${room.id}/1`, isDesktop() ? 1024 : 620);
+            const url = getImageUrl(`/${room.id}/1`, isDesktop ? 1024 : 620);
 
             return (
               <div class="bg-zinc-900/10 text-xs text-white">
@@ -38,15 +38,15 @@ export const HomeSlider = () => {
                     xl:flex-col xl:items-start xl:px-12 xl:py-9 xl:font-semibold"
                   style={{
                     "background-image": `url(${url})`,
-                    "min-width": isDesktop() ? "415px" : "122px",
-                    "max-width": isDesktop() ? "415px" : "122px",
-                    height: isDesktop() ? "434px" : "128px",
+                    "min-width": isDesktop ? "415px" : "122px",
+                    "max-width": isDesktop ? "415px" : "122px",
+                    height: isDesktop ? "434px" : "128px",
                   }}
                 >
                   <span class="xl:mt-auto xl:text-xl">
                     {room.name}
                   </span>
-                  <Show when={isDesktop()}>
+                  <Show when={isDesktop}>
                     <A href="/todo" class="mt-3 cursor-pointer rounded-lg bg-zinc-300/80 px-3 py-2 hover:bg-zinc-300/100">
                       See More
                     </A>

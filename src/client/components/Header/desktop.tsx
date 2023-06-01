@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <header
-      class="fixed top-0 z-10 flex w-full items-center justify-between bg-white px-6 backdrop-blur transition-all duration-200"
+      class="fixed top-0 z-10 hidden w-full items-center justify-between bg-white px-6 backdrop-blur transition-all duration-200 xl:flex"
       classList={{
         "h-14 bg-opacity-80 shadow-gray-500": isScrolled(),
         "h-16 relative": !isScrolled(),

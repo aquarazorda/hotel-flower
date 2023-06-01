@@ -12,5 +12,10 @@
 }
 
 .flatpickr-days .nextMonthDay, .flatpickr-days .prevMonthDay {
-  color: black !important;
+  color: black;
+}
+
+.flatpickr-disabled {
+  cursor: not-allowed;
+  color: rgba(57,57,57,0.1) !important;
 }
