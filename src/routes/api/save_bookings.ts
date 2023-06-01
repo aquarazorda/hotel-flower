@@ -1,3 +1,3 @@
-import { saveBookings } from '~/server/db/prisma';
+import { saveBookings } from '~/server/db/rooms';
 
 export const GET = saveBookings;
