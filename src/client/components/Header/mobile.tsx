@@ -12,7 +12,7 @@ export const MobileHeader = () => {
   return (
     <div class="sticky top-0 z-10 flex flex-col bg-white/75 shadow-gray-500 backdrop-blur transition-all duration-300 ease-in-out xl:hidden">
         <div class="mt-4 flex w-full justify-center">
-          <div class="w-1/4 text-center" classList={{
+          <div class="w-1/4 text-center transition-all" classList={{
             "w-full": isScrolled(),
           }} onClick={() => navigate('/')}>
             <h1 class="font-shippori text-xl uppercase leading-5">

@@ -4,15 +4,15 @@ import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 
 import "keen-slider/keen-slider.min.css";
-import { useDevice } from '~/server/lib/device';
-import SliderDots from '../Slider/Dots';
+import { useDevice } from "~/server/lib/device";
+import SliderDots from "../Slider/Dots";
 
 export const HomeSecondarySlider = () => {
   const data = roomsData.filter(({ type }) => type === "suite");
   const { isDesktop } = useDevice();
 
   const [slider, { current, moveTo }] = createSlider({
-    vertical: true,
+    vertical: false,
     mode: "snap",
     rtl: false,
     slides: {
@@ -21,36 +21,33 @@ export const HomeSecondarySlider = () => {
   });
 
   return (
-    <div class="flex h-80 xl:h-[calc(100vh*0.8)]">
-      <div class="flex-1">
-        {/* @ts-ignore */}
-        <div use:slider class="h-full cursor-pointer">
-          <For each={data}>
-            {(room) => {
-              const url = getImageUrl(
-                `/${room.id}/1`,
-                () => isDesktop ? 1200 : 600
-              );
-              return (
-                <div
-                  class="w-full bg-cover bg-center bg-no-repeat"
-                  style={{ "background-image": `url(${url})` }}
-                />
-              );
-            }}
-          </For>
-        </div>
+    <div class="flex flex-col xl:h-[calc(100vh*0.8)]">
+      <h5 class="mb-8 text-center text-xs text-neutral-500">Suites</h5>
+      <div use:slider class="flex h-64 cursor-pointer">
+        <For each={data}>
+          {(room) => {
+            const url = getImageUrl(`/${room.id}/1`, () =>
+              isDesktop ? 1200 : 600
+            );
+            return (
+              <img
+                src={url}
+                class="h-full w-full object-cover"
+                loading="lazy"
+              />
+            );
+          }}
+        </For>
       </div>
-      <div class="flex flex-1 justify-center gap-3 align-middle xl:justify-normal">
-        <div class="flex flex-col justify-center gap-2 pl-2 xl:ml-8">
+      <div class="mt-5 flex flex-col gap-4 px-4">
+        <div class="flex gap-3 xl:ml-8">
           <SliderDots count={data} current={current()} moveTo={moveTo} />
         </div>
-        <div class="flex flex-col justify-center pr-3 xl:mx-auto xl:w-2/3 xl:gap-5">
-          <span class="text-center text-sm xl:text-4xl">Suites</span>
-          <span class="text-center text-xs xl:text-lg">
-            WIRED is where tomorrow is realized. It is the essential source of
-            information and ideas that make sense of a world in constant
-            transformation.{" "}
+        <div class="flex flex-col pr-3 xl:mx-auto xl:w-2/3 xl:gap-5">
+          <span class="text-xs text-neutral-500 xl:text-lg">
+            Step into Hotel Flower's suites - a mix of elegance, comfort, and
+            Georgian charm. Revel in luxury and city views, in the heart of
+            vibrant Tbilisi.
           </span>
         </div>
       </div>

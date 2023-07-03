@@ -23,7 +23,9 @@ export const HomeSlider = () => {
   })));
 
   return (
-    <div class="mb-20 cursor-pointer pl-7">
+    <div>
+      <h5 class="mb-8 text-center text-xs text-neutral-500">Rooms</h5>
+      <div class="mb-14 cursor-pointer pl-4">
       {/* @ts-ignore */}
       <div use:slider>
         <For each={data}>
@@ -31,10 +33,10 @@ export const HomeSlider = () => {
             const url = getImageUrl(`/${room.id}/1`, isDesktop ? 1024 : 620);
 
             return (
-              <div class="bg-zinc-900/10 text-xs text-white">
+              <div class="text-xs text-white">
                 <div
                   onClick={() => navigate("/rooms/" + room.id)}
-                  class="flex items-end rounded-md bg-cover bg-center bg-no-repeat p-2
+                  class="flex items-end rounded-lg bg-cover bg-center bg-no-repeat p-2
                     xl:flex-col xl:items-start xl:px-12 xl:py-9 xl:font-semibold"
                   style={{
                     "background-image": `url(${url})`,
@@ -43,21 +45,21 @@ export const HomeSlider = () => {
                     height: isDesktop ? "434px" : "128px",
                   }}
                 >
+                  <div class="hidden 2xl:block">
                   <span class="xl:mt-auto xl:text-xl">
                     {room.name}
                   </span>
-                  <Show when={isDesktop}>
-                    <A href="/todo" class="mt-3 cursor-pointer rounded-lg bg-zinc-300/80 px-3 py-2 hover:bg-zinc-300/100">
+                  <A href="/todo" class="mt-3 cursor-pointer rounded-lg bg-zinc-300/80 px-3 py-2 hover:bg-zinc-300/100">
                       See More
                     </A>
-                  </Show>
+                  </div>
                 </div>
               </div>
             );
           }}
         </For>
       </div>
-      <div class="mt-5 flex gap-3">
+      <div class="mt-6 flex gap-3 pl-2">
         <Index each={data}>
           {(room, idx) => (
             <Show when={idx != data.length - 1}>
@@ -73,6 +75,7 @@ export const HomeSlider = () => {
           )}
         </Index>
       </div>
+    </div>
     </div>
   );
 };
