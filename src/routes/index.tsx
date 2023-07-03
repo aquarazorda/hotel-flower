@@ -11,7 +11,7 @@ export default function Home() {
       <MobileHeader />
       {/* Main Page Start */}
       <HomeMainBox />
-      <div class="flex justify-center px-6 py-14 align-middle xl:m-16 xl:h-52 xl:p-16">
+      <div class="flex justify-center px-8 py-16 align-middle xl:m-16 xl:h-52 xl:p-16">
         <span class="inline-flex self-center text-center text-xs text-textSecondary xl:w-1/2 xl:text-lg">
           Ideally located in Tbilisi City. Each accommodation at the 4-star
           hotel has city views, and guests can enjoy access to a shared lounge

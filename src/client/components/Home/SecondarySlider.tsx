@@ -22,7 +22,7 @@ export const HomeSecondarySlider = () => {
 
   return (
     <div class="flex flex-col xl:h-[calc(100vh*0.8)]">
-      <h5 class="mb-8 text-center text-xs text-neutral-500">Suites</h5>
+      <h5 class="mb-8 text-center text-sm text-neutral-500">Suites</h5>
       <div use:slider class="flex h-64 cursor-pointer">
         <For each={data}>
           {(room) => {

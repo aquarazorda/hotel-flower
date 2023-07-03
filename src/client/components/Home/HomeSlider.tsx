@@ -24,7 +24,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center text-xs text-neutral-500">Rooms</h5>
+      <h5 class="mb-8 text-center text-sm  text-neutral-500">Rooms</h5>
       <div class="mb-14 cursor-pointer pl-4">
       {/* @ts-ignore */}
       <div use:slider>
@@ -33,7 +33,7 @@ export const HomeSlider = () => {
             const url = getImageUrl(`/${room.id}/1`, isDesktop ? 1024 : 620);
 
             return (
-              <div class="text-xs text-white">
+              <div class="text-sm text-white">
                 <div
                   onClick={() => navigate("/rooms/" + room.id)}
                   class="flex items-end rounded-lg bg-cover bg-center bg-no-repeat p-2
