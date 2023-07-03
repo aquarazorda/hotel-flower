@@ -47,9 +47,6 @@ export default function Room() {
 
   const price = createMemo(() => {
     if (dateValues() && dateValues()!.length > 1) {
-      
-      console.log(dates);
-
       // const months = dateValues()!.map((date) => date.getMonth()+1);
       // const uniqueMonths = [...new Set(months)];
       // const prices = uniqueMonths.map((month) => {
@@ -76,7 +73,7 @@ export default function Room() {
 
   return (
     <Show when={data.room()} fallback={<Navigate href="/rooms" />}>
-      <main class="flex flex-col gap-6">
+      <main class="flex flex-col gap-6 text-xs text-textPrimary">
         {/* @ts-ignore */}
         <div use:slider class="flex h-96">
           <Index each={Array(data.room()?.pictures)}>
@@ -105,19 +102,13 @@ export default function Room() {
               moveTo={moveTo}
             />
           </div>
-          <p class="mt-5 text-sm text-textPrimary">
+          <p class="mt-5">
             At the hotel all rooms include air conditioning, a seating area, a
             flat-screen TV with satellite channels, a safety deposit box and a
             private bathroom with a shower, free toiletries and a hairdryer.
             Each room is equipped with a kettle, while certain rooms also offer
             a balcony and others also have river views. At Hotel Flower rooms
             are fitted with bed linen and towels.
-          </p>
-          <p class="text-sm text-textPrimary">
-            The accommodation provides an ironing service, as well as business
-            facilities like fax and photocopying. Non-stop information is
-            available at the reception, where staff speak English, Georgian and
-            Russian.
           </p>
           <div class="mt-5 flex flex-col gap-8">
             <ul class="flex list-none flex-col gap-6 px-6 text-zinc-600">
@@ -137,13 +128,16 @@ export default function Room() {
                 <CheckRounded /> Daily housekeeping
               </li>
             </ul>
-            <Button>See more</Button>
+            <Button class="text-xs">See more</Button>
           </div>
-          <p class="mt-5 text-sm text-textPrimary">
-            Book now and get 10% discount
+          <p class="mt-10">
+            The accommodation provides an ironing service, as well as business
+            facilities like fax and photocopying. Non-stop information is
+            available at the reception, where staff speak English, Georgian and
+            Russian.
           </p>
           <Suspense>
-            <div class="mb-12 mt-6 flex flex-col items-center">
+            <div class="my-12 flex flex-col items-center">
               <DatePicker
                 inline
                 mode="range"
@@ -154,9 +148,15 @@ export default function Room() {
                 isLoading={data.blockedDates.isLoading}
                 disable={(data.blockedDates.data?.dates as any[]) || []}
               />
-              <Button class="mt-8" disabled={!dateValues()?.length}>
+              <p class="mt-6 flex w-full justify-between">
+                Total Price <span><span class="text-faily">{price() || 0}</span> (GEL)</span>
+              </p>
+              <Button class="mt-8 text-xs" disabled={!dateValues()?.length}>
                 Book now
               </Button>
+              <p class="mt-10 w-full text-left">
+                Book now and get 10% discount
+              </p>
             </div>
           </Suspense>
         </div>

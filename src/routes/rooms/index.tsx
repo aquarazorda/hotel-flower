@@ -33,7 +33,7 @@ const Rooms = () => {
                     "background-image": `url(${url})`,
                   }}
                   onClick={() => navigate(`./${room.id}`)}
-                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-lg bg-cover bg-center p-4 text-white"
+                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-lg bg-cover bg-center px-4 py-6 text-white"
                 >
                   <A
                     href={`./${room.id}`}
@@ -42,9 +42,9 @@ const Rooms = () => {
                     Check Price
                   </A>
                 </div>
-                <div class="mt-4 flex flex-col gap-4 text-xs text-neutral-500">
+                <div class="mt-6 flex flex-col gap-2 text-xs text-neutral-500">
                   <h2 class="mt-auto font-medium"><A href={`./${room.id}`}>{room.name}</A></h2>
-                  <p class="w-11/12">
+                  <p class="w-full">
                     Ideally located in Tbilisi City, Hotel offers a buffet
                     breakfast and free WiFi throughout the property. Each
                     accommodation at the 4-star hotel has city views, and guests
@@ -53,12 +53,12 @@ const Rooms = () => {
                     Tbilisi City, Hotel offers a buffet breakfast and free WiFi
                     throughout the property.
                   </p>
-                  <div class="flex gap-1 text-black">
+                  <div class="mt-2 flex gap-1 text-black">
                     <For each={Array(room.persons)}>
                       {() => <SolarUserRoundedLinear class="h-4 w-4" />}
                     </For>
                     <Show when={room.extraPerson}>
-                      + <SolarUserRoundedLinear  class="h-4 w-4" />
+                      <span class="text-neutral-500">+</span> <SolarUserRoundedLinear  class="h-4 w-4" />
                     </Show>
                   </div>
                   {/* <button 
