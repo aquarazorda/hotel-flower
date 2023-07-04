@@ -26,7 +26,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-8 xl:text-2xl">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:text-2xl">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-20">
@@ -64,7 +64,7 @@ export const HomeSlider = () => {
               {(room, idx) => (
                 <Show when={idx != data.length - 1}>
                   <div
-                    class="h-2 w-2 cursor-pointer rounded-full hover:bg-neutral-400 xl:h-3 xl:w-3"
+                    class="h-2 w-2 cursor-pointer rounded-full hover:bg-neutral-400"
                     onClick={() => moveTo(idx)}
                     classList={{
                       "bg-neutral-400": idx === current(),
@@ -77,7 +77,7 @@ export const HomeSlider = () => {
           </div>
         </div>
       </div>
-      <div class="mb-10 mt-2 flex flex-col p-4 xl:mt-24 xl:items-center xl:bg-secondary">
+      <div class="mb-10 mt-2 flex flex-col p-4 xl:mb-0 xl:mt-32 xl:items-center xl:bg-secondary">
         <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:py-24 xl:text-lg xl:text-white">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch

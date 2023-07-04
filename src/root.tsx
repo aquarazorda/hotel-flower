@@ -42,13 +42,6 @@ export default function Root() {
           crossorigin="anonymous"
           type="text/css"
         />
-        <Link
-          as="style"
-          rel="stylesheet preload prefetch"
-          href="https://fonts.googleapis.com/css2?family=Rufina:wght@400&display=swap&subset=latin&text=WHERE+SOMETHING+INCREDIBLE+HAPPENS"
-          crossorigin="anonymous"
-          type="text/css"
-        />
       </Head>
       <Body class="font-inter">
         <Suspense>
