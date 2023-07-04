@@ -1,20 +1,14 @@
-import { useWindowScrollPosition } from '@solid-primitives/scroll';
-import { For, createMemo } from "solid-js";
-import { isServer } from 'solid-js/web';
+import { For } from "solid-js";
 import { A, useNavigate } from "solid-start";
 import { headerNavItems } from "~/shared/data/header-navigation";
 
 export const MobileHeader = () => {
   const navigate = useNavigate();
-  const scrollPosition = isServer ? { y: 0 } : useWindowScrollPosition();
-  const isScrolled = createMemo(() => scrollPosition.y >= 2);
 
   return (
     <div class="sticky top-0 z-10 flex flex-col bg-white/75 shadow-gray-500 backdrop-blur transition-all duration-300 ease-in-out xl:hidden">
         <div class="mt-4 flex w-full justify-center">
-          <div class="w-1/4 text-center transition-all" classList={{
-            "w-full": isScrolled(),
-          }} onClick={() => navigate('/')}>
+          <div class="w-1/4 text-center transition-all" onClick={() => navigate('/')}>
             <h1 class="font-shippori text-xl uppercase leading-5">
               Hotel Flower
             </h1>

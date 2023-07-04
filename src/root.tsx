@@ -31,7 +31,7 @@ export default function Root() {
         <Link
           as="style"
           rel="stylesheet preload prefetch"
-          href="https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap&text=HOTEL+FLOWER"
+          href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&display=swap&subset=latin"
           crossorigin="anonymous"
           type="text/css"
         />

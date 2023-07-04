@@ -1,7 +1,7 @@
 export const Restaurant = () => {
   return (
     <div class="mt-14 text-xs text-neutral-500">
-      <h5 class="mb-8 text-center text-sm">Restaurant</h5>
+      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500">Restaurant</h5>
       <img src="/img/home/restaurant.jpeg" class="h-28 w-full object-cover" />
       <span class="block px-5 py-16 text-center">
         Savor exquisite meals at our skyline restaurant, offering a culinary

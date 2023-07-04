@@ -26,7 +26,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center text-sm  text-neutral-500">Rooms</h5>
+      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500">Rooms</h5>
       <div class="mb-14 cursor-pointer pl-4">
         {/* @ts-ignore */}
         <div use:slider>
@@ -62,7 +62,7 @@ export const HomeSlider = () => {
             }}
           </For>
         </div>
-        <div class="mt-5 flex flex-col gap-4">
+        <div class="mt-5 flex flex-col gap-6">
           <div class="flex gap-3 xl:ml-8">
             <Index each={data}>
               {(room, idx) => (
@@ -80,7 +80,7 @@ export const HomeSlider = () => {
             </Index>
           </div>
           <div class="flex flex-col pr-3 xl:mx-auto xl:w-2/3 xl:gap-5">
-            <span class="text-xs text-neutral-500 xl:text-lg">
+            <span class="text-center text-xs text-neutral-500 xl:text-lg">
               Experience Tbilisi's charm in Hotel Flower's rooms - a blend of
               modern elegance, authentic Georgian charm, and comfort. Luxurious cityscapes await you.
             </span>
