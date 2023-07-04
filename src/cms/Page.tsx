@@ -17,7 +17,7 @@ export default function CmsPage(props: Props) {
     <div class="flex flex-col gap-6 p-6">
       <div>
         <div class="flex">
-          <h1 class="w-full text-2xl font-semibold">{props.title}</h1>
+          <h1 class="w-full text-xl font-semibold">{props.title}</h1>
           <Show when={props.actionElement}>
             <div class="ml-auto">{props.actionElement}</div>
           </Show>

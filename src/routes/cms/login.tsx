@@ -36,7 +36,7 @@ export default function Login() {
   return (
     <div class="h-screen bg-gray-800">
       <div class="flex h-1/4 flex-col items-center justify-center gap-4 bg-gray-700">
-        <h1 class="text-2xl font-semibold uppercase text-white">
+        <h1 class="text-xl font-semibold uppercase text-white">
           Hotel Flower
         </h1>
         <p class="text-base text-stone-400">

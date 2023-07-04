@@ -15,39 +15,36 @@ export const HomeSlider = () => {
   const [slider, { current, moveTo }] = createSlider(
     createMemo(() => ({
       vertical: false,
-      mode: "snap",
+      mode: "free-snap",
       rtl: false,
       slides: {
         perView: "auto",
-        spacing: isDesktop ? 110 : 9,
+        spacing: isDesktop ? 36 : 8,
       },
     }))
   );
 
   return (
     <div>
-      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500">Rooms</h5>
-      <div class="mb-14 cursor-pointer pl-4">
+      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-8 xl:text-2xl">
+        Rooms
+      </h5>
+      <div class="cursor-pointer pl-4 xl:pl-20">
         {/* @ts-ignore */}
-        <div use:slider>
+        <div use:slider class="flex">
           <For each={data}>
             {(room) => {
               const url = getImageUrl(`/${room.id}/1`, isDesktop ? 1024 : 620);
 
               return (
-                <div class="text-sm text-white">
-                  <div
+                <div class="min-w-[123px] text-sm text-white xl:min-w-[415px]">
+                  <img
                     onClick={() => navigate("/rooms/" + room.id)}
-                    class="flex items-end rounded-lg bg-cover bg-center bg-no-repeat p-2
-                    xl:flex-col xl:items-start xl:px-12 xl:py-9 xl:font-semibold"
-                    style={{
-                      "background-image": `url(${url})`,
-                      "min-width": isDesktop ? "415px" : "122px",
-                      "max-width": isDesktop ? "415px" : "122px",
-                      height: isDesktop ? "434px" : "128px",
-                    }}
-                  >
-                    <div class="hidden 2xl:block">
+                    class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
+                    object-cover xl:h-[434px] xl:flex-col xl:items-start xl:font-semibold"
+                    src={url}
+                  />
+                  {/* <div class="hidden xl:block">
                       <span class="xl:mt-auto xl:text-xl">{room.name}</span>
                       <A
                         href="/todo"
@@ -55,15 +52,14 @@ export const HomeSlider = () => {
                       >
                         See More
                       </A>
-                    </div>
-                  </div>
+                    </div> */}
                 </div>
               );
             }}
           </For>
         </div>
         <div class="mt-5 flex flex-col gap-6">
-          <div class="flex gap-3 xl:ml-8">
+          <div class="flex gap-3">
             <Index each={data}>
               {(room, idx) => (
                 <Show when={idx != data.length - 1}>
@@ -79,13 +75,16 @@ export const HomeSlider = () => {
               )}
             </Index>
           </div>
-          <div class="flex flex-col pr-3 xl:mx-auto xl:w-2/3 xl:gap-5">
-            <span class="text-center text-xs text-neutral-500 xl:text-lg">
-              Experience Tbilisi's charm in Hotel Flower's rooms - a blend of
-              modern elegance, authentic Georgian charm, and comfort. Luxurious cityscapes await you.
-            </span>
-          </div>
         </div>
+      </div>
+      <div class="mb-10 mt-2 flex flex-col p-4 xl:mt-24 xl:items-center xl:bg-secondary">
+        <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:py-24 xl:text-lg xl:text-white">
+          Relish the unique charm of Tbilisi from our stylish rooms at Hotel
+          Flower. Each room harmoniously combines modern elegance with a touch
+          of authentic Georgian charm, promising a stay enriched with comfort,
+          luxury, and stunning cityscapes. Immerse in the vibrant rhythm of the
+          city.
+        </span>
       </div>
     </div>
   );
