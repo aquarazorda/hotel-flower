@@ -30,7 +30,7 @@ export const HomeSecondarySlider = () => {
         <div class="xl:w-1/2">
           <div
             use:slider
-            class="flex h-64 cursor-pointer xl:h-[calc(100vh*0.8)]"
+            class="flex h-64 cursor-pointer xl:h-screen"
           >
             <For each={data}>
               {(room) => {
