@@ -26,7 +26,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-8 xl:text-2xl">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-8 xl:text-2xl">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-20">

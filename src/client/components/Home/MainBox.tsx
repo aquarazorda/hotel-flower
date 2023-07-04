@@ -1,6 +1,4 @@
-import { For } from "solid-js";
 import { A } from "solid-start";
-import { headerNavItems } from "~/shared/data/header-navigation";
 
 export const HomeMainBox = () => {
 

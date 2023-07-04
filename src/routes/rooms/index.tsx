@@ -4,7 +4,6 @@ import { getImageUrl } from "~/server/lib/cloudinary";
 import { A, useNavigate } from "solid-start";
 
 import { SolarUserRoundedLinear } from "~/client/assets/icons/SolarRounded";
-import { Select } from '@kobalte/core';
 
 const Rooms = () => {
   const navigate = useNavigate();

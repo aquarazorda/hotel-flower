@@ -22,9 +22,10 @@ export const HomeSecondarySlider = () => {
 
   return (
     <div class="flex flex-col xl:h-[calc(100vh*0.8)]">
-      <h5 class="mb-6 text-center font-shippori text-base font-medium text-neutral-500">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500">
         Suites
       </h5>
+      {/* @ts-ignore */}
       <div use:slider class="flex h-64 cursor-pointer">
         <For each={data}>
           {(room) => {
@@ -51,8 +52,7 @@ export const HomeSecondarySlider = () => {
             vivacity of Tbilisi meets elegance. Each suite is a tranquil
             retreat, blending modern sophistication with authentic Georgian
             allure. Revel in the exquisite detailing, elevated comforts, and
-            sweeping city views. Your personal sanctuary awaits in the heart of
-            the city.
+            sweeping city views.
           </span>
         </div>
       </div>
