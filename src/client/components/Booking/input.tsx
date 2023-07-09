@@ -14,8 +14,8 @@ type FormItemProps<T> = {
 };
 
 const BookingInput =
-  <T extends FieldValues,>(props: FormItemProps<T>) =>
-  <T extends FieldValues,>(
+  <T extends FieldValues>(props: FormItemProps<T>) =>
+  <T extends FieldValues>(
     field: FieldStore<T, any>,
     fieldProps: FieldElementProps<T, any>
   ) => {
@@ -24,6 +24,7 @@ const BookingInput =
         <TextField.Root>
           <TextField.Input
             {...fieldProps}
+            style={{ "touch-action": "manipulation" }}
             class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
             placeholder={props.placeholder}
             required
