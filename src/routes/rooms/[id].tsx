@@ -20,7 +20,11 @@ import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
 import { defaultQueryOptions } from "~/shared/utils";
-import { getBooking } from '~/server/db/rooms';
+import { getBooking } from "~/server/db/rooms";
+import { Portal } from "solid-js/web";
+import CloseIcon from '~/client/assets/icons/CloseIcon';
+import { TextField } from '@kobalte/core';
+import BookingModal from '~/client/components/Booking/modal';
 
 export const routeData = ({ params }: RouteDataArgs) => ({
   blockedDates: createQuery(() => ({
@@ -33,6 +37,7 @@ export const routeData = ({ params }: RouteDataArgs) => ({
 
 export default function Room() {
   const data = useRouteData<typeof routeData>();
+  const [bookingOpen, setBookingOpen] = createSignal(true);
 
   const [dateValues, setDateValues] = createSignal<Date[]>();
   const { isDesktop } = useDevice();
@@ -64,8 +69,6 @@ export default function Room() {
   const onCalendarChange = (selectedDates: Date[]) => {
     setDateValues(selectedDates.length > 1 ? selectedDates : undefined);
   };
-
-  createEffect(() => console.log(price(), "SDSD"))
 
   createEffect(() => {
     setLoaded(current(), true);
@@ -142,25 +145,37 @@ export default function Room() {
                 inline
                 mode="range"
                 minDate={new Date()}
-                maxDate={new Date(new Date().setMonth(new Date().getMonth() + 6))}
+                maxDate={
+                  new Date(new Date().setMonth(new Date().getMonth() + 6))
+                }
                 onChange={onCalendarChange}
                 dateFormat="Y-m-d"
                 isLoading={data.blockedDates.isLoading}
                 disable={(data.blockedDates.data?.dates as any[]) || []}
               />
               <p class="mt-6 flex w-full justify-between">
-                Total Price <span><span class="text-faily">{price() || 0}</span> (GEL)</span>
+                Total Price{" "}
+                <span>
+                  <span class="text-faily">{price() || 0}</span> (GEL)
+                </span>
               </p>
-              <Button class="mt-8 text-xs" disabled={!dateValues()?.length}>
+              <Button
+                class="mt-8 text-xs"
+                disabled={!dateValues()?.length}
+                onClick={() => setBookingOpen(true)}
+              >
                 Book now
               </Button>
-              <p class="mt-10 w-full text-left">
-                Book now and get 10% discount
-              </p>
+              <p class="mt-10 w-full text-left">Pay now and get 10% discount</p>
             </div>
           </Suspense>
         </div>
       </main>
+      <Show when={bookingOpen()}>
+        <Portal>
+          <BookingModal setBookingOpen={setBookingOpen} />
+        </Portal>
+      </Show>
     </Show>
   );
 }

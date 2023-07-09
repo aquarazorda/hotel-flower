@@ -60,7 +60,7 @@ export const getPrices = async () => {
   const currentMonth = currentDate.getMonth() + 1;
 
   const data = await Promise.all(
-    [0, 2, 4, 6].flatMap(async (i) => {
+    [-2, 0, 2, 4, 6].flatMap(async (i) => {
       const { nextMonth, nextYear } = addTwoMonths(
         currentMonth + i,
         currentYear

@@ -5,6 +5,9 @@ declare module "solid-js" {
     interface CustomEvents {
       "changeDate": DateChangeEvent
     }
+    interface Directives {
+      clickOutside?: () => void;
+    }
   }
 }
 

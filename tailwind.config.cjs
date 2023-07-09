@@ -13,7 +13,8 @@ module.exports = {
         secondaryHover: '#535850',
         textPrimary: '#798781',
         textSecondary: '#7B7D7C',
-        faily: '#B78F8F'
+        faily: '#B78F8F',
+        failyBtn: '#CDA7A7'
       },
       lineHeight: {
         'extra-tight': '0.8'
