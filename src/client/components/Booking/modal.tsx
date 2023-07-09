@@ -6,7 +6,7 @@ import {
   minLength,
   required,
 } from "@modular-forms/solid";
-import { createEffect, createMemo, createSignal } from "solid-js";
+import { createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js";
 import CloseIcon from "~/client/assets/icons/CloseIcon";
 import clickOutside from "~/client/directives/clickOutside";
 import { ZodFormattedError, z } from "zod";
@@ -63,6 +63,14 @@ export default function BookingModal(props: Props) {
       setIsFormValid(false);
     }
   });
+
+  onMount(() => {
+    document.body.style.overflow = "hidden";
+  })
+
+  onCleanup(() => {
+    document.body.style.overflow = "auto";
+  })
 
   return (
     <div class="fixed inset-0 z-10 flex items-center justify-center bg-black/50">
