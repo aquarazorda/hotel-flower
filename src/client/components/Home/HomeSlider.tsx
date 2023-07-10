@@ -25,7 +25,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-12 xl:mt-4 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-4">
@@ -44,7 +44,7 @@ export const HomeSlider = () => {
                     <img
                       onClick={() => navigate("/rooms/" + room.id)}
                       class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
-                    object-cover xl:aspect-square xl:min-h-[364px] xl:flex-col xl:items-start xl:font-semibold"
+                    object-cover xl:aspect-square xl:min-h-[264px] xl:flex-col xl:items-start xl:font-semibold"
                       src={url}
                     />
                     {/* <div class="hidden xl:block">
@@ -84,8 +84,8 @@ export const HomeSlider = () => {
           </div>
         </div>
       </div>
-      <div class="mb-10 mt-2 flex flex-col p-4 xl:mb-0 xl:mt-52 xl:items-center xl:bg-secondary">
-        <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:p-20 xl:text-sm xl:text-white">
+      <div class="mb-10 mt-2 flex flex-col p-4 xl:mb-0 xl:mt-14 xl:items-center xl:bg-secondary">
+        <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:p-12 xl:text-base xl:text-white">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
           of authentic Georgian charm, promising a stay enriched with comfort,
