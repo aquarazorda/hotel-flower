@@ -64,14 +64,6 @@ export default function BookingModal(props: Props) {
     }
   });
 
-  onMount(() => {
-    document.body.style.overflow = "hidden";
-  })
-
-  onCleanup(() => {
-    document.body.style.overflow = "auto";
-  })
-
   return (
     <div class="fixed inset-0 z-10 flex items-center justify-center bg-black/50">
       <div

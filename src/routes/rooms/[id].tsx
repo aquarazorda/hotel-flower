@@ -74,6 +74,10 @@ export default function Room() {
     setLoaded(current(), true);
   });
 
+  createEffect(() => {
+    bookingOpen() ? document.body.classList.add("overflow-hidden") : document.body.classList.remove("overflow-hidden");
+  });
+
   return (
     <Show when={data.room()} fallback={<Navigate href="/rooms" />}>
       <main class="flex flex-col gap-6 text-xs text-textPrimary">

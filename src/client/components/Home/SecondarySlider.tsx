@@ -30,7 +30,7 @@ export const HomeSecondarySlider = () => {
         <div class="xl:w-1/2">
           <div
             use:slider
-            class="flex h-64 cursor-pointer xl:h-screen"
+            class="flex h-64 cursor-pointer xl:h-[105vh]"
           >
             <For each={data}>
               {(room) => {
@@ -53,8 +53,8 @@ export const HomeSecondarySlider = () => {
             <SliderDots count={data} current={current()} moveTo={moveTo} />
           </div>
           <div class="flex flex-col xl:mx-auto xl:w-2/3 xl:justify-center xl:gap-5">
-            <span class="hidden text-center font-shippori text-2xl font-medium text-secondary xl:block">Suites</span>
-            <span class="text-center text-xs text-neutral-500 xl:text-base">
+            <span class="hidden text-center text-xl text-secondary xl:block">Suites</span>
+            <span class="text-center text-xs text-neutral-500 xl:text-sm xl:text-textSecondary">
               Step into the refined luxury of Hotel Flower's suites, where the
               vivacity of Tbilisi meets elegance. Each suite is a tranquil
               retreat, blending modern sophistication with authentic Georgian

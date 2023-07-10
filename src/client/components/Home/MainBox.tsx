@@ -4,10 +4,10 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] xl:h-screen xl:bg-[url('/img/home/main.webp')]"
+      class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] xl:h-[120vh] xl:bg-[url('/img/home/main.webp')]"
     >
-      <div class="mt-auto flex h-96 flex-col items-center justify-center gap-12 xl:h-full xl:gap-16 xl:bg-landing-gradient">
-        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent xl:block">
+      <div class="mt-auto flex h-96 flex-col gap-12 xl:h-full xl:gap-16 xl:bg-landing-gradient">
+        <h1 class="mt-[40vh] hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent xl:block">
           Hotel<br />Flower
         </h1>
         <div class="hidden xl:block">

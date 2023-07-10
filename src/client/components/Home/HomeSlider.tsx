@@ -18,14 +18,14 @@ export const HomeSlider = () => {
       rtl: false,
       slides: {
         perView: "auto",
-        spacing: isDesktop ? 36 : 8,
+        spacing: isDesktop ? 32 : 8,
       },
     }))
   );
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-2xl xl:font-normal">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-4">
@@ -38,13 +38,13 @@ export const HomeSlider = () => {
               return (
                 <>
                   <div
-                    class="min-w-[123px] text-sm text-white xl:min-w-[415px]"
-                    classList={{ "xl:ml-24": idx() === 0 }}
+                    class="min-w-[123px] text-sm text-white xl:aspect-square xl:min-w-fit"
+                    classList={{ "xl:ml-28": idx() === 0 }}
                   >
                     <img
                       onClick={() => navigate("/rooms/" + room.id)}
                       class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
-                    object-cover xl:h-[434px] xl:flex-col xl:items-start xl:font-semibold"
+                    object-cover xl:aspect-square xl:min-h-[364px] xl:flex-col xl:items-start xl:font-semibold"
                       src={url}
                     />
                     {/* <div class="hidden xl:block">
@@ -65,8 +65,8 @@ export const HomeSlider = () => {
             }}
           </For>
         </div>
-        <div class="mt-5 flex flex-col gap-6">
-          <div class="flex gap-3 xl:pl-24">
+        <div class="mt-5 flex flex-col gap-6 xl:hidden">
+          <div class="flex gap-3">
             <Index each={data}>
               {(room, idx) => (
                 <Show when={idx != data.length - 1}>
@@ -84,8 +84,8 @@ export const HomeSlider = () => {
           </div>
         </div>
       </div>
-      <div class="mb-10 mt-2 flex flex-col p-4 xl:mb-0 xl:mt-40 xl:items-center xl:bg-secondary">
-        <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:py-24 xl:text-lg xl:text-white">
+      <div class="mb-10 mt-2 flex flex-col p-4 xl:mb-0 xl:mt-52 xl:items-center xl:bg-secondary">
+        <span class="text-center text-xs text-neutral-500 xl:max-w-xl xl:p-20 xl:text-sm xl:text-white">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
           of authentic Georgian charm, promising a stay enriched with comfort,

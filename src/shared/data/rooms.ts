@@ -19,11 +19,19 @@ export const roomsData = [
   },
   {
     type: "room",
-    id: 906,
-    name: "Double Room with Mountain View",
-    pictures: 6,
-    persons: 3
+    id: 907,
+    name: "Double or Twin Room with Mountain View",
+    pictures: 5,
+    persons: 2,
+    extraPerson: true
   },
+  // {
+  //   type: "room",
+  //   id: 906,
+  //   name: "Double Room with Mountain View",
+  //   pictures: 6,
+  //   persons: 3
+  // },
   {
     type: "room",
     id: 904,

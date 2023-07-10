@@ -1,14 +1,14 @@
 export const Restaurant = () => {
   return (
     <div class="mt-14 text-xs xl:mt-20">
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-2xl xl:font-normal">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
         Restaurant
       </h5>
       <img
         src="/img/home/restaurant.jpeg"
-        class="h-28 w-full object-cover xl:h-72"
+        class="h-28 w-full object-cover xl:h-60"
       />
-      <span class="block px-5 py-16 text-center text-neutral-500 xl:py-32 xl:text-lg">
+      <span class="block px-5 py-16 text-center text-neutral-500 xl:py-32 xl:text-sm xl:text-textSecondary">
         <span class="xl:mx-auto xl:block xl:w-1/3">
           Savor exquisite meals at our skyline restaurant, offering a culinary
           journey as breathtaking as the city views. Dine under the stars, enjoy
