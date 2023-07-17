@@ -9,17 +9,27 @@ datasource db {
 }
 
 model Room {
-  id          Int          @id @default(autoincrement())
+  id          Int          @id @unique @default(autoincrement())
   msId        Int          @unique
   roomId      Int          @unique
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   name        String
+  blockedDate BlockedDate?
+  prices      Price?
+  info    RoomInfo?
+}
+
+model RoomInfo {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  roomId   Int      @unique
+  room     Room?     @relation(fields: [roomId], references: [roomId])
   description String?
   pictures    Int          @default(0)
   persons     Int          @default(3)
   extraPerson Boolean      @default(true)
-  blocked     BlockedDate?
 }
 
 model BlockedDate {
@@ -27,12 +37,37 @@ model BlockedDate {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   dates     Json
-  room      Room     @relation(fields: [roomId], references: [roomId])
   roomId    Int      @unique
+  room      Room?     @relation(fields: [roomId], references: [roomId])
 }
 
 model User {
   id       Int    @id @default(autoincrement())
-  username String
-  password String
+  email String
+  phone String
+  firstName String
+  lastName String
+  dateCreated DateTime @default(now())
+}
+
+model Price {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  list      Json
+  msId      Int      @unique
+  room      Room?     @relation(fields: [msId], references: [msId])
+}
+
+model Transaction {
+  id       Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  roomId  Int
+  status  String
+  dateFrom DateTime
+  dateEnd DateTime
+  userId Int
+  amount Int
+  transactionId String?
 }

@@ -1,7 +1,7 @@
 import { Cheerio, CheerioAPI, Element, load } from "cheerio";
 import { getLoginCookies } from ".";
 import { addTwoMonths } from "~/shared/utils";
-import { Room } from '@prisma/client';
+import { RoomWithFullData } from '~/server/db/zod';
 
 const fetchPrices = (headers: Headers, month: number, year: number) => {
   const { MS_CALENDAR_URL } = process.env;
@@ -28,26 +28,34 @@ type Input = {
 };
 
 const generatePrices = (d: Input[]) => {
-  let data: { [key: number]: Record<string, string> } = {};
+  let data: { [key: number]: Record<string, number> } = {};
 
   d.forEach(({ $, rows, month, year }) => {
     rows.each((i, element) => {
-      const rowData = $(element)
-        .find("td")
-        .map((i, el) => $(el).text().trim());
-      const price = rowData[1];
+      const rowData = $(element).find("td");
 
-      if (price !== "0") {
-        if (!data[i]) {
-          data[i] = {};
+      const currMonthEl = rowData[1];
+      const msId = Number($(currMonthEl).attr("category_id"));
+
+      const prices = {
+        currMonth: Number($(currMonthEl).text().trim()),
+        nextMonth: Number($(rowData[6]).text().trim()),
+      };
+
+      if (prices.currMonth !== 0 && prices.nextMonth !== 0) {
+        if (!data[msId]) {
+          data[msId] = {};
         }
-        data[i][`${month}-${year}`] = rowData[1];
-        data[i][`${month + 1}-${year}`] = rowData[6];
+        data[msId][`${month}-${year}`] = prices.currMonth;
+        data[msId][`${month + 1}-${year}`] = prices.nextMonth;
       }
     });
   });
 
-  return data;
+  return Object.keys(data).map((key) => ({
+    msId: Number(key),
+    list: data[Number(key)],
+  }));
 };
 
 export const getPrices = async () => {
@@ -81,9 +89,10 @@ export const getPrices = async () => {
 };
 
 
-const calculatePrices = ([startDate, endDate]: [Date, Date], room: Room) => {
+export const calculatePrices = ([startDate, end]: string[], room: RoomWithFullData) => {
   const dates_ = [];
-  let currentDate = startDate;
+  let currentDate = new Date(startDate);
+  let endDate = new Date(end);
 
   while (currentDate <= endDate) {
     const month = currentDate.getMonth() + 1;
@@ -92,11 +101,10 @@ const calculatePrices = ([startDate, endDate]: [Date, Date], room: Room) => {
     currentDate.setDate(currentDate.getDate() + 1);
   }
 
-  const dates = dates_.reduce((acc, { month, year }) => {
-    if (!acc[year]) {
-      acc[year] = [];
-    }
-    acc[year].push(month);
-    return acc;
+  const price = dates_.reduce((acc, { month, year }) => {
+    const price = room?.prices?.list[`${month}-${year}`];
+    return price ? acc + price : 0;
   }, 0);
+
+  return price;
 }

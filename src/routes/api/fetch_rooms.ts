@@ -4,6 +4,7 @@ import { getRoomsList } from "~/server/lib/otelms/rooms";
 export const GET = async () => {
   const rooms = await getRoomsList();
 
+  await prisma.room.deleteMany({});
   await prisma.room.createMany({
     data: rooms,
   });

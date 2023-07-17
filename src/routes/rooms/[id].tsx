@@ -16,30 +16,27 @@ import { CheckRounded } from "~/client/assets/icons/CheckRounded";
 import { Button } from "~/client/components/Button";
 import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
-import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
 import { defaultQueryOptions } from "~/shared/utils";
-import { getBooking } from "~/server/db/rooms";
+import { getRoom } from "~/server/db/rooms";
 import { Portal } from "solid-js/web";
-import CloseIcon from '~/client/assets/icons/CloseIcon';
-import { TextField } from '@kobalte/core';
-import BookingModal from '~/client/components/Booking/modal';
+import BookingModal from "~/client/components/Booking/modal";
+import { calculatePrices } from "~/server/lib/otelms/prices";
 
 export const routeData = ({ params }: RouteDataArgs) => ({
-  blockedDates: createQuery(() => ({
-    queryKey: ["room-bookings", params.id],
-    queryFn: () => getBooking(Number(params.id)),
+  room: createQuery(() => ({
+    queryKey: ["room", params.id],
+    queryFn: () => getRoom(Number(params.id)),
     ...defaultQueryOptions,
   })),
-  room: createMemo(() => roomsData.find(({ id }) => String(id) === params.id)),
 });
 
 export default function Room() {
-  const data = useRouteData<typeof routeData>();
-  const [bookingOpen, setBookingOpen] = createSignal(true);
+  const { room } = useRouteData<typeof routeData>();
+  const [bookingOpen, setBookingOpen] = createSignal(false);
 
-  const [dateValues, setDateValues] = createSignal<Date[]>();
+  const [dateValues, setDateValues] = createSignal<string[]>();
   const { isDesktop } = useDevice();
   const [loaded, setLoaded] = createStore<Record<number, boolean>>({ 0: true });
   const [slider, { moveTo, current }] = createSlider({
@@ -51,22 +48,14 @@ export default function Room() {
   });
 
   const price = createMemo(() => {
-    if (dateValues() && dateValues()!.length > 1) {
-      // const months = dateValues()!.map((date) => date.getMonth()+1);
-      // const uniqueMonths = [...new Set(months)];
-      // const prices = uniqueMonths.map((month) => {
-      //   const days = dateValues()!.filter((date) => date.getMonth() === month);
-      //   console.log(uniqueMonths);
-      //   const pricePerDay = 200;
-      //   // const pricePerDay = data.room()?.price[month];
-      //   return days.length * pricePerDay;
-      // });
-
-      return 200;
+    if (dateValues() && dateValues()!.length > 1 && room.data) {
+      return calculatePrices(dateValues()!, room.data);
     }
+
+    return 0;
   });
 
-  const onCalendarChange = (selectedDates: Date[]) => {
+  const onCalendarChange = (selectedDates: string[]) => {
     setDateValues(selectedDates.length > 1 ? selectedDates : undefined);
   };
 
@@ -75,28 +64,30 @@ export default function Room() {
   });
 
   createEffect(() => {
-    bookingOpen() ? document.body.classList.add("overflow-hidden") : document.body.classList.remove("overflow-hidden");
+    bookingOpen()
+      ? document.body.classList.add("overflow-hidden")
+      : document.body.classList.remove("overflow-hidden");
   });
 
   return (
-    <Show when={data.room()} fallback={<Navigate href="/rooms" />}>
+    <Suspense>
       <main class="flex flex-col gap-6 text-xs text-textPrimary">
         {/* @ts-ignore */}
         <div use:slider class="flex h-96">
-          <Index each={Array(data.room()?.pictures)}>
+          <Index each={Array(room.data?.info?.pictures)}>
             {(item, idx) => (
               <img
                 loading="lazy"
                 src={
                   loaded[idx]
                     ? getImageUrl(
-                        `/${data.room()!.id}/${idx + 1}`,
+                        `/${room.data?.id}/${idx + 1}`,
                         isDesktop ? 1900 : 980
                       )
                     : ""
                 }
                 class="object-cover"
-                alt={data.room()!.name + " Picture " + (idx + 1)}
+                alt={room.data?.name + " Picture " + (idx + 1)}
               />
             )}
           </Index>
@@ -104,7 +95,7 @@ export default function Room() {
         <div class="flex flex-col gap-4 px-6">
           <div class="flex gap-2">
             <SliderDots
-              count={data.room()?.pictures || 0}
+              count={room.data?.info?.pictures || 0}
               current={current()}
               moveTo={moveTo}
             />
@@ -154,8 +145,8 @@ export default function Room() {
                 }
                 onChange={onCalendarChange}
                 dateFormat="Y-m-d"
-                isLoading={data.blockedDates.isLoading}
-                disable={(data.blockedDates.data?.dates as any[]) || []}
+                isLoading={room.isLoading}
+                disable={room.data?.blockedDate?.dates || []}
               />
               <p class="mt-6 flex w-full justify-between">
                 Total Price{" "}
@@ -175,11 +166,16 @@ export default function Room() {
           </Suspense>
         </div>
       </main>
-      <Show when={bookingOpen()}>
+      <Show when={bookingOpen() && dateValues()}>
         <Portal>
-          <BookingModal setBookingOpen={setBookingOpen} />
+          <BookingModal
+            setBookingOpen={setBookingOpen}
+            room={room.data!}
+            price={price()}
+            dates={dateValues()!}
+          />
         </Portal>
       </Show>
-    </Show>
+    </Suspense>
   );
 }

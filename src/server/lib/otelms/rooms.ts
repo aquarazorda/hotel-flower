@@ -23,11 +23,11 @@ export const getRoomsList = async () => {
   rows.each((i, elem) => {
     let td = $(elem).find('td');
 
-    let obj = {
+    let obj = { 
       id: parseInt(td.eq(0).text()),
       msId: parseInt(td.eq(1).text()),
       name: td.eq(3).text().replace(/\.|,/g, ''),
-      roomId: parseInt(td.eq(4).text()),
+      roomId: parseInt(td.eq(4).text())
     };
     
     if (obj.roomId) data.push(obj);

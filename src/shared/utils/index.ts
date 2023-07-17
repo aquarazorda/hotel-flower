@@ -13,6 +13,8 @@ export const defaultQueryOptions = {
   refetchOnMount: false,
   refetchOnReconnect: false,
   refetchOnWindowFocus: false,
+  suspense: true,
+  staleTime: 300000
 };
 
 export const addTwoMonths = (month: number, year: number) => {

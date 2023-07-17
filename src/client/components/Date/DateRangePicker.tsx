@@ -6,8 +6,14 @@ import "./calendar.css";
 
 type Props = {
   isLoading: boolean;
-  onChange?: (selectedDates: Date[]) => void; // eslint-disable-line
+  onChange?: (selectedDates: string[]) => void; // eslint-disable-line
 } & Omit<flatpickr.Options.Options, "onChange">;
+
+const toGmt4 = (date: Date) => {
+  const locale = date.toLocaleString('en-US', { timeZone: 'Asia/Tbilisi' });
+
+  return locale;
+}
 
 export const DateRangePicker = (props: Props) => {
   let ref: HTMLDivElement | undefined;
@@ -41,7 +47,10 @@ export const DateRangePicker = (props: Props) => {
         }
       }
 
-      props.onChange?.(selectedDates);
+      props.onChange?.([
+        toGmt4(selectedDates[0]),
+        toGmt4(selectedDates[1]),
+      ]);
       return;
     }
     props.onChange?.([]);
@@ -49,7 +58,7 @@ export const DateRangePicker = (props: Props) => {
 
   onMount(async () => {
     if (ref) {
-      datePicker = flatpickr(ref, props);
+      datePicker = flatpickr(ref, {...props, onChange});
     }
   });
 
