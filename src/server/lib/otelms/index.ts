@@ -1,5 +1,6 @@
 import server$ from "solid-start/server";
 import { load } from "cheerio";
+import { getCurrentDate, getFutureDate } from '~/shared/utils';
 
 export const getLoginCookies = server$(async () => {
   const { MS_LOGIN_URL, MS_LOGIN_EMAIL, MS_LOGIN_PASSWORD } = process.env;
@@ -41,8 +42,9 @@ export const getBookedDates = server$(async () => {
   headers.append("Cookie", await getLoginCookies());
 
   const body = new URLSearchParams();
-  body.append("pages", "1");
+  body.append("date", `${getCurrentDate()} - ${getFutureDate(7)}`);
   body.append("lines", "500");
+  body.append("date_type", "0");
 
   const res = await fetch(MS_BOOKINGS_URL, {
     headers,
@@ -55,7 +57,7 @@ export const getBookedDates = server$(async () => {
 
 const generateBookingDates = (html: string) => {
   const $ = load(html);
-  const rows = $(".content .redline");
+  const rows = $(".table.dataTable tr");
 
   const tableData: { name: string; from: string; to: string }[] = [];
 
@@ -68,11 +70,11 @@ const generateBookingDates = (html: string) => {
         tableRowData.push($(element).text().trim());
       });
 
-    if (tableRowData.length === 12) {
+    if (tableRowData.length) {
       tableData.push({
-        name: tableRowData[4],
-        from: tableRowData[9],
-        to: tableRowData[11],
+        name: tableRowData[2],
+        from: tableRowData[3],
+        to: tableRowData[4],
       });
     }
   });

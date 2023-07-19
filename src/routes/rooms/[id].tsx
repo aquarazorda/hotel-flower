@@ -18,7 +18,7 @@ import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
-import { defaultQueryOptions } from "~/shared/utils";
+import { defaultQueryOptions, getLastDayOfMonth } from "~/shared/utils";
 import { getRoom } from "~/server/db/rooms";
 import { Portal } from "solid-js/web";
 import BookingModal from "~/client/components/Booking/modal";
@@ -53,6 +53,12 @@ export default function Room() {
     }
 
     return 0;
+  });
+
+  const maxDate = createMemo(() => {
+    if (!room.data?.prices?.list) return undefined;
+    const keys = Object.keys(room.data?.prices?.list);
+    return getLastDayOfMonth(keys[keys.length - 1])
   });
 
   const onCalendarChange = (selectedDates: string[]) => {
@@ -140,9 +146,7 @@ export default function Room() {
                 inline
                 mode="range"
                 minDate={new Date()}
-                maxDate={
-                  new Date(new Date().setMonth(new Date().getMonth() + 6))
-                }
+                maxDate={maxDate()}
                 onChange={onCalendarChange}
                 dateFormat="Y-m-d"
                 isLoading={room.isLoading}
