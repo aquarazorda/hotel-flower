@@ -9,27 +9,28 @@ datasource db {
 }
 
 model Room {
-  id          Int          @id @unique @default(autoincrement())
-  msId        Int          @unique
-  roomId      Int          @unique
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  name        String
-  blockedDate BlockedDate?
-  prices      Price?
-  info    RoomInfo?
+  id              Int              @id @unique @default(autoincrement())
+  msId            Int              @unique
+  roomId          Int              @unique
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  name            String
+  blockedDate     BlockedDate?
+  prices          Price?
+  info            RoomInfo?
+  priceAdjustment PriceAdjustment?
 }
 
 model RoomInfo {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  roomId   Int      @unique
-  room     Room?     @relation(fields: [roomId], references: [roomId])
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  roomId      Int      @unique
+  room        Room?    @relation(fields: [roomId], references: [roomId])
   description String?
-  pictures    Int          @default(0)
-  persons     Int          @default(3)
-  extraPerson Boolean      @default(true)
+  pictures    Int      @default(0)
+  persons     Int      @default(3)
+  extraPerson Boolean  @default(true)
 }
 
 model BlockedDate {
@@ -38,15 +39,15 @@ model BlockedDate {
   updatedAt DateTime @updatedAt
   dates     Json
   roomId    Int      @unique
-  room      Room?     @relation(fields: [roomId], references: [roomId])
+  room      Room?    @relation(fields: [roomId], references: [roomId])
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email String
-  phone String
-  firstName String
-  lastName String
+  id          Int      @id @default(autoincrement())
+  email       String
+  phone       String
+  firstName   String
+  lastName    String
   dateCreated DateTime @default(now())
 }
 
@@ -56,18 +57,27 @@ model Price {
   updatedAt DateTime @updatedAt
   list      Json
   msId      Int      @unique
-  room      Room?     @relation(fields: [msId], references: [msId])
+  room      Room?    @relation(fields: [msId], references: [msId])
+}
+
+model PriceAdjustment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  list      Json
+  roomId    Int      @unique
+  room      Room?    @relation(fields: [roomId], references: [roomId])
 }
 
 model Transaction {
-  id       Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  roomId  Int
-  status  String
-  dateFrom DateTime
-  dateEnd DateTime
-  userId Int
-  amount Int
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  roomId        Int
+  status        String
+  dateFrom      DateTime
+  dateEnd       DateTime
+  userId        Int
+  amount        Int
   transactionId String?
 }

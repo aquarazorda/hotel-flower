@@ -11,6 +11,11 @@ export const roomFullSchema = z.object({
       list: z.record(z.number()),
     })
   ),
+  priceAdjustment: z.nullable(
+    z.object({
+      list: z.record(z.number()),
+    })
+  ),
   blockedDate: z.nullable(
     z.object({
       dates: z.array(

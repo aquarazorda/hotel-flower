@@ -55,6 +55,11 @@ export const getRoom = server$(async (roomId: number) => {
           persons: true,
           pictures: true,
         }
+      },
+      priceAdjustment: {
+        select: {
+          list: true
+        }
       }
     }
   });

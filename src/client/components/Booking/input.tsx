@@ -11,6 +11,9 @@ type FormItemProps<T> = {
   placeholder: string;
   name: string;
   errors: Accessor<ZodFormattedError<T> | undefined>;
+  showTitle?: boolean;
+  textArea?: boolean;
+  type?: string;
 };
 
 const BookingInput =
@@ -22,13 +25,32 @@ const BookingInput =
     return (
       <>
         <TextField.Root>
-          <TextField.Input
-            {...fieldProps}
-            style={{ "touch-action": "manipulation" }}
-            class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
-            placeholder={props.placeholder}
-            required
-          />
+          <Show when={props.showTitle}>
+            <TextField.Label class="text-sm text-neutral-500">
+              {props.placeholder}
+            </TextField.Label>
+          </Show>
+          <Show
+            when={props.textArea}
+            fallback={
+              <TextField.Input
+                {...fieldProps}
+                type={props.type}
+                style={{ "touch-action": "manipulation" }}
+                class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
+                placeholder={props.showTitle ? "" : props.placeholder}
+                required
+              />
+            }
+          >
+            <TextField.TextArea
+              {...fieldProps}
+              style={{ "touch-action": "manipulation" }}
+              class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
+              placeholder={props.showTitle ? "" : props.placeholder}
+              required
+            />
+          </Show>
         </TextField.Root>
         <Show
           when={field?.dirty && props.errors()?.[props.name]?._errors.length}

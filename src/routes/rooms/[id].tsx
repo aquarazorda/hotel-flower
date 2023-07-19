@@ -18,19 +18,13 @@ import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
 import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
-import { defaultQueryOptions, getLastDayOfMonth } from "~/shared/utils";
-import { getRoom } from "~/server/db/rooms";
+import { getLastDayOfMonth } from "~/shared/utils";
 import { Portal } from "solid-js/web";
 import BookingModal from "~/client/components/Booking/modal";
 import { calculatePrices } from "~/server/lib/otelms/prices";
+import { getRoomRouteData } from '~/client/query/getRoomRouteData';
 
-export const routeData = ({ params }: RouteDataArgs) => ({
-  room: createQuery(() => ({
-    queryKey: ["room", params.id],
-    queryFn: () => getRoom(Number(params.id)),
-    ...defaultQueryOptions,
-  })),
-});
+export const routeData = getRoomRouteData;
 
 export default function Room() {
   const { room } = useRouteData<typeof routeData>();
