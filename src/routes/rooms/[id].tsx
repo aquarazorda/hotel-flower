@@ -126,7 +126,7 @@ export default function Room() {
                 <CheckRounded /> Daily housekeeping
               </li>
             </ul>
-            <Button class="text-xs">See more</Button>
+            <Button class="text-xs">See More</Button>
           </div>
           <p class="mt-10">
             The accommodation provides an ironing service, as well as business
@@ -146,7 +146,7 @@ export default function Room() {
                 isLoading={room.isLoading}
                 disable={room.data?.blockedDate?.dates || []}
               />
-              <p class="mt-6 flex w-full justify-between">
+              <p class="mt-6 flex w-full justify-between px-7">
                 Total Price{" "}
                 <span>
                   <span class="text-faily">{price() || 0}</span> (GEL)
@@ -157,7 +157,7 @@ export default function Room() {
                 disabled={!dateValues()?.length}
                 onClick={() => setBookingOpen(true)}
               >
-                Book now
+                Book Now
               </Button>
               <p class="mt-10 w-full text-left">Pay now and get 10% discount</p>
             </div>

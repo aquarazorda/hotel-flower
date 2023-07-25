@@ -7,7 +7,7 @@ import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
 
 export default function Home() {
   return (
-    <main class="font-inter">
+    <main>
       <MobileHeader />
       {/* Main Page Start */}
       <HomeMainBox />
@@ -22,7 +22,6 @@ export default function Home() {
       <HomeSlider />
       <HomeSecondarySlider />
       <Restaurant />
-      <Footer />
     </main>
   );
 }

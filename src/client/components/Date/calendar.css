@@ -6,6 +6,10 @@
   display: none;
 }
 
+.flatpickr-monthDropdown-months {
+  appearance: none !important;
+}
+
 .flatpickr-days .selected {
   background: #535850 !important;
   border: none !important;
