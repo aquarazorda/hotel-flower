@@ -21,7 +21,7 @@ export const HomeSecondarySlider = () => {
   });
 
   return (
-    <div class="flex flex-col">
+    <div class="flex flex-col xl:mt-28 xl:pl-32 xl:pr-20">
       <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:hidden">
         Suites
       </h5>
@@ -30,7 +30,7 @@ export const HomeSecondarySlider = () => {
         <div class="xl:w-1/2">
           <div
             use:slider
-            class="flex h-64 cursor-pointer xl:h-[80vh]"
+            class="flex h-64 cursor-pointer xl:h-[70vh]"
           >
             <For each={data}>
               {(room) => {
@@ -40,7 +40,7 @@ export const HomeSecondarySlider = () => {
                 return (
                   <img
                     src={url}
-                    class="h-full w-full object-cover"
+                    class="h-full w-full object-cover xl:rounded-xl"
                     loading="lazy"
                   />
                 );
@@ -52,14 +52,13 @@ export const HomeSecondarySlider = () => {
           <div class="flex gap-3 xl:ml-8 xl:flex-col xl:justify-center">
             <SliderDots count={data} current={current()} moveTo={moveTo} />
           </div>
-          <div class="flex flex-col xl:mx-auto xl:w-2/3 xl:justify-center xl:gap-5">
+          <div class="flex flex-col xl:mx-auto xl:max-w-md xl:justify-center xl:gap-5">
             <span class="hidden text-center text-xl text-secondary xl:block">Suites</span>
-            <span class="text-center text-xs text-neutral-500 xl:text-base xl:text-textSecondary">
+            <span class="text-center text-xs text-text2nd xl:text-base xl:text-textSecondary">
               Step into the refined luxury of Hotel Flower's suites, where the
               vivacity of Tbilisi meets elegance. Each suite is a tranquil
               retreat, blending modern sophistication with authentic Georgian
-              allure. Revel in the exquisite detailing, elevated comforts, and
-              sweeping city views.
+              allure.
             </span>
           </div>
         </div>

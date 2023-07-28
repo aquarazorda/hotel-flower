@@ -55,7 +55,7 @@ export const HomeMainBox = () => {
           </Show>
           Flower
         </h1>
-        <div class="hidden transition xl:block" classList={{'xl:hidden': scrollPercent() >= 15}}>
+        {/* <div class="hidden transition xl:block" classList={{'xl:hidden': scrollPercent() >= 15}}>
           <div class="mt-8 flex w-full justify-center">
             <A
               href="/booking"
@@ -64,7 +64,7 @@ export const HomeMainBox = () => {
               Book Now
             </A>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

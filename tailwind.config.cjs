@@ -13,6 +13,7 @@ module.exports = {
         secondaryHover: '#535850',
         textPrimary: '#798781',
         textSecondary: '#7B7D7C',
+        text2nd: '#899385',
         faily: '#B78F8F',
         failyBtn: '#CDA7A7'
       },

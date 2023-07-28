@@ -33,6 +33,13 @@ export const roomsData = [
   //   persons: 3
   // },
   {
+    type: "suite",
+    id: 803,
+    name: "Suite with City View",
+    pictures: 6,
+    persons: 2
+  },
+  {
     type: "room",
     id: 904,
     secondary: 905,
@@ -61,13 +68,6 @@ export const roomsData = [
     id: 804,
     secondary: 805,
     name: "Junior Suite with Balcony",
-    pictures: 6,
-    persons: 2
-  },
-  {
-    type: "suite",
-    id: 803,
-    name: "Suite with City View",
     pictures: 6,
     persons: 2
   }
