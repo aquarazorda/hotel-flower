@@ -1,3 +1,7 @@
+.flatpickr-calendar {
+  width: 275px;
+}
+
 .flatpickr-calendar.inline {
   box-shadow: none;
 }
