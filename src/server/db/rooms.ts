@@ -38,6 +38,7 @@ export const getRoom = server$(async (roomId: number) => {
       id: true,
       name: true,
       roomId: true,
+      msId: true,
       prices: {
         select: {
           list: true
@@ -54,11 +55,6 @@ export const getRoom = server$(async (roomId: number) => {
           extraPerson: true,
           persons: true,
           pictures: true,
-        }
-      },
-      priceAdjustment: {
-        select: {
-          list: true
         }
       }
     }

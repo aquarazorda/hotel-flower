@@ -29,8 +29,8 @@ export const Header = () => {
           )}
         </For>
       </nav>
-      <A href="/login" class="text-sm">
-        Login
+      <A href="/contact" class="text-sm">
+        Contact
       </A>
     </header>
   );

@@ -1,7 +1,7 @@
 import FilterButton from './Button';
 
 const RoomsFilter = () => {
-  return <div class="mt-2 flex gap-1 px-3">
+  return <div class="my-auto mt-2 flex w-full justify-center gap-2 xl:justify-normal">
     <FilterButton icon="calendar" onClick={console.log}>
       Check In
     </FilterButton>
@@ -9,7 +9,7 @@ const RoomsFilter = () => {
       Check Out
     </FilterButton>
     <FilterButton icon="profile" onClick={console.log} rounded />
-    <FilterButton icon="settings" onClick={console.log}>
+    <FilterButton icon="settings" onClick={console.log} class="xl:ml-auto">
       Sort By
     </FilterButton>
   </div>

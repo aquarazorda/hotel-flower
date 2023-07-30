@@ -6,16 +6,17 @@ export const roomFullSchema = z.object({
   id: z.number(),
   name: z.string(),
   roomId: z.number(),
+  msId: z.number(),
   prices: z.nullable(
     z.object({
       list: z.record(z.number()),
     })
   ),
-  priceAdjustment: z.nullable(
-    z.object({
-      list: z.record(z.number()),
-    })
-  ),
+  // priceAdjustment: z.nullable(
+  //   z.object({
+  //     list: z.record(z.number()),
+  //   })
+  // ),
   blockedDate: z.nullable(
     z.object({
       dates: z.array(

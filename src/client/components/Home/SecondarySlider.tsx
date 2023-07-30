@@ -29,6 +29,7 @@ export const HomeSecondarySlider = () => {
       <div class="flex flex-col xl:flex-row">
         <div class="xl:w-1/2">
           <div
+            // @ts-ignore
             use:slider
             class="flex h-64 cursor-pointer xl:h-[70vh]"
           >

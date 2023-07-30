@@ -8,7 +8,7 @@ import RoomsFilter from "~/client/components/Filter/RoomsFIlter";
 import Footer from "~/client/components/Footer";
 import { Icon } from "~/client/components/Icons";
 import { Button, Toast, toaster } from "@kobalte/core";
-import { Portal } from 'solid-js/web';
+import { Portal } from "solid-js/web";
 
 const Rooms = () => {
   const navigate = useNavigate();
@@ -19,19 +19,20 @@ const Rooms = () => {
   // });
   // return <DateRangePicker />`
   // TODO
-  const showToast = () => toaster.show(props => <Toast.Root toastId={1}>
-    Room link has been copied
-  </Toast.Root>)
+  const showToast = () =>
+    toaster.show((props) => (
+      <Toast.Root toastId={1}>Room link has been copied</Toast.Root>
+    ));
 
   return (
-    <div>
+    <div class="xl:px-[5%]">
       {/* <div>
         <Select.Root>
           <Select.Label></Select.Label>
         </Select.Root>
       </div> */}
-      <RoomsFilter />
-      <main class="my-10 flex flex-wrap justify-center gap-10 px-7">
+      {/* <RoomsFilter /> */}
+      <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-4 xl:gap-6">
         <For each={roomsData}>
           {(room) => {
             const url = getImageUrl(`/${room.id}/1`, 1024);
@@ -43,19 +44,27 @@ const Rooms = () => {
                     "background-image": `url(${url})`,
                   }}
                   onClick={() => navigate(`./${room.id}`)}
-                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl bg-cover bg-center px-6 py-7 text-white"
+                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl bg-cover bg-center px-6 py-7 text-white xl:aspect-[1.17] xl:h-auto"
                 >
-                  <A
-                    href={`./${room.id}`}
-                    class="mt-auto w-fit cursor-pointer rounded-lg bg-neutral-700/60 px-4 py-2 text-[10px] font-bold hover:bg-zinc-300"
-                  >
-                    Check Price
-                  </A>
+                  <div class="mt-auto flex items-center">
+                    <A
+                      href={`./${room.id}`}
+                      class="w-fit cursor-pointer rounded-lg bg-neutral-700/60 px-4 py-2 text-[10px] font-bold hover:bg-zinc-300"
+                    >
+                      Check Price
+                    </A>
+                    <Button.Root
+                      onClick={showToast}
+                      class="ml-auto hidden xl:block"
+                    >
+                      <Icon name="share-white" class="z-10 fill-white text-white" />
+                    </Button.Root>
+                  </div>
                 </div>
                 <div class="mt-6 flex flex-col gap-2">
                   <h2 class="mt-auto flex justify-between font-medium text-[#696969]">
                     <A href={`./${room.id}`}>{room.name}</A>
-                    <Button.Root onClick={showToast}>
+                    <Button.Root onClick={showToast} class="xl:hidden">
                       <Icon name="share" />
                     </Button.Root>
                   </h2>
@@ -90,7 +99,7 @@ const Rooms = () => {
       </main>
       <Portal>
         <Toast.Region>
-          <Toast.List class="fixed bottom-0 right-0 z-50 p-4" />
+          <Toast.List class="fixed bottom-0 right-0 z-50 bg-white p-4" />
         </Toast.Region>
       </Portal>
     </div>

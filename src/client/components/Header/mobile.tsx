@@ -14,7 +14,7 @@ export const MobileHeader = () => {
             </h1>
           </div>
         </div>
-        <nav class="mb-4 mt-7 flex justify-center font-shippori text-sm uppercase">
+        <nav class="mb-4 mt-7 flex w-full justify-evenly px-4 font-shippori text-sm uppercase">
           <For each={headerNavItems}>
             {(item) => (
               <div class="flex-1 text-center">

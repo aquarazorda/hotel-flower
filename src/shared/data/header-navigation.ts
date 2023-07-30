@@ -7,8 +7,12 @@ export const headerNavItems = [
     name: "Rooms",
     path: "/rooms",
   },
+  // {
+  //   name: "Restaurant",
+  //   path: "/restaurant",
+  // },
   {
-    name: "Restaurant",
-    path: "/restauran",
+    name: "Contact",
+    path: "/contact",
   },
 ]

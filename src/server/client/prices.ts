@@ -2,6 +2,31 @@ import { mutation$ } from '@prpc/solid';
 import { z } from 'zod';
 import { prisma } from '../db/prisma';
 
+export const savePrice = mutation$({
+  schema: z.object({
+    msId: z.number(),
+    list: z.record(z.number())
+  }),
+  key: "save-price",
+  mutationFn: async ({ payload }) => {
+    const { msId, list } = payload;
+    const res = await prisma.price.upsert({
+      where: {
+        msId
+      },
+      update: {
+        list
+      },
+      create: {
+        msId,
+        list
+      }
+    });
+
+    return res;
+  }
+})
+
 export const savePricePercent = mutation$({
   schema: z.object({
     roomId: z.number(),
