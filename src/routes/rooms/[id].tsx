@@ -94,8 +94,10 @@ export default function Room() {
             />
           </div>
           <div class="xl:my-auto xl:flex xl:flex-col xl:items-center">
-            <p class="hidden text-base text-secondaryHover xl:block">{room.data?.name}</p>
-            <p class="mt-5 xl:px-24 xl:text-center">
+            <p class="hidden text-base text-secondaryHover xl:block">
+              {room.data?.name}
+            </p>
+            <p class="mt-5 xl:px-48 xl:text-center">
               At the hotel all rooms include air conditioning, a seating area, a
               flat-screen TV with satellite channels, a safety deposit box and a
               private bathroom with a shower, free toiletries and a hairdryer.
@@ -107,25 +109,32 @@ export default function Room() {
         </div>
       </main>
       <div class="mt-10 px-6 text-xs text-textSecondary xl:flex xl:gap-28 xl:px-14">
-        <div>
+        <div class="xl:w-[70%]">
           <div class="mt-5 flex flex-col gap-8">
-            <ul class="flex list-none flex-col gap-6 px-6 xl:flex-row xl:px-0">
-              <li class="flex items-center gap-6 whitespace-nowrap">
+            <ul class="grid grid-cols-auto-fill gap-4 px-6 xl:px-0">
+              <li class="flex items-center gap-4 whitespace-nowrap">
                 <CancelRounded /> Non smoking rooms
               </li>
-              <li class="flex items-center gap-6 whitespace-nowrap">
-                <CheckRounded /> 24-hour front desk
+              <li class="flex items-center gap-4 whitespace-nowrap">
+                <CheckRounded /> Private parking
               </li>
-              <li class="flex items-center gap-6 whitespace-nowrap">
+              <li class="flex items-center gap-4 whitespace-nowrap">
                 <CheckRounded /> Air conditioning
               </li>
-              <li class="flex items-center gap-6 whitespace-nowrap">
-                <CheckRounded /> Tea/coffee maker in all rooms
-              </li>
-              <li class="flex items-center gap-6 whitespace-nowrap">
+              <li class="flex items-center gap-4 whitespace-nowrap">
                 <CheckRounded /> Daily housekeeping
               </li>
+              <li class="flex items-center gap-4 whitespace-nowrap">
+                <CheckRounded /> Tea/coffee maker
+              </li>
+              <li class="flex items-center gap-4 whitespace-nowrap">
+                <CheckRounded /> Terrace
+              </li>
+              <li class="flex items-center gap-4 whitespace-nowrap">
+                <CheckRounded /> Lift
+              </li>
             </ul>
+
             <Button class="text-xs xl:hidden">See More</Button>
           </div>
           <p class="mt-10 xl:hidden">
@@ -134,7 +143,23 @@ export default function Room() {
             available at the reception, where staff speak English, Georgian and
             Russian.
           </p>
-          <p class="mt-10 hidden xl:block">
+          <p class="mt-14 hidden xl:block">
+            At the hotel all rooms include air conditioning, a seating area, a
+            flat-screen TV with satellite channels, a safety deposit box and a
+            private bathroom with a shower, free toiletries and a hairdryer.
+            Each room is equipped with a kettle, while certain rooms also offer
+            a balcony and others also have river views. At Hotel Flower rooms
+            are fitted with bed linen and towels. <br />
+            <br /> The accommodation provides an ironing service, as well as
+            business facilities like fax and photocopying. Non-stop information
+            is available at the reception, where staff speak English, Georgian
+            and Russian.
+            <br />
+            <br />
+            Popular points of interest near Hotel Flower include Freedom Square,
+            Rustaveli Theatre and Tbilisi Opera and Ballet Theatre. The nearest
+            airport is Tbilisi International Airport, 14 km from the hotel.
+            <br /> <br />
             At the hotel all rooms include air conditioning, a seating area, a
             flat-screen TV with satellite channels, a safety deposit box and a
             private bathroom with a shower, free toiletries and a hairdryer.
@@ -153,31 +178,37 @@ export default function Room() {
           </p>
         </div>
         <Suspense>
-          <div class="my-12 flex flex-col items-center xl:my-0 xl:mb-20 xl:w-[275px]">
-            <DatePicker
-              inline
-              mode="range"
-              minDate={new Date()}
-              maxDate={maxDate()}
-              onChange={onCalendarChange}
-              dateFormat="Y-m-d"
-              isLoading={room.isLoading}
-              disable={room.data?.blockedDate?.dates || []}
-            />
-            <p class="mt-6 flex w-full justify-between px-7">
-              Total Price{" "}
-              <span>
-                <span class="text-faily">{price() || 0}</span> (GEL)
-              </span>
-            </p>
-            <Button
-              class="mt-8 text-xs"
-              disabled={!dateValues()?.length}
-              onClick={() => setBookingOpen(true)}
-            >
-              Book Now
-            </Button>
-            <p class="mt-10 w-full text-left">Pay now and get 5% discount</p>
+          <div class="my-12 flex flex-col items-center xl:my-0 xl:mb-20 xl:w-[30%]">
+            <div>
+              <DatePicker
+                inline
+                mode="range"
+                minDate={new Date()}
+                maxDate={maxDate()}
+                onChange={onCalendarChange}
+                dateFormat="Y-m-d"
+                isLoading={room.isLoading}
+                disable={room.data?.blockedDate?.dates || []}
+              />
+              <div class="px-2">
+                <p class="mt-6 flex w-full justify-between">
+                  Total Price{" "}
+                  <span>
+                    <span class="text-faily">{price() || 0}</span> (GEL)
+                  </span>
+                </p>
+                <Button
+                  class="mt-8 text-xs"
+                  disabled={!dateValues()?.length}
+                  onClick={() => setBookingOpen(true)}
+                >
+                  Book Now
+                </Button>
+                <p class="mt-10 w-full text-left">
+                  Pay now and get 5% discount
+                </p>
+              </div>
+            </div>
           </div>
         </Suspense>
       </div>

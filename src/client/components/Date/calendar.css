@@ -1,7 +1,3 @@
-.flatpickr-calendar {
-  width: 275px;
-}
-
 .flatpickr-calendar.inline {
   box-shadow: none;
 }
@@ -20,10 +16,38 @@
 }
 
 .flatpickr-days .nextMonthDay, .flatpickr-days .prevMonthDay {
-  color: black;
+  color: rgba(0,0,0,0.54);
+}
+
+.flatpickr-day {
+  color: rgba(0,0,0,0.54);
 }
 
 .flatpickr-disabled {
   cursor: not-allowed;
   color: rgba(57,57,57,0.1) !important;
 }
+
+.flatpickr-weekday {
+  font-weight: 400 !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months, .flatpickr-current-month .numInputWrapper {
+  font-size: 16px;
+}
+
+.flatpickr-current-month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(0,0,0,0.54);
+}
+
+.flatpickr-weekdays {
+  margin-top: 8px;
+}
+
+/* .flatpickr-current-month .flatpickr-monthDropdown-months {
+  width: 40px;
+} */

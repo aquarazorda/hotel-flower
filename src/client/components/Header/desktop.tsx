@@ -17,7 +17,7 @@ export const Header = () => {
       }}
     >
       <A href="/" class="w-24 cursor-pointer text-center font-shippori uppercase leading-4">Hotel Flower</A>
-      <nav class="flex gap-11 text-sm font-medium">
+      <nav class="flex gap-11 text-sm">
         <For each={headerNavItems}>
           {(item) => (
             <A

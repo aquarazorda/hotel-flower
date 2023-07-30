@@ -8,6 +8,9 @@ module.exports = {
       shippori: ["Shippori Mincho", "serif"]
     },
     extend: {
+      gridTemplateColumns: {
+        'auto-fill': 'repeat(auto-fill, minmax(145px, 1fr))',  // 200px being the minimum size of the item.
+      },
       colors: {
         secondary: "#788473",
         secondaryHover: '#535850',
