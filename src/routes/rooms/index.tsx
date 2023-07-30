@@ -31,7 +31,7 @@ const Rooms = () => {
           <Select.Label></Select.Label>
         </Select.Root>
       </div> */}
-      {/* <RoomsFilter /> */}
+      <RoomsFilter />
       <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-4 xl:gap-6">
         <For each={roomsData}>
           {(room) => {

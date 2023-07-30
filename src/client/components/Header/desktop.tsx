@@ -16,7 +16,7 @@ export const Header = () => {
         "h-16 relative": !isScrolled(),
       }}
     >
-      <A href="/" class="cursor-pointer font-shippori uppercase">Hotel Flower</A>
+      <A href="/" class="w-24 cursor-pointer text-center font-shippori uppercase leading-4">Hotel Flower</A>
       <nav class="flex gap-11 text-sm font-medium">
         <For each={headerNavItems}>
           {(item) => (

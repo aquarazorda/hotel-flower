@@ -12,7 +12,7 @@ type Props = {
 
 const FilterButton = (props: Props) => {
   return (
-    <KbButton.Root class={"flex items-center justify-center gap-1 whitespace-nowrap rounded-md bg-[#C6C6C6] px-3 py-2 text-xs font-semibold text-white " + props.class}>
+    <KbButton.Root class={"flex items-center justify-center gap-1 whitespace-nowrap rounded-md bg-[#C6C6C6] px-3 h-8 text-xs font-semibold text-white " + props.class}>
       <Show when={props.rounded} fallback={<Icon name={props.icon} />}>
         <div class="rounded-full bg-zinc-300 p-1">
           <Icon name={props.icon} />
