@@ -6,7 +6,7 @@ import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
 
 export default function Home() {
   return (
-    <main class="xl:font-shippori">
+    <main class="font-shippori">
       <MobileHeader />
       {/* Main Page Start */}
       <HomeMainBox />
