@@ -6,12 +6,12 @@ import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
 
 export default function Home() {
   return (
-    <main>
+    <main class="xl:font-shippori">
       <MobileHeader />
       {/* Main Page Start */}
       <HomeMainBox />
       <div class="flex justify-center px-8 py-12 align-middle xl:h-72">
-        <span class="inline-flex self-center text-center text-xs text-text2nd xl:max-w-xl xl:text-base xl:text-textSecondary">
+        <span class="inline-flex self-center text-center text-xs text-neutral-500 xl:max-w-xl xl:text-base xl:text-primary">
           Welcome to Hotel Flower - your gateway to Tbilisi's vibrant spirit.
           Uncover Georgian charm encapsulated in our modern, luxurious setting.
           Here, breathtaking city views meet unparalleled comfort. Your journey

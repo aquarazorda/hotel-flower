@@ -3,7 +3,7 @@ import { createSlider } from "solid-slider";
 import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 
-import "keen-slider/keen-slider.min.css";
+import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
 import SliderDots from "../Slider/Dots";
 
@@ -21,8 +21,8 @@ export const HomeSecondarySlider = () => {
   });
 
   return (
-    <div class="flex flex-col xl:mt-28 xl:pl-32 xl:pr-20">
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:hidden">
+    <div class="flex flex-col xl:mt-28 xl:px-32">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:hidden xl:text-primary">
         Suites
       </h5>
       {/* @ts-ignore */}
@@ -53,9 +53,9 @@ export const HomeSecondarySlider = () => {
           <div class="flex gap-3 xl:ml-8 xl:flex-col xl:justify-center">
             <SliderDots count={data} current={current()} moveTo={moveTo} />
           </div>
-          <div class="flex flex-col xl:mx-auto xl:max-w-md xl:justify-center xl:gap-5">
-            <span class="hidden text-center text-xl text-secondary xl:block">Suites</span>
-            <span class="text-center text-xs text-text2nd xl:text-base xl:text-textSecondary">
+          <div class="flex flex-col xl:mx-auto xl:max-w-sm xl:justify-center xl:gap-5">
+            <span class="hidden text-center text-2xl text-neutral-500 xl:block xl:text-primary">Suites</span>
+            <span class="text-center text-xs text-neutral-500 xl:text-sm xl:text-primary">
               Step into the refined luxury of Hotel Flower's suites, where the
               vivacity of Tbilisi meets elegance. Each suite is a tranquil
               retreat, blending modern sophistication with authentic Georgian

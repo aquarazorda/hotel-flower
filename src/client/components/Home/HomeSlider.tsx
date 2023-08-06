@@ -3,7 +3,7 @@ import { createSlider } from "solid-slider";
 import { roomsData } from "~/shared/data/rooms";
 import { getImageUrl } from "~/server/lib/cloudinary";
 
-import "keen-slider/keen-slider.min.css";
+import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
 import { A, useNavigate } from "solid-start";
 
@@ -25,7 +25,7 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-12 xl:mt-4 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-12 xl:mt-4 xl:text-2xl xl:font-normal xl:text-primary">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-4">
@@ -84,8 +84,8 @@ export const HomeSlider = () => {
           </div>
         </div>
       </div>
-      <div class="mb-10 mt-2 flex flex-col p-4 xl:my-20 xl:items-center">
-        <span class="text-center text-xs text-text2nd xl:max-w-2xl xl:text-base">
+      <div class="mb-10 mt-2 flex flex-col p-4 xl:my-20 xl:mb-32 xl:items-center">
+        <span class="text-center text-xs text-neutral-500 xl:max-w-2xl xl:text-base xl:text-primary">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
           of authentic Georgian charm, promising a stay enriched with comfort,

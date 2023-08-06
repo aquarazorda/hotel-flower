@@ -1,7 +1,7 @@
 export const Restaurant = () => {
   return (
-    <div class="mt-14 text-xs xl:mt-20">
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:font-inter xl:text-xl xl:font-normal xl:text-secondary">
+    <div class="mt-14 text-xs xl:mt-36">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-16 xl:text-2xl xl:font-normal xl:text-primary">
         Restaurant
       </h5>
       <img
@@ -9,8 +9,8 @@ export const Restaurant = () => {
         class="h-28 w-full object-cover xl:m-auto xl:h-60 xl:px-32"
         loading='lazy'
       />
-      <span class="block px-5 py-16 text-center text-neutral-500 xl:px-0 xl:py-32 xl:text-base xl:text-textSecondary">
-        <span class="xl:mx-auto xl:block xl:max-w-2xl">
+      <span class="block px-5 py-16 text-center text-neutral-500 xl:px-0 xl:py-36 xl:pt-20 xl:text-base xl:text-primary">
+        <span class="xl:mx-auto xl:block xl:max-w-2xl xl:animate-slide-up">
           Savor exquisite meals at our skyline restaurant, offering a culinary
           journey as breathtaking as the city views. Dine under the stars, enjoy
           the shimmering city lights, and experience flavors that will tantalize
