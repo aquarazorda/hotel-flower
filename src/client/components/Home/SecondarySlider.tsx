@@ -41,7 +41,7 @@ export const HomeSecondarySlider = () => {
                 return (
                   <img
                     src={url}
-                    class="h-full w-full object-cover xl:rounded-xl"
+                    class="h-full w-full object-cover xl:rounded-md"
                     loading="lazy"
                   />
                 );
