@@ -20,9 +20,10 @@ import clickOutside from "~/client/directives/clickOutside";
 import { ZodFormattedError, z } from "zod";
 import { createScheduled, debounce } from "@solid-primitives/scheduled";
 import BookingInput from "./input";
-import { User, userSchema } from "~/server/lib/user";
+import { User, createReservation, userSchema } from "~/server/lib/user";
 import { RoomWithFullData } from '~/server/db/zod';
 import { payzeMutation } from '~/server/client/payze';
+import { saveBooking } from '~/server/lib/otelms/save_booking';
 
 false && clickOutside;
 
@@ -41,6 +42,7 @@ export default function BookingModal(props: Props) {
   const [errors, setErrors] = createSignal<ZodFormattedError<User>>();
   const [transactionUrl, setTransactionUrl] = createSignal("");
   const pay = payzeMutation();
+  const reserve = createReservation();
 
   const formValues = createMemo<PartialValues<User>>((values: any) => {
     const value = getValues(bookingForm);
@@ -62,6 +64,17 @@ export default function BookingModal(props: Props) {
   );
 
   const makeBooking = async (formData: User) => {
+    if (type() === "reservation") {
+      const res = await reserve.mutateAsync({
+        room: props.room,
+        user: formData,
+        dates: props.dates,
+      });
+
+      console.log(res);
+      return res;
+    }
+
     const res = await pay.mutateAsync({
       room: props.room,
       user: formData,
@@ -69,7 +82,7 @@ export default function BookingModal(props: Props) {
     });
 
     if (!res.success) {
-      return;
+      return res;
     }
 
     setTransactionUrl(res.url);
@@ -179,7 +192,7 @@ export default function BookingModal(props: Props) {
                 >
                   <span class="line-through">{props.price}</span>{" "}
                   <span class="text-faily">
-                    {props.price - (props.price * 10) / 100}
+                    {props.price - (props.price * 5) / 100}
                   </span>
                 </Show>{" "}
                 (GEL)
@@ -198,7 +211,7 @@ export default function BookingModal(props: Props) {
             </button>
           </Form>
           <p class="mt-8 text-center text-xs text-zinc-400">
-            Pay now and get 10% discount
+            Pay now and get 5% discount
           </p>
         </Show>
       </div>

@@ -1,8 +1,16 @@
-import server$ from 'solid-start/server';
-import { prisma } from './prisma';
-import { getBookedDates } from '../lib/otelms';
-import { query$ } from '@prpc/solid';
-import { RoomWithFullData } from './zod';
+import server$ from "solid-start/server";
+import { prisma } from "./prisma";
+import { getBookedDates } from "../lib/otelms";
+import { query$ } from "@prpc/solid";
+import { RoomWithFullData } from "./zod";
+import { z } from "zod";
+
+const blockedDateSchema =  z.array(
+  z.object({
+    from: z.string(),
+    to: z.string(),
+  })
+);
 
 export const getRooms = query$(async () => {
   return await prisma.room.findMany();
@@ -13,26 +21,31 @@ export const getBookings = query$(async () => {
     select: {
       roomId: true,
       dates: true,
-    }
+    },
   });
-  
+
   return bookings;
 }, "bookings-list");
 
 export const getBooking = server$(async (roomId: number) => {
   const booking = await prisma.blockedDate.findUnique({
     where: {
-      roomId
+      roomId,
     },
   });
 
-  return booking;
+  const datesParsed = blockedDateSchema.safeParse(booking?.dates);
+
+  return {
+    ...booking,
+    dates: datesParsed.success ? datesParsed.data : []
+  };
 });
 
 export const getRoom = server$(async (roomId: number) => {
   const room = await prisma.room.findUnique({
     where: {
-      roomId
+      roomId,
     },
     select: {
       id: true,
@@ -41,13 +54,13 @@ export const getRoom = server$(async (roomId: number) => {
       msId: true,
       prices: {
         select: {
-          list: true
-        }
+          list: true,
+        },
       },
       blockedDate: {
         select: {
-          dates: true
-        }
+          dates: true,
+        },
       },
       info: {
         select: {
@@ -55,9 +68,9 @@ export const getRoom = server$(async (roomId: number) => {
           extraPerson: true,
           persons: true,
           pictures: true,
-        }
-      }
-    }
+        },
+      },
+    },
   });
 
   return room as RoomWithFullData | null;
@@ -66,7 +79,7 @@ export const getRoom = server$(async (roomId: number) => {
 export const saveBookings = server$(async () => {
   const data = await getBookedDates();
 
-  await prisma.blockedDate.deleteMany({})
+  await prisma.blockedDate.deleteMany({});
   const q = await prisma.blockedDate.createMany({
     data,
   });

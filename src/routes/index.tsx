@@ -1,4 +1,3 @@
-import Footer from "~/client/components/Footer";
 import { MobileHeader } from "~/client/components/Header/mobile";
 import { HomeSlider } from "~/client/components/Home/HomeSlider";
 import { HomeMainBox } from "~/client/components/Home/MainBox";

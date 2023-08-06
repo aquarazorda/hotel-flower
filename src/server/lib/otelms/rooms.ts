@@ -1,5 +1,6 @@
 import { load } from 'cheerio';
 import { getLoginCookies } from '.';
+import { RoomWithFullData } from '~/server/db/zod';
 
 export const getRoomsList = async () => {
   const { MS_ROOMS_URL } = process.env;
@@ -34,4 +35,24 @@ export const getRoomsList = async () => {
   });
   
   return data;
+}
+
+export const isRoomAvailable = (from: string, to: string, dates: {from: string, to: string}[]) => {
+  // Convert input strings to Date objects
+  const fromDate = new Date(from);
+  const toDate = new Date(to);
+
+  // Check each blocked range
+  for (const range of dates) {
+    const blockedFrom = new Date(range.from);
+    const blockedTo = new Date(range.to);
+
+    // If there's overlap, return false
+    if ((fromDate <= blockedTo && toDate >= blockedFrom)) {
+      return false;
+    }
+  }
+
+  // If no overlap found, return true
+  return true;
 }

@@ -5,6 +5,7 @@ import {
   createUser,
   editTransaction,
   userSchema,
+  validateReservation,
 } from "./user";
 import { getRoom } from "../db/rooms";
 import { calculatePrices } from "./otelms/prices";
@@ -26,9 +27,10 @@ const getOptions = (
       amount: price,
       currency: "GEL",
       callback: "https://flowertbilisi.com/payment/success",
-      callbackError: "https://corp.com/fail_url", // TODO
+      callbackError: "https://flowertbilisi.com/payment/failure", // TODO
       preauthorize: false,
       lang: "EN", // TODO
+      // hookUrlV2
       // info: {
       //   description: room.description,
       //   image: "https://flowertbilisi.com/img/home/main.webp", // TODO
@@ -41,49 +43,21 @@ const getOptions = (
 
 export const payWithPayze = async (
   input: PayzeInput  
-): Promise<
-  | {
-      success: false;
-      error: string;
-    }
-  | {
-      success: true;
-      url: string;
-    }
-> => {
-  const { room, user, dates } = input;
-
-  if (!room || !dates || dates.length < 2) {
-    return {
-      success: false,
-      error: "Incorrect input data",
-    };
+): Promise<{
+  success: false;
+  message: string
+} | {
+  success: true;
+  url: string;
+}> => {
+  const data = await validateReservation(input);
+  if (!data.success) {
+    return data;
   }
 
-  const isUserValid = userSchema.safeParse(user);
-  if (!isUserValid.success) {
-    return {
-      success: false,
-      error: isUserValid.error.format()._errors.join(", "),
-    };
-  }
-
-  const room_ = await getRoom(room.roomId);
-  if (!room_) {
-    return {
-      success: false,
-      error: "Room not found",
-    };
-  }
-
-  const price = calculatePrices(dates, room_);
-
-  if (!price) {
-    return {
-      success: false,
-      error: "Price not found",
-    };
-  }
+  const { user, dates } = input;
+  let { room, price } = data.data;
+  price = price * 5 / 100
 
   try {
     const { id } = await createUser(user);
@@ -112,6 +86,6 @@ export const payWithPayze = async (
 
     return { success: true, url: payzeResponse.response.transactionUrl };
   } catch (e) {
-    return { success: false, error: "Something went wrong" };
+    return { success: false, message: "Something went wrong" };
   }
 };
