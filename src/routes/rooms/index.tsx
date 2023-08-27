@@ -62,13 +62,13 @@ const Rooms = () => {
                   </div>
                 </div>
                 <div class="mt-6 flex flex-col gap-2">
-                  <h2 class="mt-auto flex justify-between font-medium text-[#696969]">
+                  <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
                     <A href={`./${room.id}`}>{room.name}</A>
                     <Button.Root onClick={showToast} class="xl:hidden">
                       <Icon name="share" />
                     </Button.Root>
                   </h2>
-                  <p class="w-full text-xs text-textPrimary">
+                  <p class="w-full text-xs text-zinc-500">
                     Ideally located in Tbilisi City, Hotel offers a buffet
                     breakfast and free WiFi throughout the property. Each
                     accommodation at the 4-star hotel has city views, and guests
