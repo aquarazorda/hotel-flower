@@ -11,7 +11,7 @@ export default function Home() {
       {/* Main Page Start */}
       <HomeMainBox />
       <div class="flex justify-center px-8 py-12 align-middle xl:h-72">
-        <span class="inline-flex self-center text-center text-xs text-neutral-500 xl:max-w-xl xl:text-base xl:text-primary">
+        <span class="inline-flex self-center text-center text-sm text-neutral-500 xl:max-w-xl xl:text-base xl:text-primary">
           Welcome to Hotel Flower - your gateway to Tbilisi's vibrant spirit.
           Uncover Georgian charm encapsulated in our modern, luxurious setting.
           Here, breathtaking city views meet unparalleled comfort. Your journey

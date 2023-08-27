@@ -96,9 +96,9 @@ export default function Room() {
         </div>
         <div class="flex flex-col px-8 xl:mb-40 xl:flex-1 xl:flex-row xl:justify-around xl:px-0 xl:pt-20">
           <div class="font-shippori xl:my-auto xl:flex xl:w-2/5 xl:flex-col">
-            <p class="text-base text-secondaryHover">
+            <h2 class="text-lg text-secondaryHover">
               {room.data?.name}
-            </p>
+            </h2>
             <p class="mt-5">
               At the hotel all rooms include air conditioning, a seating area, a
               flat-screen TV with satellite channels, a safety deposit box and a

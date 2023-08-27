@@ -63,7 +63,7 @@ export const DateRangePicker = (props: Props) => {
   });
 
   onCleanup(() => {
-    datePicker.destroy();
+    datePicker?.destroy();
   });
 
   createEffect(on(() => props.isLoading ,() => {
