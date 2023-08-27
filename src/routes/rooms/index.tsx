@@ -32,7 +32,7 @@ const Rooms = () => {
         </Select.Root>
       </div> */}
       <RoomsFilter />
-      <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-4 xl:gap-6">
+      <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-5 xl:gap-6">
         <For each={roomsData}>
           {(room) => {
             const url = getImageUrl(`/${room.id}/1`, 1024);
@@ -44,22 +44,9 @@ const Rooms = () => {
                     "background-image": `url(${url})`,
                   }}
                   onClick={() => navigate(`./${room.id}`)}
-                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl bg-cover bg-center px-6 py-7 text-white xl:aspect-[1.17] xl:h-auto"
+                  class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl bg-cover bg-center text-white xl:aspect-[1.17] xl:h-auto"
                 >
-                  <div class="mt-auto flex items-center">
-                    <A
-                      href={`./${room.id}`}
-                      class="w-fit cursor-pointer rounded-lg bg-neutral-700/60 px-4 py-2 text-[10px] font-bold hover:bg-zinc-300"
-                    >
-                      Check Price
-                    </A>
-                    <Button.Root
-                      onClick={showToast}
-                      class="ml-auto hidden xl:block"
-                    >
-                      <Icon name="share-white" class="z-10 fill-white text-white" />
-                    </Button.Root>
-                  </div>
+                  <div class="h-full w-full rounded-xl bg-black/10" />
                 </div>
                 <div class="mt-6 flex flex-col gap-2">
                   <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
