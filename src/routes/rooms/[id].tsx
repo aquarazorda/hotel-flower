@@ -71,7 +71,7 @@ export default function Room() {
 
   return (
     <Suspense>
-      <main class="mb-10 flex flex-col gap-6 text-xs text-textPrimary xl:mb-0 xl:flex-row">
+      <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 xl:mb-0 xl:flex-row">
         {/* @ts-ignore */}
         <div class="font-shippori xl:w-5/12">
           <div use:slider class="flex h-96 xl:h-full">
