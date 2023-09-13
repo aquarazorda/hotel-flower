@@ -9,14 +9,13 @@ import {
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import { createSlider } from "solid-slider";
-import { Navigate, RouteDataArgs, useRouteData } from "solid-start";
+import { useRouteData } from "solid-start";
 
 import { CancelRounded } from "~/client/assets/icons/CancelRounded";
 import { CheckRounded } from "~/client/assets/icons/CheckRounded";
 import { Button } from "~/client/components/Button";
 import DatePicker from "~/client/components/Date";
 import SliderDots from "~/client/components/Slider/Dots";
-import { getImageUrl } from "~/server/lib/cloudinary";
 import { useDevice } from "~/server/lib/device";
 import { getLastDayOfMonth } from "~/shared/utils";
 import { Portal } from "solid-js/web";
@@ -72,8 +71,8 @@ export default function Room() {
   return (
     <Suspense>
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 xl:mb-0 xl:flex-row">
-        {/* @ts-ignore */}
         <div class="font-shippori xl:w-5/12">
+          {/* @ts-ignore */}
           <div use:slider class="flex h-96 xl:h-full">
             <Index each={Array(room.data?.info?.pictures)}>
               {(item, idx) => (
@@ -96,9 +95,7 @@ export default function Room() {
         </div>
         <div class="flex flex-col px-8 xl:mb-40 xl:flex-1 xl:flex-row xl:justify-around xl:px-0 xl:pt-20">
           <div class="font-shippori xl:my-auto xl:flex xl:w-2/5 xl:flex-col">
-            <h2 class="text-lg text-secondaryHover">
-              {room.data?.name}
-            </h2>
+            <h2 class="text-lg text-secondaryHover">{room.data?.name}</h2>
             <p class="mt-5">
               At the hotel all rooms include air conditioning, a seating area, a
               flat-screen TV with satellite channels, a safety deposit box and a
@@ -148,38 +145,40 @@ export default function Room() {
             </p>
           </div>
           <Suspense>
-            <div class="my-12 flex flex-col items-center xl:my-0 xl:w-2/5">
-              <div class="flex h-full flex-col justify-center">
-                <DatePicker
-                  inline
-                  mode="range"
-                  minDate={new Date()}
-                  maxDate={maxDate()}
-                  onChange={onCalendarChange}
-                  dateFormat="Y-m-d"
-                  isLoading={room.isLoading}
-                  disable={room.data?.blockedDate?.dates || []}
-                />
-                <div class="px-2">
-                  <p class="mt-6 flex w-full justify-between">
-                    Total Price{" "}
-                    <span>
-                      <span class="text-faily">{price() || 0}</span> (GEL)
-                    </span>
-                  </p>
-                  <Button
-                    class="mt-8 text-xs"
-                    disabled={!dateValues()?.length}
-                    onClick={() => setBookingOpen(true)}
-                  >
-                    Book Now
-                  </Button>
-                  <p class="mt-10 w-full text-left">
-                    Pay now and get 5% discount
-                  </p>
+            <Show when={room.data?.prices} fallback={<div class="m-auto text-center font-shippori text-base">Booking for this room is not available.</div>}>
+              <div class="my-12 flex flex-col items-center xl:my-0 xl:w-2/5">
+                <div class="flex h-full flex-col justify-center">
+                  <DatePicker
+                    inline
+                    mode="range"
+                    minDate={new Date()}
+                    maxDate={maxDate()}
+                    onChange={onCalendarChange}
+                    dateFormat="Y-m-d"
+                    isLoading={room.isLoading}
+                    disable={room.data?.blockedDate?.dates || []}
+                  />
+                  <div class="px-2">
+                    <p class="mt-6 flex w-full justify-between">
+                      Total Price{" "}
+                      <span>
+                        <span class="text-faily">{price() || 0}</span> (GEL)
+                      </span>
+                    </p>
+                    <Button
+                      class="mt-8 text-xs"
+                      disabled={!dateValues()?.length}
+                      onClick={() => setBookingOpen(true)}
+                    >
+                      Book Now
+                    </Button>
+                    <p class="mt-10 w-full text-left">
+                      Pay now and get 5% discount
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Show>
           </Suspense>
         </div>
       </main>

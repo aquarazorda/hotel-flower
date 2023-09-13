@@ -1,7 +1,9 @@
 import { Accessor, Show } from "solid-js";
 import {
   FieldElementProps,
+  FieldPath,
   FieldStore,
+  FieldValue,
   FieldValues,
 } from "@modular-forms/solid";
 import { TextField } from "@kobalte/core";
@@ -19,7 +21,7 @@ type FormItemProps<T> = {
 const BookingInput =
   <T extends FieldValues>(props: FormItemProps<T>) =>
   <T extends FieldValues>(
-    field: FieldStore<T, any>,
+    field: FieldStore<T, FieldPath<T>>,
     fieldProps: FieldElementProps<T, any>
   ) => {
     return (
@@ -35,6 +37,8 @@ const BookingInput =
             fallback={
               <TextField.Input
                 {...fieldProps}
+                // @ts-ignore
+                value={field.value}
                 type={props.type}
                 style={{ "touch-action": "manipulation" }}
                 class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
@@ -45,6 +49,8 @@ const BookingInput =
           >
             <TextField.TextArea
               {...fieldProps}
+              // @ts-ignore
+              value={field.value}
               style={{ "touch-action": "manipulation" }}
               class="w-full overflow-visible rounded-md border-[0.5px] border-neutral-300 px-4 py-3 focus-visible:border-zinc-500 focus-visible:outline-none"
               placeholder={props.showTitle ? "" : props.placeholder}

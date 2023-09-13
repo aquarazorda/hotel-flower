@@ -4,21 +4,21 @@ import { prisma } from '../db/prisma';
 
 export const savePrice = mutation$({
   schema: z.object({
-    msId: z.number(),
+    roomId: z.number(),
     list: z.record(z.number())
   }),
   key: "save-price",
   mutationFn: async ({ payload }) => {
-    const { msId, list } = payload;
+    const { roomId, list } = payload;
     const res = await prisma.price.upsert({
       where: {
-        msId
+        roomId
       },
       update: {
         list
       },
       create: {
-        msId,
+        roomId,
         list
       }
     });
