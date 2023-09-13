@@ -28,9 +28,6 @@ export default function RoomsList() {
               Id
             </th>
             <th scope="col" class="px-6 py-3">
-              OtelMS Id
-            </th>
-            <th scope="col" class="px-6 py-3">
               Edit
             </th>
           </tr>
@@ -46,7 +43,6 @@ export default function RoomsList() {
                   {room.name}
                 </td>
                 <td class="px-6 py-4">{room.id}</td>
-                <td class="px-6 py-4">{room.msId}</td>
                 <td class="px-6 py-4">
                   <Button.Root
                     class="bg-blue-800 p-2 hover:bg-blue-700"
