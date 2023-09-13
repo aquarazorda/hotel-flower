@@ -51,7 +51,6 @@ export const getRoom = server$(async (roomId: number) => {
       id: true,
       name: true,
       roomId: true,
-      msId: true,
       prices: {
         select: {
           list: true,
@@ -84,5 +83,5 @@ export const saveBookings = server$(async () => {
     data,
   });
 
-  return new Response(JSON.stringify(q));
+  return new Response(JSON.stringify(data));
 });

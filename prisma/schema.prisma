@@ -10,7 +10,6 @@ datasource db {
 
 model Room {
   id              Int              @id @unique @default(autoincrement())
-  msId            Int              @unique
   roomId          Int              @unique
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
@@ -56,8 +55,8 @@ model Price {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   list      Json
-  msId      Int      @unique
-  room      Room?    @relation(fields: [msId], references: [msId])
+  roomId      Int      @unique
+  room      Room?    @relation(fields: [roomId], references: [roomId])
 }
 
 model PriceAdjustment {
