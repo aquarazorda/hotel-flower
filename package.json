@@ -12,6 +12,7 @@
     "@types/vanillajs-datepicker": "^1.2.2",
     "@typescript-eslint/parser": "^6.4.1",
     "autoprefixer": "^10.4.15",
+    "bun-types": "^1.0.3",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8.4.28",
     "prisma": "^5.2.0",
