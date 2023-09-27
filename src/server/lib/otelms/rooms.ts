@@ -20,14 +20,16 @@ export const getRoomsList = async () => {
   const $ = load(html);
   const rows = $('table.table tr');
 
-  const data: { id: number, name: string, roomId: number }[] = [];
+  const data: { id: number, name: string, roomId: number, type: string }[] = [];
   rows.each((i, elem) => {
     let td = $(elem).find('td');
+    const name = td.eq(2).text().replace(/\.|,/g, '');
 
     let obj = { 
       id: parseInt(td.eq(0).text()),
-      name: td.eq(2).text().replace(/\.|,/g, ''),
-      roomId: parseInt(td.eq(1).text())
+      name,
+      roomId: parseInt(td.eq(1).text()),
+      type: name.toLowerCase().includes('room') ? 'room' : 'suite' 
     };
     
     if (obj.roomId && obj.name !== 'overbooking') data.push(obj);

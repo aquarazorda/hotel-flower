@@ -1,14 +1,16 @@
 import { For, Index, Show, createMemo } from "solid-js";
 import { createSlider } from "solid-slider";
-import { roomsData } from "~/shared/data/rooms";
-import { getImageUrl } from "~/server/lib/cloudinary";
 
 import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
-import { A, useNavigate } from "solid-start";
+import { A, useNavigate, useRouteData } from "solid-start";
+import { getRooms } from "~/server/db/rooms";
 
 export const HomeSlider = () => {
-  const data = roomsData.filter(({ type }) => type === "room");
+  const routeData = useRouteData<ReturnType<typeof getRooms>>();
+  const data = createMemo(() =>
+    routeData.data?.filter(({ type }) => type === "room")
+  );
   const { isDesktop } = useDevice();
   const navigate = useNavigate();
 
@@ -31,23 +33,20 @@ export const HomeSlider = () => {
       <div class="cursor-pointer pl-4 xl:pl-4">
         {/* @ts-ignore */}
         <div use:slider class="flex">
-          <For each={data}>
-            {(room, idx) => {
-              const url = getImageUrl(`/${room.id}/1`, isDesktop ? 1024 : 620);
-
-              return (
-                <>
-                  <div
-                    class="min-w-[123px] text-sm text-white xl:aspect-square xl:min-w-fit"
-                    classList={{ "xl:ml-28": idx() === 0 }}
-                  >
-                    <img
-                      onClick={() => navigate("/rooms/" + room.id)}
-                      class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
+          <For each={data()}>
+            {(room, idx) => (
+              <>
+                <div
+                  class="min-w-[123px] text-sm text-white xl:aspect-square xl:min-w-fit"
+                  classList={{ "xl:ml-28": idx() === 0 }}
+                >
+                  <img
+                    onClick={() => navigate("/rooms/" + room.roomId)}
+                    class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
                     object-cover xl:aspect-square xl:min-h-[264px] xl:flex-col xl:items-start xl:font-semibold"
-                      src={url}
-                    />
-                    {/* <div class="hidden xl:block">
+                    src={`/img/${room.roomId}/0-mobile.webp`}
+                  />
+                  {/* <div class="hidden xl:block">
                       <span class="xl:mt-auto xl:text-xl">{room.name}</span>
                       <A
                         href="/todo"
@@ -56,18 +55,17 @@ export const HomeSlider = () => {
                         See More
                       </A>
                     </div> */}
-                  </div>
-                  <Show when={idx() === data.length - 1 && isDesktop}>
-                    <div class="hidden min-w-[123px] xl:block" />
-                  </Show>
-                </>
-              );
-            }}
+                </div>
+                <Show when={idx() === data.length - 1 && isDesktop}>
+                  <div class="hidden min-w-[123px] xl:block" />
+                </Show>
+              </>
+            )}
           </For>
         </div>
         <div class="mt-5 flex flex-col gap-6 xl:hidden">
           <div class="flex gap-3">
-            <Index each={data}>
+            <Index each={data()}>
               {(room, idx) => (
                 <Show when={idx != data.length - 1}>
                   <div

@@ -3,6 +3,9 @@ import { HomeSlider } from "~/client/components/Home/HomeSlider";
 import { HomeMainBox } from "~/client/components/Home/MainBox";
 import { Restaurant } from "~/client/components/Home/Restaurant";
 import { HomeSecondarySlider } from "~/client/components/Home/SecondarySlider";
+import { getRooms } from '~/server/db/rooms';
+
+export const routeData = getRooms;
 
 export default function Home() {
   return (

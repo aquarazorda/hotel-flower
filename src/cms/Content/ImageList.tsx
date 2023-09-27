@@ -68,7 +68,7 @@ export default function ImageListCms(props: ImageListProps) {
       B: pictures
     };
     
-    for (let i = 1; i <= images; i++) {
+    for (let i = 0; i < images; i++) {
       !pictures.includes(i) && newContainers.A.push(i);
     }
 

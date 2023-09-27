@@ -1,16 +1,16 @@
-import { For, Show } from "solid-js";
-import { roomsData } from "~/shared/data/rooms";
-import { getImageUrl } from "~/server/lib/cloudinary";
-import { A, useNavigate } from "solid-start";
+import { For } from "solid-js";
+import { A, useNavigate, useRouteData } from "solid-start";
 
-import { SolarUserRoundedLinear } from "~/client/assets/icons/SolarRounded";
 import RoomsFilter from "~/client/components/Filter/RoomsFIlter";
-import Footer from "~/client/components/Footer";
 import { Icon } from "~/client/components/Icons";
 import { Button, Toast, toaster } from "@kobalte/core";
 import { Portal } from "solid-js/web";
+import { getRooms } from '~/server/db/rooms';
+
+export const routeData = getRooms;
 
 const Rooms = () => {
+  const roomsData = useRouteData<ReturnType<typeof routeData>>();
   const navigate = useNavigate();
   // const bookings = createQuery(() => ['bookings'], getBookings, {
   //   refetchOnMount: false,
@@ -33,24 +33,20 @@ const Rooms = () => {
       </div> */}
       <RoomsFilter />
       <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-5 xl:gap-6">
-        <For each={roomsData}>
-          {(room) => {
-            const url = getImageUrl(`/${room.id}/1`, 1024);
-
-            return (
-              <article class="flex flex-col">
+        <For each={roomsData.data}>
+          {(room) => <article class="flex flex-col">
                 <div
                   style={{
-                    "background-image": `url(${url})`,
+                    "background-image": `url(/img/${room.roomId}/0-mobile.webp)`,
                   }}
-                  onClick={() => navigate(`./${room.id}`)}
+                  onClick={() => navigate(`./${room.roomId}`)}
                   class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl bg-cover bg-center text-white xl:aspect-[1.17] xl:h-auto"
                 >
                   <div class="h-full w-full rounded-xl bg-black/10" />
                 </div>
                 <div class="mt-6 flex flex-col gap-2">
                   <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
-                    <A href={`./${room.id}`}>{room.name}</A>
+                    <A href={`./${room.roomId}`}>{room.name}</A>
                     <Button.Root onClick={showToast} class="xl:hidden">
                       <Icon name="share" />
                     </Button.Root>
@@ -79,9 +75,7 @@ const Rooms = () => {
                     Check Price
                   </button> */}
                 </div>
-              </article>
-            );
-          }}
+              </article>}
         </For>
       </main>
       <Portal>

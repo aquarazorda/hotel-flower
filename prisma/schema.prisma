@@ -17,6 +17,7 @@ model Room {
   blockedDate     BlockedDate?
   prices          Price?
   info            RoomInfo?
+  type            String
   priceAdjustment PriceAdjustment?
 }
 

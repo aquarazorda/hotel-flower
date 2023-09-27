@@ -13,7 +13,14 @@ const blockedDateSchema =  z.array(
 );
 
 export const getRooms = query$(async () => {
-  return await prisma.room.findMany();
+  return await prisma.room.findMany({ select: {
+    type: true,
+    blockedDate: true,
+    info: true,
+    name: true,
+    prices: true,
+    roomId: true,
+  }});
 }, "rooms-list");
 
 export const getBookings = query$(async () => {

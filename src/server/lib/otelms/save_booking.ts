@@ -1,4 +1,3 @@
-import { Room } from "~/shared/data/rooms";
 import { getLoginCookies } from ".";
 import { User } from "../user";
 import server$ from "solid-start/server";
