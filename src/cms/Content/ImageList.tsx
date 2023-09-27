@@ -19,9 +19,17 @@ import { saveRoomInfo } from '~/server/client/room';
 const getImageCount = query$({
   key: "imageList",
   queryFn: ({ payload }) => {
-    const files = readdirSync(`./public/img/${payload}`).sort((a, b) => {
-      return Number(a.split("-")[0]) - Number(b.split("-")[0]);
-    });
+    let files;
+
+    try {
+      files = readdirSync(`./public/img/${payload}`).sort((a, b) => {
+        return Number(a.split("-")[0]) - Number(b.split("-")[0]);
+      });
+    } catch (e) {
+      files = readdirSync(`./img/${payload}`).sort((a, b) => {
+        return Number(a.split("-")[0]) - Number(b.split("-")[0]);
+      });
+    }
 
     return Number(files[files.length - 1].split("-")[0]);
   },
