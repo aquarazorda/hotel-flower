@@ -15,6 +15,7 @@ import { batch, createEffect, createSignal, For, on } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Button } from "@kobalte/core";
 import { saveRoomInfo } from '~/server/client/room';
+import path from 'path';
 
 const getImageCount = query$({
   key: "imageList",
@@ -22,14 +23,14 @@ const getImageCount = query$({
     let files;
 
     try {
-      files = readdirSync(`./public/img/${payload}`).sort((a, b) => {
-        return Number(a.split("-")[0]) - Number(b.split("-")[0]);
-      });
+      files = readdirSync(`./public/img/${payload}`);
     } catch (e) {
-      files = readdirSync(`/img/${payload}`).sort((a, b) => {
-        return Number(a.split("-")[0]) - Number(b.split("-")[0]);
-      });
+      files = readdirSync(path.join(process.cwd(), "img", payload));
     }
+
+    files = files.sort((a, b) => {
+      return Number(a.split("-")[0]) - Number(b.split("-")[0]);
+    });
 
     return Number(files[files.length - 1].split("-")[0]);
   },
