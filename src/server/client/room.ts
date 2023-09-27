@@ -3,10 +3,10 @@ import { z } from 'zod';
 import { prisma } from '../db/prisma';
 
 export const roomInfoSchema = z.object({
-  description: z.string(),
-  pictures: z.number(),
-  persons: z.number(),
-  extraPerson: z.boolean(),
+  description: z.string().optional(),
+  pictures: z.array(z.number()).optional(),
+  persons: z.number().optional(),
+  extraPerson: z.boolean().optional(),
 });
 
 export type RoomInfoForm = z.infer<typeof roomInfoSchema>;

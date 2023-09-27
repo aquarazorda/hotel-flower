@@ -36,7 +36,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <nav class="h-screen w-1/6 bg-[#303641] text-stone-400">
+    <nav class="w-1/6 bg-[#303641] text-stone-400">
       <div class="flex items-center justify-center border-b border-b-[#454a54b3] p-3">
         <h1 class="text-center font-shippori text-white">
           HOTEL

@@ -32,7 +32,7 @@ export const roomFullSchema = z.object({
       description: z.string(),
       extraPerson: z.boolean(),
       persons: z.number(),
-      pictures: z.number(),
+      pictures: z.array(z.number()),
     })
   ),
 });

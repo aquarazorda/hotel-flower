@@ -27,7 +27,7 @@ model RoomInfo {
   roomId      Int      @unique
   room        Room?    @relation(fields: [roomId], references: [roomId])
   description String?
-  pictures    Int      @default(0)
+  pictures    Json?
   persons     Int      @default(3)
   extraPerson Boolean  @default(true)
 }

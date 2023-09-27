@@ -1,4 +1,3 @@
-import { createQuery } from "@tanstack/solid-query";
 import {
   Index,
   Show,
