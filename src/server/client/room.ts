@@ -1,6 +1,7 @@
 import { mutation$ } from '@prpc/solid';
 import { z } from 'zod';
 import { prisma } from '../db/prisma';
+import { roomFullSchema } from '../db/zod';
 
 export const roomInfoSchema = z.object({
   description: z.string().optional(),
@@ -32,4 +33,22 @@ export const saveRoomInfo = mutation$({
 
     return res;
   }
-})
+});
+
+export const saveRoomOrder = mutation$({
+  key: "saveRoomOrder",
+  mutationFn: async ({ payload }) => {
+    return await prisma.$transaction(
+      payload.map((room) =>
+        prisma.room.update({
+          where: { id: room.id },
+          data: { order: room.order },
+        })
+      )
+    )
+  },
+  schema: z.array(z.object({
+    id: z.number(),
+    order: z.number(),
+  })),
+});

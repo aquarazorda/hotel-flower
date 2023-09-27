@@ -5,7 +5,7 @@ import { query$ } from "@prpc/solid";
 import { RoomWithFullData } from "./zod";
 import { z } from "zod";
 
-const blockedDateSchema =  z.array(
+const blockedDateSchema = z.array(
   z.object({
     from: z.string(),
     to: z.string(),
@@ -13,14 +13,21 @@ const blockedDateSchema =  z.array(
 );
 
 export const getRooms = query$(async () => {
-  return await prisma.room.findMany({ select: {
-    type: true,
-    blockedDate: true,
-    info: true,
-    name: true,
-    prices: true,
-    roomId: true,
-  }});
+  return await prisma.room.findMany({
+    select: {
+      id: true,
+      type: true,
+      blockedDate: true,
+      info: true,
+      name: true,
+      prices: true,
+      roomId: true,
+      order: true
+    },
+    orderBy: {
+      order: "asc",
+    },
+  });
 }, "rooms-list");
 
 export const getBookings = query$(async () => {
@@ -45,7 +52,7 @@ export const getBooking = server$(async (roomId: number) => {
 
   return {
     ...booking,
-    dates: datesParsed.success ? datesParsed.data : []
+    dates: datesParsed.success ? datesParsed.data : [],
   };
 });
 
