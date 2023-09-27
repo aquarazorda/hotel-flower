@@ -1,5 +1,4 @@
 import { query$ } from "@prpc/solid";
-import { readdirSync } from "fs";
 import { useParams } from "solid-start";
 import { z } from "zod";
 import {
@@ -11,31 +10,12 @@ import {
   createDroppable,
   closestCenter,
 } from "@thisbeyond/solid-dnd";
-import { batch, createEffect, createSignal, For, on } from "solid-js";
+import { batch, createEffect, createResource, For, on } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Button } from "@kobalte/core";
 import { saveRoomInfo } from '~/server/client/room';
-import path from 'path';
-
-const getImageCount = query$({
-  key: "imageList",
-  queryFn: ({ payload }) => {
-    let files;
-
-    try {
-      files = readdirSync(`./public/img/${payload}`);
-    } catch (e) {
-      files = readdirSync(path.join(process.cwd(), "img", payload));
-    }
-
-    files = files.sort((a, b) => {
-      return Number(a.split("-")[0]) - Number(b.split("-")[0]);
-    });
-
-    return Number(files[files.length - 1].split("-")[0]);
-  },
-  schema: z.string(),
-});
+import { isServer } from 'solid-js/web';
+import { env } from 'process';
 
 const Sortable = (props) => {
   const { id } = useParams();
@@ -68,11 +48,20 @@ type ImageListProps = {
 
 export default function ImageListCms(props: ImageListProps) {
   const params = useParams();
-  const imageCount = getImageCount(params.id);
+  const [imageCount] = createResource(() => params.id, async (id: string) => {
+    const url = isServer ? `https://flowertbilisi.com/img/imageCounts.json` : `/img/imageCounts.json`;
+    try {
+      const counts = await fetch(url).then((res) => res.json());
+      return counts?.[id];
+    } catch (e) {
+      return {}
+    }
+  });
+
   const [containers, setContainers] = createStore<Record<string, number[]>>({});
   const save = saveRoomInfo();
 
-  createEffect(on(() => imageCount.data, (images = 0) => {
+  createEffect(on(imageCount, (images = 0) => {
     const pictures = props.pictures || [];
     const newContainers: Record<string, number[]> = {
       A: [],
