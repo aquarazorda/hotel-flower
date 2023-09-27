@@ -26,7 +26,7 @@ const getImageCount = query$({
         return Number(a.split("-")[0]) - Number(b.split("-")[0]);
       });
     } catch (e) {
-      files = readdirSync(`./img/${payload}`).sort((a, b) => {
+      files = readdirSync(`/img/${payload}`).sort((a, b) => {
         return Number(a.split("-")[0]) - Number(b.split("-")[0]);
       });
     }
