@@ -1,5 +1,4 @@
 // @refresh reload
-import { QueryProvider } from "@prpc/solid";
 import { Suspense } from "solid-js";
 import {
   Body,
@@ -15,8 +14,21 @@ import {
 } from "solid-start";
 import "./root.css";
 import Footer from "./client/components/Footer";
+import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      staleTime: 1000 * 60 * 3, 
+    }
+  }
+})
 
 export default function Root() {
+  
   return (
     <Html lang="en">
       <Head>
@@ -50,12 +62,12 @@ export default function Root() {
       <Body class="font-inter">
         <Suspense>
           <ErrorBoundary>
-            <QueryProvider>
+            <QueryClientProvider client={queryClient}>
               <Routes>
                 <FileRoutes />
               </Routes>
               <Footer />
-            </QueryProvider>
+            </QueryClientProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />

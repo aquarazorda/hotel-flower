@@ -6,11 +6,12 @@ import { useDevice } from "~/server/lib/device";
 import SliderDots from "../Slider/Dots";
 import { getRooms } from "~/server/db/rooms";
 import { useRouteData } from "solid-start";
+import Image from "../Image";
 
 export const HomeSecondarySlider = () => {
   const roomsData = useRouteData<ReturnType<typeof getRooms>>();
   const data = createMemo(() =>
-    roomsData.data?.filter(({ type }) => type === "suite")
+    roomsData.data?.filter(({ type }) => type === "suite").splice(0, 5)
   );
   const { isDesktop } = useDevice();
 
@@ -38,8 +39,8 @@ export const HomeSecondarySlider = () => {
           >
             <For each={data()}>
               {(room) => (
-                <img
-                  src={`/img/${room.roomId}/0-mobile.webp`}
+                <Image
+                  src={`/img/${room.roomId}/${room.info?.pictures?.[0] || 0}`}
                   class="h-full w-full object-cover xl:rounded-md"
                   loading="lazy"
                 />

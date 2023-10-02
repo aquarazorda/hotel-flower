@@ -5,14 +5,16 @@ import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
 import { A, useNavigate, useRouteData } from "solid-start";
 import { getRooms } from "~/server/db/rooms";
+import Image from '../Image';
 
 export const HomeSlider = () => {
   const routeData = useRouteData<ReturnType<typeof getRooms>>();
-  const data = createMemo(() =>
-    routeData.data?.filter(({ type }) => type === "room")
-  );
-  const { isDesktop } = useDevice();
   const navigate = useNavigate();
+  const { isDesktop } = useDevice();
+
+  const data = createMemo(() =>
+    routeData.data?.filter(({ type }) => type === "room").splice(0, isDesktop ? 8 : 6)
+  );
 
   const [slider, { current, moveTo }] = createSlider(
     createMemo(() => ({
@@ -40,11 +42,12 @@ export const HomeSlider = () => {
                   class="min-w-[123px] text-sm text-white xl:aspect-square xl:min-w-fit"
                   classList={{ "xl:ml-28": idx() === 0 }}
                 >
-                  <img
+                  <Image
                     onClick={() => navigate("/rooms/" + room.roomId)}
+                    loading="lazy"
                     class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
                     object-cover xl:aspect-square xl:min-h-[264px] xl:flex-col xl:items-start xl:font-semibold"
-                    src={`/img/${room.roomId}/0-mobile.webp`}
+                    src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
                   />
                   {/* <div class="hidden xl:block">
                       <span class="xl:mt-auto xl:text-xl">{room.name}</span>

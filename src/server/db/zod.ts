@@ -6,8 +6,8 @@ export const roomFullSchema = z.object({
   id: z.number(),
   name: z.string(),
   roomId: z.number(),
-  msId: z.number(),
   order: z.number(),
+  type: z.union([z.literal('room'), z.literal('suite')]),
   prices: z.nullable(
     z.object({
       list: z.record(z.number()),

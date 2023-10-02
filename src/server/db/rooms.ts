@@ -12,23 +12,36 @@ const blockedDateSchema = z.array(
   })
 );
 
-export const getRooms = query$(async () => {
-  return await prisma.room.findMany({
-    select: {
-      id: true,
-      type: true,
-      blockedDate: true,
-      info: true,
-      name: true,
-      prices: true,
-      roomId: true,
-      order: true
-    },
-    orderBy: {
-      order: "asc",
-    },
-  });
-}, "rooms-list");
+export const getRooms = query$({
+  schema: z.object({
+    type: z.union([z.literal('suite'), z.literal('room')]).optional(),
+  }),
+  queryFn: async ({ payload }) => {
+    const rooms = await prisma.room.findMany({
+      select: {
+        id: true,
+        type: true,
+        blockedDate: true,
+        info: true,
+        name: true,
+        prices: true,
+        roomId: true,
+        order: true
+      },
+      orderBy: {
+        order: "asc",
+      },
+      where: {
+        type: {
+          equals: payload?.type,
+        }
+      }
+    });
+  
+    return rooms as RoomWithFullData[]; 
+  },
+  key: "rooms-list",
+});
 
 export const getBookings = query$(async () => {
   const bookings = await prisma.blockedDate.findMany({
