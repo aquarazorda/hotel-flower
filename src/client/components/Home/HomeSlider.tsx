@@ -53,7 +53,7 @@ export const HomeSlider = () => {
                       <span class="xl:mt-auto xl:text-xl">{room.name}</span>
                       <A
                         href="/todo"
-                        class="mt-3 cursor-pointer rounded-lg bg-zinc-300/80 px-3 py-2 hover:bg-zinc-300/100"
+                        class="mt-3 cursor-pointer rounded-lg bg-zinc-300/90 px-3 py-2 hover:bg-zinc-300/100"
                       >
                         See More
                       </A>

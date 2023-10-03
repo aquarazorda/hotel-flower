@@ -7,7 +7,6 @@ import {
   onCleanup,
   onMount,
 } from "solid-js";
-import { A } from "solid-start";
 import { useDevice } from '~/server/lib/device';
 
 const maxPercent = 35;
@@ -31,7 +30,7 @@ export const HomeMainBox = () => {
 
   onMount(() => {
     setScrollY(window.scrollY);
-    const handleScroll = debounce(() => setScrollY(window.scrollY), 10);
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
 
     onCleanup(() => {
@@ -41,7 +40,7 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      style={{ height: isDesktop ? `${60 - scrollPercent()}vh` : 'auto' }}
+      style={{ height: isDesktop ? `${60}vh` : 'auto' }}
       class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] xl:bg-[url('/img/home/main.webp')]"
     >
       <div
@@ -50,9 +49,9 @@ export const HomeMainBox = () => {
       >
         <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent transition xl:block">
           Hotel 
-          <Show when={scrollPercent() <= 15}>
+          {/* <Show when={scrollPercent() <= 15}> */}
             <br />
-          </Show>
+          {/* </Show> */}
           Flower
         </h1>
         {/* <div class="hidden transition xl:block" classList={{'xl:hidden': scrollPercent() >= 15}}>
