@@ -1,6 +1,4 @@
-import { query$ } from "@prpc/solid";
 import { useParams } from "solid-start";
-import { z } from "zod";
 import {
   DragDropProvider,
   DragDropSensors,
@@ -15,7 +13,6 @@ import { createStore } from "solid-js/store";
 import { Button } from "@kobalte/core";
 import { saveRoomInfo } from '~/server/client/room';
 import { isServer } from 'solid-js/web';
-import { env } from 'process';
 
 const Sortable = (props) => {
   const { id } = useParams();
@@ -58,22 +55,28 @@ export default function ImageListCms(props: ImageListProps) {
     }
   });
 
-  const [containers, setContainers] = createStore<Record<string, number[]>>({});
+  const [containers, setContainers] = createStore<Record<string, number[]>>({
+    A: [],
+    B: []
+  });
+
   const save = saveRoomInfo();
 
-  createEffect(on(imageCount, (images = 0) => {
+  createEffect(() => {
     const pictures = props.pictures || [];
     const newContainers: Record<string, number[]> = {
       A: [],
       B: pictures
     };
     
-    for (let i = 0; i < images; i++) {
+    for (let i = 0; i < imageCount(); i++) {
       !pictures.includes(i) && newContainers.A.push(i);
     }
 
     setContainers(newContainers);
-  }))
+  });
+
+  imageCount();
 
   const containerIds = () => Object.keys(containers);
 

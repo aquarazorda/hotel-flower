@@ -8,7 +8,6 @@ import {
   createComponent,
 } from "solid-js";
 import { useRouteData } from "solid-start";
-import { z } from "zod";
 import BookingInput from "~/client/components/Booking/input";
 import { getRoomRouteData } from "~/client/query/getRoomRouteData";
 import ImageListCms from '~/cms/Content/ImageList';
