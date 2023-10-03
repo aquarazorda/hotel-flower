@@ -10,13 +10,13 @@ export const Header = () => {
 
   return (
     <header
-      class="fixed top-0 z-10 hidden w-full items-center justify-between bg-white px-6 backdrop-blur transition-all duration-200 xl:flex"
+      class="fixed top-0 z-10 hidden w-full items-center justify-between bg-white px-6 font-shippori backdrop-blur transition-all duration-200 xl:flex"
       classList={{
         "h-14 bg-opacity-80 shadow-gray-500": isScrolled(),
         "h-16 relative": !isScrolled(),
       }}
     >
-      <A href="/" class="w-24 cursor-pointer text-center font-shippori uppercase leading-4">Hotel Flower</A>
+      <A href="/" class="w-24 cursor-pointer text-center uppercase leading-4">Hotel Flower</A>
       <nav class="flex gap-11 text-sm">
         <For each={headerNavItems}>
           {(item) => (
@@ -29,8 +29,8 @@ export const Header = () => {
           )}
         </For>
       </nav>
-      <A href="/contact" class="text-sm">
-        Contact
+      <A href="/360" class="text-base">
+        360
       </A>
     </header>
   );

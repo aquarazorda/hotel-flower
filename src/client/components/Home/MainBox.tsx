@@ -41,7 +41,7 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      style={{ height: isDesktop ? `${70 - scrollPercent()}vh` : 'auto' }}
+      style={{ height: isDesktop ? `${60 - scrollPercent()}vh` : 'auto' }}
       class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] xl:bg-[url('/img/home/main.webp')]"
     >
       <div

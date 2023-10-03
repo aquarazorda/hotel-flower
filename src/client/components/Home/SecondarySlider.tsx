@@ -60,7 +60,7 @@ export const HomeSecondarySlider = () => {
             <span class="hidden text-center text-2xl text-neutral-500 xl:block xl:text-start xl:text-primary">
               Suites
             </span>
-            <span class="text-center text-[12.5px] text-neutral-500 xl:text-start xl:text-sm xl:text-primary">
+            <span class="text-center text-[12.5px] text-neutral-500 xl:text-start xl:text-primary">
               Step into the refined luxury of Hotel Flower's suites, where the
               vivacity of Tbilisi meets elegance. Each suite is a tranquil
               retreat, blending modern sophistication with authentic Georgian
