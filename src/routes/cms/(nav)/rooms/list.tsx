@@ -6,7 +6,7 @@ import { saveRoomOrder } from "~/server/client/room";
 import { getRooms } from "~/server/db/rooms";
 
 export const routeData = () =>
-  getRooms(undefined, () => ({
+  getRooms({}, () => ({
     staleTime: 1000 * 60 * 60,
   }));
 
