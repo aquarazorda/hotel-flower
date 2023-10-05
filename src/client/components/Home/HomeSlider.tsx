@@ -24,7 +24,7 @@ export const HomeSlider = () => {
       rtl: false,
       slides: {
         perView: "auto",
-        spacing: isDesktop ? 32 : 10,
+        spacing: isDesktop ? 32 : 9,
       },
     }))
   );
@@ -67,24 +67,6 @@ export const HomeSlider = () => {
               </>
             )}
           </For>
-        </div>
-        <div class="mt-5 flex flex-col gap-6 xl:hidden">
-          <div class="flex gap-3">
-            <Index each={data()}>
-              {(room, idx) => (
-                <Show when={idx != data.length - 1}>
-                  <div
-                    class="h-2 w-2 cursor-pointer rounded-full hover:bg-neutral-400"
-                    onClick={() => moveTo(idx)}
-                    classList={{
-                      "bg-neutral-400": idx === current(),
-                      "bg-zinc-300": idx !== current(),
-                    }}
-                  />
-                </Show>
-              )}
-            </Index>
-          </div>
         </div>
       </div>
       <div class="mb-10 mt-2 flex flex-col p-4 xl:my-20 xl:mb-28 xl:items-center">
