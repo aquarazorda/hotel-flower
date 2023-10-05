@@ -44,14 +44,14 @@ const MobileFooter = () => (
 
 const DesktopFooter = () => (
   <>
-    <footer class="hidden grow justify-between bg-secondary p-8 text-xs text-white xl:flex">
-      <h6 class="h-32 text-sm">
+    <footer class="hidden grow justify-between bg-secondary p-8 pb-4 text-xs text-white xl:flex">
+      <h6 class="flex-1 text-sm">
         Nestled in the heart of Tbilisi, we offer <br /> a blend of elegance and{" "}
         <br />
         Georgian charm. Embrace luxury <br /> with stunning city views. <br />
         All rights reserved.
       </h6>
-      <nav class="flex h-32">
+      <nav class="flex flex-1">
         <ul class="flex flex-col gap-1 font-semibold xl:text-base xl:font-medium">
           <li>
             <A href="/">Home</A>
@@ -68,7 +68,7 @@ const DesktopFooter = () => (
           </div>
         </ul>
       </nav>
-      <div class="flex h-32 flex-col">
+      <div class="flex flex-1 flex-col">
         <div class="flex items-center justify-end gap-4">
           <A href="/360" class="text-base font-medium">
             360°
@@ -76,7 +76,7 @@ const DesktopFooter = () => (
           <Phone class="h-5 w-5 cursor-pointer" />
           <Instagram class="h-5 w-5 cursor-pointer" />
         </div>
-        <div class="mt-auto flex w-full justify-between text-[10px] font-medium xl:text-sm">
+        <div class="mt-auto flex w-full justify-end text-sm font-medium">
           <A href="https://goo.gl/maps/cvMJewnVKi48uof37" class="text-right">
             36a Lado Asatiani Street Tbilisi
           </A>
