@@ -5,7 +5,7 @@ import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
 import { A, useNavigate, useRouteData } from "solid-start";
 import { getRooms } from "~/server/db/rooms";
-import Image from '../Image';
+import Image from "../Image";
 
 export const HomeSlider = () => {
   const routeData = useRouteData<ReturnType<typeof getRooms>>();
@@ -13,7 +13,9 @@ export const HomeSlider = () => {
   const { isDesktop } = useDevice();
 
   const data = createMemo(() =>
-    routeData.data?.filter(({ type }) => type === "room").splice(0, isDesktop ? 8 : 6)
+    routeData.data
+      ?.filter(({ type }) => type === "room")
+      .splice(0, isDesktop ? 8 : 6)
   );
 
   const [slider, { current, moveTo }] = createSlider(
@@ -22,14 +24,14 @@ export const HomeSlider = () => {
       rtl: false,
       slides: {
         perView: "auto",
-        spacing: isDesktop ? 32 : 8,
+        spacing: isDesktop ? 32 : 10,
       },
     }))
   );
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-neutral-500 xl:mb-12 xl:mt-4 xl:text-2xl xl:font-normal xl:text-primary/90">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-primary xl:mb-12 xl:mt-4 xl:text-2xl xl:font-normal">
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 xl:pl-4">
@@ -86,7 +88,7 @@ export const HomeSlider = () => {
         </div>
       </div>
       <div class="mb-10 mt-2 flex flex-col p-4 xl:my-20 xl:mb-28 xl:items-center">
-        <span class="text-center text-[12.5px] text-neutral-500 xl:max-w-2xl xl:text-base xl:text-primary">
+        <span class="text-center text-[12.5px] text-primary xl:max-w-2xl xl:text-base">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
           of authentic Georgian charm, promising a stay enriched with comfort,

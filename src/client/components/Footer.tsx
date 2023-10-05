@@ -45,14 +45,14 @@ const MobileFooter = () => (
 const DesktopFooter = () => (
   <>
     <footer class="hidden grow justify-between bg-secondary p-8 pb-4 text-xs text-white xl:flex">
-      <h6 class="flex-1 text-sm">
+      <h6 class="max-h-32 flex-1 text-sm">
         Nestled in the heart of Tbilisi, we offer <br /> a blend of elegance and{" "}
         <br />
         Georgian charm. Embrace luxury <br /> with stunning city views. <br />
         All rights reserved.
       </h6>
-      <nav class="flex flex-1">
-        <ul class="flex flex-col gap-1 font-semibold xl:text-base xl:font-medium">
+      <nav class="flex max-h-32 flex-1">
+        <ul class="ml-auto flex flex-col gap-1 font-medium xl:text-base">
           <li>
             <A href="/">Home</A>
           </li>
@@ -62,13 +62,13 @@ const DesktopFooter = () => (
           <li>
             <A href="/suites">Suites</A>
           </li>
-          <div class="mt-2 flex gap-2">
+          <div class="mt-auto flex gap-2 text-sm">
             <A href="/terms-of-service">Terms of Service</A>/
             <A href="/privacy-policy">Privacy Policy</A>
           </div>
         </ul>
       </nav>
-      <div class="flex flex-1 flex-col">
+      <div class="flex max-h-32 flex-1 flex-col">
         <div class="flex items-center justify-end gap-4">
           <A href="/360" class="text-base font-medium">
             360°
