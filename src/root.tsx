@@ -59,7 +59,7 @@ export default function Root() {
           type="text/css"
         />
       </Head>
-      <Body class="font-inter">
+      <Body class="flex min-h-screen flex-col font-inter">
         <Suspense>
           <ErrorBoundary>
             <QueryClientProvider client={queryClient}>

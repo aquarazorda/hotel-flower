@@ -10,10 +10,10 @@ export const Header = () => {
 
   return (
     <header
-      class="fixed top-0 z-10 hidden w-full items-center justify-between bg-white px-6 font-shippori backdrop-blur transition-all duration-200 xl:flex"
+      class="fixed top-0 z-10 hidden h-14 w-full items-center justify-between bg-white px-6 text-center font-shippori backdrop-blur transition-all duration-200 xl:flex"
       classList={{
-        "h-14 bg-opacity-80 shadow-gray-500": isScrolled(),
-        "h-16 relative": !isScrolled(),
+        "bg-opacity-80 shadow-gray-500": isScrolled(),
+        "relative": !isScrolled(),
       }}
     >
       <A href="/" class="w-24 cursor-pointer text-center uppercase leading-4">Hotel Flower</A>
@@ -22,15 +22,15 @@ export const Header = () => {
           {(item) => (
             <A
               href={item.path}
-              class="text-gray-700 opacity-80 duration-200 ease-in hover:text-gray-900 hover:opacity-95"
+              class="w-24 text-gray-700 opacity-80 duration-200 ease-in hover:text-gray-900 hover:opacity-95"
             >
               {item.name}
             </A>
           )}
         </For>
       </nav>
-      <A href="/360" class="text-base">
-        360
+      <A href="/360" class="w-24 text-base text-gray-700 hover:text-gray-900 hover:opacity-95">
+        360°
       </A>
     </header>
   );
