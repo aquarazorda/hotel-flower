@@ -5,11 +5,12 @@ import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
 import SliderDots from "../Slider/Dots";
 import { getRooms } from "~/server/db/rooms";
-import { useRouteData } from "solid-start";
+import { useNavigate, useRouteData } from "solid-start";
 import Image from "../Image";
 
 export const HomeSecondarySlider = () => {
   const roomsData = useRouteData<ReturnType<typeof getRooms>>();
+  const navigate = useNavigate();
   const data = createMemo(() =>
     roomsData.data?.filter(({ type }) => type === "suite").splice(0, 5)
   );
@@ -40,6 +41,7 @@ export const HomeSecondarySlider = () => {
             <For each={data()}>
               {(room) => (
                 <Image
+                  onClick={() => navigate("/suites/" + room.roomId)}
                   src={`/img/${room.roomId}/${room.info?.pictures?.[0] || 0}`}
                   class="h-full w-full object-cover xl:rounded-md"
                   loading="lazy"

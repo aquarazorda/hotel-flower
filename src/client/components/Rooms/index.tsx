@@ -23,7 +23,7 @@ export default function Rooms() {
     ));
 
   return (
-    <div class="xl:px-[5%]">
+    <div class="xl:mb-24 xl:px-[5%]">
       <RoomsFilter />
       <main class="my-10 flex flex-wrap justify-center gap-10 px-7 xl:grid xl:grid-cols-5 xl:gap-6">
         <For each={roomsData.data}>
@@ -35,7 +35,7 @@ export default function Rooms() {
                 class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl object-cover object-center text-white xl:aspect-[1.17] xl:h-auto"
               />
                 {/* <div class="h-full w-full rounded-xl bg-black/10" /> */}
-              <div class="mt-6 flex flex-col gap-2">
+              <div class="mt-6 flex flex-col gap-2 xl:mb-5">
                 <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
                   <A href={`./${room.roomId}`}>{room.name}</A>
                   <Button.Root onClick={showToast} class="xl:hidden">
@@ -46,10 +46,7 @@ export default function Rooms() {
                   Ideally located in Tbilisi City, Hotel offers a buffet
                   breakfast and free WiFi throughout the property. Each
                   accommodation at the 4-star hotel has city views, and guests
-                  can enjoy access to a shared lounge and to a terrace. Private
-                  parking is available on site. Ideally located in Tbilisi City,
-                  Hotel offers a buffet breakfast and free WiFi throughout the
-                  property.
+                  can enjoy access to a shared lounge and to a terrace.
                 </p>
                 {/* <div class="mt-2 flex gap-1 text-black">
                     <For each={Array(room.persons)}>

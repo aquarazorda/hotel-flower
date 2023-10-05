@@ -51,8 +51,8 @@ const DesktopFooter = () => (
         Georgian charm. Embrace luxury <br /> with stunning city views. <br />
         All rights reserved.
       </h6>
-      <nav class="flex max-h-32 flex-1">
-        <ul class="ml-auto flex flex-col gap-1 font-medium xl:text-base">
+      <nav class="flex max-h-32 flex-1 justify-center">
+        <ul class="flex flex-col gap-1 font-medium xl:text-base">
           <li>
             <A href="/">Home</A>
           </li>
