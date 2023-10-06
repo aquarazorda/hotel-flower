@@ -15,7 +15,7 @@ export const Restaurant = () => {
         />
       </div>
       <span class="block px-5 pb-16 pt-12 text-center text-primary xl:px-0 xl:py-36 xl:pt-20 xl:text-base xl:text-primary/90">
-        <span class="text-[12.5px] xl:mx-auto xl:block xl:max-w-2xl xl:text-base">
+        <span class="text-[12.5px] xl:mx-auto xl:block xl:max-w-2xl xl:text-base xl:text-primary/90">
           Savor exquisite meals at our skyline restaurant, offering a culinary
           journey as breathtaking as the city views. Dine under the stars, enjoy
           the shimmering city lights, and experience flavors that will tantalize

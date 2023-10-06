@@ -35,7 +35,7 @@ export default function Rooms() {
                 class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl object-cover object-center text-white xl:aspect-[1.17] xl:h-auto"
               />
                 {/* <div class="h-full w-full rounded-xl bg-black/10" /> */}
-              <div class="mt-6 flex flex-col gap-2 xl:mb-5">
+              <div class="mt-5 flex flex-col gap-2 xl:mb-5">
                 <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
                   <A href={`./${room.roomId}`}>{room.name}</A>
                   <Button.Root onClick={showToast} class="xl:hidden">
@@ -67,11 +67,11 @@ export default function Rooms() {
           )}
         </For>
       </main>
-      <Portal>
+      {/* <Portal>
         <Toast.Region>
           <Toast.List class="fixed bottom-0 right-0 z-50 bg-white p-4" />
         </Toast.Region>
-      </Portal>
+      </Portal> */}
     </div>
   );
 }
