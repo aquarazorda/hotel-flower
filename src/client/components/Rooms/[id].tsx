@@ -70,26 +70,26 @@ export default function Room() {
 
   return (
     <Suspense>
-      <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 xl:mb-0 xl:flex-row">
-        <div class="relative overflow-hidden font-shippori xl:max-h-[80vh] xl:w-5/12">
+      <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 2xl:mb-0 2xl:flex-row">
+        <div class="relative overflow-hidden font-shippori 2xl:max-h-[80vh] 2xl:w-5/12">
           {/* @ts-ignore */}
-          <div use:slider class="flex h-96 xl:h-auto xl:max-h-[80vh]">
+          <div use:slider class="flex h-96 2xl:h-auto 2xl:max-h-[80vh]">
             <Index each={room.data?.info?.pictures}>
               {(item, idx) => (
-                <Image src={`/img/${room.data?.roomId}/${item()}`} loading={idx !== 0 ?'lazy' : 'eager'} class='object-cover xl:max-h-[80vh]'/>
+                <Image src={`/img/${room.data?.roomId}/${item()}`} loading={idx !== 0 ?'lazy' : 'eager'} class='object-cover 2xl:max-h-[80vh]'/>
               )}
             </Index>
           </div>
         </div>
-        <div class="flex gap-2 px-8 font-shippori xl:flex-col xl:justify-center xl:px-0">
+        <div class="flex gap-2 px-8 font-shippori 2xl:flex-col 2xl:justify-center 2xl:px-0">
           <SliderDots
             count={room.data?.info?.pictures || 3}
             current={current()}
             moveTo={moveTo}
           />
         </div>
-        <div class="flex flex-col px-8 xl:mb-40 xl:flex-1 xl:flex-row xl:justify-around xl:px-0 xl:pt-20">
-          <div class="font-shippori xl:my-auto xl:flex xl:w-2/5 xl:flex-col">
+        <div class="flex flex-col px-8 2xl:mb-40 2xl:flex-1 2xl:flex-row 2xl:justify-around 2xl:px-0 2xl:pt-20">
+          <div class="font-shippori 2xl:my-auto 2xl:flex 2xl:w-2/5 2xl:flex-col">
             <h2 class="text-lg text-secondaryHover">{room.data?.name}</h2>
             <p class="mt-5">
               At the hotel all rooms include air conditioning, a seating area, a
@@ -99,16 +99,16 @@ export default function Room() {
               offer a balcony and others also have river views. At Hotel Flower
               rooms are fitted with bed linen and towels.
             </p>
-            <p class="mt-2 hidden xl:block">
+            <p class="mt-2 hidden 2xl:block">
               The accommodation provides an ironing service, as well as business
               facilities like fax and photocopying. Non-stop information is
               available at the reception, where staff speak English, Georgian
               and Russian.
             </p>
 
-            <div class="mt-10 flex flex-col gap-4 px-6 xl:px-0">
+            <div class="mt-10 flex flex-col gap-4 px-6 2xl:px-0">
               <h3 class="text-base">Amenities</h3>
-              <ul class="grid gap-4 xl:grid-cols-auto-fill">
+              <ul class="grid gap-4 2xl:grid-cols-auto-fill">
                 <li class="flex items-center gap-4 whitespace-nowrap">
                   <CancelRounded /> Non smoking rooms
                 </li>
@@ -132,7 +132,7 @@ export default function Room() {
                 </li>
               </ul>
             </div>
-            <p class="mb-4 mt-10 xl:hidden">
+            <p class="mb-4 mt-10 2xl:hidden">
               The accommodation provides an ironing service, as well as business
               facilities like fax and photocopying. Non-stop information is
               available at the reception, where staff speak English, Georgian
@@ -141,7 +141,7 @@ export default function Room() {
           </div>
           <Suspense>
             <Show when={room.data?.prices} fallback={<div class="m-auto text-center font-shippori text-base">Booking for this room is not available.</div>}>
-              <div class="my-12 flex flex-col items-center xl:my-0 xl:w-2/5">
+              <div class="my-12 flex flex-col items-center 2xl:my-0 2xl:w-2/5">
                 <div class="flex h-full flex-col justify-center">
                   <DatePicker
                     inline

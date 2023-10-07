@@ -41,20 +41,20 @@ export const HomeMainBox = () => {
   return (
     <div
       style={{ height: isDesktop ? `${60}vh` : 'auto' }}
-      class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] xl:bg-[url('/img/home/main.webp')]"
+      class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] 2xl:bg-[url('/img/home/main.webp')]"
     >
       <div
         style={{ "margin-top": (scrollPercent() * 4) + "px" }}
-        class="mt-auto flex h-96 flex-col items-center justify-center gap-12 xl:h-full xl:gap-0 xl:bg-landing-gradient"
+        class="mt-auto flex h-96 flex-col items-center justify-center gap-12 2xl:h-full 2xl:gap-0 2xl:bg-landing-gradient"
       >
-        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent transition xl:block">
+        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent transition 2xl:block">
           Hotel 
           {/* <Show when={scrollPercent() <= 15}> */}
             <br />
           {/* </Show> */}
           Flower
         </h1>
-        {/* <div class="hidden transition xl:block" classList={{'xl:hidden': scrollPercent() >= 15}}>
+        {/* <div class="hidden transition 2xl:block" classList={{'2xl:hidden': scrollPercent() >= 15}}>
           <div class="mt-8 flex w-full justify-center">
             <A
               href="/booking"

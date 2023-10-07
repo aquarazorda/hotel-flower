@@ -3,9 +3,9 @@ import Instagram from "../assets/icons/Instagram";
 import Phone from "../assets/icons/Phone";
 
 const MobileFooter = () => (
-  <footer class="flex flex-col bg-secondary p-7 text-xs text-white xl:hidden xl:p-16">
+  <footer class="flex flex-col bg-secondary p-7 text-xs text-white 2xl:hidden 2xl:p-16">
     <nav class="flex w-full justify-between">
-      <ul class="flex flex-col gap-1 font-semibold xl:text-base xl:font-medium">
+      <ul class="flex flex-col gap-1 font-semibold 2xl:text-base 2xl:font-medium">
         <li>
           <A href="/">Home</A>
         </li>
@@ -24,7 +24,7 @@ const MobileFooter = () => (
         <Instagram class="h-5 w-5 cursor-pointer" />
       </div>
     </nav>
-    <h6 class="xl:mt-20">
+    <h6 class="2xl:mt-20">
       Nestled in the heart of Tbilisi, we offer <br /> a blend of elegance and{" "}
       <br />
       Georgian charm. Embrace luxury <br /> with stunning city views. <br />
@@ -44,7 +44,7 @@ const MobileFooter = () => (
 
 const DesktopFooter = () => (
   <>
-    <footer class="hidden grow justify-between bg-secondary p-8 pb-4 text-xs text-white xl:flex">
+    <footer class="hidden grow justify-between bg-secondary p-8 pb-4 text-xs text-white 2xl:flex">
       <h6 class="max-h-32 flex-1 text-sm">
         Nestled in the heart of Tbilisi, we offer <br /> a blend of elegance and{" "}
         <br />
@@ -52,7 +52,7 @@ const DesktopFooter = () => (
         All rights reserved.
       </h6>
       <nav class="flex max-h-32 flex-1 justify-center">
-        <ul class="flex flex-col gap-1 font-medium xl:text-base">
+        <ul class="flex flex-col gap-1 font-medium 2xl:text-base">
           <li>
             <A href="/">Home</A>
           </li>
