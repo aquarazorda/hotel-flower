@@ -29,8 +29,7 @@ files.forEach((folderName: string) => {
         '-o', `./public/img/${roomNumber}/${index}-${name}.webp`,
         '-resize', width, '0',
         '-q', '80',
-        '-exact',
-        '-metadata', 'all'
+        '-exact'
       ])
     })
   });
