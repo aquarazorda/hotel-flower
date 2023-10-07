@@ -14,7 +14,7 @@ export const Header = () => {
         <div class="h-14 w-full" />
       </Show>
       <header
-        class="fixed top-0 z-10 hidden h-14 w-full items-center justify-between bg-white px-6 pr-0 text-center font-shippori backdrop-blur transition-all duration-200 2xl:flex"
+        class="fixed top-0 z-10 hidden h-14 w-full items-center justify-between bg-white px-6 pr-0 text-center font-shippori backdrop-blur transition-all duration-200 lg:flex"
         classList={{
           "bg-opacity-80 shadow-gray-500": isScrolled(),
           relative: !isScrolled(),

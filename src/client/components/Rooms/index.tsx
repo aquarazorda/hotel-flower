@@ -23,22 +23,22 @@ export default function Rooms() {
     ));
 
   return (
-    <div class="2xl:mb-24 2xl:px-[5%]">
+    <div class="lg:mb-24 lg:px-[5%]">
       <RoomsFilter />
-      <main class="my-10 flex flex-wrap justify-center gap-10 px-7 2xl:grid 2xl:grid-cols-5 2xl:gap-6">
+      <main class="my-10 flex flex-wrap justify-center gap-10 px-7 lg:grid lg:grid-cols-5 lg:gap-6">
         <For each={roomsData.data}>
           {(room) => (
             <article class="flex flex-col">
               <Image
                 src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
                 onClick={() => navigate(`./${room.roomId}`)}
-                class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl object-cover object-center text-white 2xl:aspect-[1.17] 2xl:h-auto"
+                class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl object-cover object-center text-white lg:aspect-[1.17] lg:h-auto"
               />
                 {/* <div class="h-full w-full rounded-xl bg-black/10" /> */}
-              <div class="mt-5 flex flex-col gap-2 2xl:mb-5">
+              <div class="mt-5 flex flex-col gap-2 lg:mb-5">
                 <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
                   <A href={`./${room.roomId}`}>{room.name}</A>
-                  <Button.Root onClick={showToast} class="2xl:hidden">
+                  <Button.Root onClick={showToast} class="lg:hidden">
                     <Icon name="share" />
                   </Button.Root>
                 </h2>

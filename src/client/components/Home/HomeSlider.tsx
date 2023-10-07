@@ -31,28 +31,28 @@ export const HomeSlider = () => {
 
   return (
     <div>
-      <h5 class="mb-8 text-center font-shippori text-base font-medium text-primary 2xl:mb-12 2xl:mt-4 2xl:text-2xl 2xl:font-normal">
+      <h5 class="mb-8 text-center font-shippori text-base font-medium text-primary lg:mb-12 lg:mt-4 lg:text-2xl lg:font-normal">
         Rooms
       </h5>
-      <div class="cursor-pointer pl-4 2xl:pl-4">
+      <div class="cursor-pointer pl-4 lg:pl-4">
         {/* @ts-ignore */}
         <div use:slider class="flex">
           <For each={data()}>
             {(room, idx) => (
               <>
                 <div
-                  class="min-w-[123px] text-sm text-white 2xl:aspect-square 2xl:min-w-fit"
-                  classList={{ "2xl:ml-28": idx() === 0 }}
+                  class="min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit"
+                  classList={{ "lg:ml-28": idx() === 0 }}
                 >
                   <Image
                     onClick={() => navigate("/rooms/" + room.roomId)}
                     loading="lazy"
                     class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
-                    object-cover 2xl:aspect-square 2xl:min-h-[264px] 2xl:flex-col 2xl:items-start 2xl:font-semibold"
+                    object-cover lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
                     src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
                   />
-                  {/* <div class="hidden 2xl:block">
-                      <span class="2xl:mt-auto 2xl:text-xl">{room.name}</span>
+                  {/* <div class="hidden lg:block">
+                      <span class="lg:mt-auto lg:text-xl">{room.name}</span>
                       <A
                         href="/todo"
                         class="mt-3 cursor-pointer rounded-lg bg-zinc-300/90 px-3 py-2 hover:bg-zinc-300/100"
@@ -62,15 +62,15 @@ export const HomeSlider = () => {
                     </div> */}
                 </div>
                 <Show when={idx() === data.length - 1 && isDesktop}>
-                  <div class="hidden min-w-[123px] 2xl:block" />
+                  <div class="hidden min-w-[123px] lg:block" />
                 </Show>
               </>
             )}
           </For>
         </div>
       </div>
-      <div class="mb-10 mt-6 flex flex-col p-4 2xl:my-20 2xl:mb-28 2xl:items-center 2xl:pt-2">
-        <span class="text-center text-[12.5px] text-primary 2xl:max-w-2xl 2xl:text-base 2xl:text-primary/90">
+      <div class="mb-10 mt-6 flex flex-col p-4 lg:my-20 lg:mb-28 lg:items-center lg:pt-2">
+        <span class="text-center text-[12.5px] text-primary lg:max-w-2xl lg:text-base lg:text-primary/90">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
           of authentic Georgian charm, promising a stay enriched with comfort,
