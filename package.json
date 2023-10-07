@@ -4,7 +4,8 @@
     "dev": "solid-start dev",
     "build": "solid-start build",
     "start": "solid-start start",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "gen-images": "bun ./scripts/images.ts"
   },
   "type": "module",
   "devDependencies": {
