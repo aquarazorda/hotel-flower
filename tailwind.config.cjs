@@ -29,7 +29,8 @@ module.exports = {
       },
       backgroundImage: {
         'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.47) 0%, rgba(15, 23, 23, 0.45) 0.01%, rgba(10, 23, 23, 0.25) 100%)",
-        'text-gradient': 'linear-gradient(180deg,#fff,hsla(0,0%,100%,.85))'
+        'text-gradient': 'linear-gradient(180deg,#fff,hsla(0,0%,100%,.85))',
+        'mobile-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.25) 0%, rgba(15, 23, 23, 0.25) 0.01%, rgba(10, 23, 23, 0.25) 100%)"
       },
     }
   },
