@@ -8,7 +8,7 @@ export const Restaurant = () => {
       </h5>
       <div class="h-28 w-full lg:m-auto lg:h-60 lg:px-32">
         <img
-          srcset='/img/home/restaurant-mobile.webp 780w, /img/home/restaurant-tablet.webp 1024w, /img/home/restaurant-desktop.webp 1920w'
+          srcset='/img/home/restaurant-mobile.webp 1024w, /img/home/restaurant-tablet.webp 1536w, /img/home/restaurant-desktop.webp 3200w'
           src="/img/home/restaurant-mobile.webp"
           class="h-full  w-full rounded-md object-cover"
           loading="lazy"

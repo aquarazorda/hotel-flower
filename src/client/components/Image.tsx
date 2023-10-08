@@ -4,7 +4,7 @@ export default function Image(props: JSX.ImgHTMLAttributes<HTMLImageElement>) {
   const { src, ...rest } = props;
   return (
     <img
-      srcset={`${props.src}-mobile.webp 780w, ${props.src}-tablet.webp 1336w, ${props.src}-desktop.webp 1920w`}
+      srcset={`${props.src}-mobile.webp 1024w, ${props.src}-tablet.webp 1536w, ${props.src}-desktop.webp 3200w`}
       src={`${props.src}-mobile.webp`}
       {...rest}
     />
