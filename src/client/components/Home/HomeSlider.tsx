@@ -41,14 +41,14 @@ export const HomeSlider = () => {
             {(room, idx) => (
               <>
                 <div
-                  class="min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit"
+                  class="relative min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit"
                   classList={{ "lg:ml-28": idx() === 0 }}
                 >
                   <Image
                     onClick={() => navigate("/rooms/" + room.roomId)}
                     loading="lazy"
-                    class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
-                    object-cover lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
+                    class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat object-cover
+                    lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
                     src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
                   />
                   {/* <div class="hidden lg:block">
