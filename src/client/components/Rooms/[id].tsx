@@ -5,6 +5,7 @@ import {
   createEffect,
   createMemo,
   createSignal,
+  onMount,
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import { createSlider } from "solid-slider";
@@ -31,13 +32,19 @@ export default function Room() {
   const [dateValues, setDateValues] = createSignal<string[]>();
   const { isDesktop } = useDevice();
   const [loaded, setLoaded] = createStore<Record<number, boolean>>({ 0: true });
-  const [slider, { moveTo, current }] = createSlider({
+  const [slider, { moveTo, current, update }] = createSlider({
     mode: "snap",
     loop: true,
     vertical: isDesktop,
     slides: {
       perView: 1,
     },
+  });
+
+  onMount(() => {
+    setTimeout(() => {
+      update();
+    }, 500);
   });
 
   const price = createMemo(() => {
@@ -83,7 +90,7 @@ export default function Room() {
         </div>
         <div class="flex gap-2 px-8 font-shippori lg:flex-col lg:justify-center lg:px-0">
           <SliderDots
-            count={room.data?.info?.pictures || 3}
+            count={room.data?.info?.pictures?.length || 3}
             current={current()}
             moveTo={moveTo}
           />

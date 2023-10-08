@@ -1,4 +1,4 @@
-import { For, createMemo } from "solid-js";
+import { For, createMemo, onMount } from "solid-js";
 import { createSlider } from "solid-slider";
 
 import "solid-slider/slider.css";
@@ -16,13 +16,19 @@ export const HomeSecondarySlider = () => {
   );
   const { isDesktop } = useDevice();
 
-  const [slider, { current, moveTo }] = createSlider({
+  const [slider, { current, moveTo, update }] = createSlider({
     vertical: isDesktop ? true : false,
     mode: "snap",
     rtl: false,
     slides: {
       perView: 1,
     },
+  });
+
+  onMount(() => {
+    setTimeout(() => {
+      update();
+    }, 500);
   });
 
   return (

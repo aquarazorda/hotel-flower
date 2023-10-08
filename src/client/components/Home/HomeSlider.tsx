@@ -1,4 +1,4 @@
-import { For, Index, Show, createMemo } from "solid-js";
+import { For, Index, Show, createMemo, onMount } from "solid-js";
 import { createSlider } from "solid-slider";
 
 import "solid-slider/slider.css";
@@ -18,7 +18,7 @@ export const HomeSlider = () => {
       .splice(0, isDesktop ? 8 : 6)
   );
 
-  const [slider, { current, moveTo }] = createSlider(
+  const [slider, { update }] = createSlider(
     createMemo(() => ({
       vertical: false,
       rtl: false,
@@ -28,6 +28,12 @@ export const HomeSlider = () => {
       },
     }))
   );
+
+  onMount(() => {
+    setTimeout(() => {
+      update();
+    }, 500);
+  });
 
   return (
     <div>
