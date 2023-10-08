@@ -40,12 +40,12 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      style={{ height: isDesktop ? `${60}vh` : 'auto' }}
-      class="overflow-hidden bg-[url('/img/home/main-sm.webp')] bg-cover bg-right lg:bg-[url('/img/home/main-md.webp')] lg:bg-[url('/img/home/main.webp')]"
+      style={{ height: isDesktop ? `${58}vh` : '384px' }}
+      class="overflow-hidden bg-[url('/img/home/main.png')] bg-cover bg-center"
     >
       <div
-        style={{ "margin-top": (scrollPercent() * 4) + "px" }}
-        class="mt-auto flex h-96 flex-col items-center justify-center gap-12 lg:h-full lg:gap-0 lg:bg-landing-gradient"
+        style={{ "margin-top": (scrollPercent() * 6) + "px" }}
+        class="mt-auto flex h-full flex-col items-center justify-center gap-12 bg-landing-gradient lg:h-full lg:gap-0"
       >
         <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent transition lg:block">
           Hotel 
