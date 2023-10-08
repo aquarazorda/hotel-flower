@@ -40,7 +40,7 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      style={{ height: isDesktop ? `${58}vh` : '384px' }}
+      style={{ height: isDesktop ? `58vh` : '59vh' }}
       class="overflow-hidden bg-[url('/img/home/main.png')] bg-cover bg-center"
     >
       <div

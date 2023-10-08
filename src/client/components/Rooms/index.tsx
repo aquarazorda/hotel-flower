@@ -42,7 +42,7 @@ export default function Rooms() {
                     <Icon name="share" />
                   </Button.Root>
                 </h2>
-                <p class="w-full text-xs text-zinc-500">
+                <p class="w-full pr-14 text-xs text-zinc-500 xl:pr-0">
                   Ideally located in Tbilisi City, Hotel offers a buffet
                   breakfast and free WiFi throughout the property. Each
                   accommodation at the 4-star hotel has city views, and guests

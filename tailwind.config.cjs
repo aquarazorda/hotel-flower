@@ -3,7 +3,7 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      inter: ["Inter", "sans-serif"],
+      inter: ["Inter", "sans-serif" ],
       rufina: ["Rufina", "serif"],
       shippori: ["Shippori Mincho", "serif"]
     },
@@ -28,7 +28,7 @@ module.exports = {
         'landing-btn': '0px 12px 32px rgba(0, 0, 0, 0.25)'
       },
       backgroundImage: {
-        'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.7) 42.71%, rgba(15, 23, 23, 0.7) 46.88%, rgba(10, 23, 23, 0) 100%)",
+        'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.47) 0%, rgba(15, 23, 23, 0.45) 0.01%, rgba(10, 23, 23, 0.25) 100%)",
         'text-gradient': 'linear-gradient(180deg,#fff,hsla(0,0%,100%,.85))'
       },
     }
