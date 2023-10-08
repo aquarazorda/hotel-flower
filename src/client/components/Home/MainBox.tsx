@@ -41,7 +41,7 @@ export const HomeMainBox = () => {
   return (
     <div
       style={{ height: isDesktop ? `58vh` : '59vh' }}
-      class="overflow-hidden bg-[url('/img/home/main.png')] bg-cover bg-center"
+      class="overflow-hidden bg-[url('/img/home/main.png')] bg-auto bg-center bg-no-repeat xl:bg-cover"
     >
       <div
         style={{ "margin-top": (scrollPercent() * 4) + "px" }}

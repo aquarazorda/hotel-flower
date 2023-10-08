@@ -69,7 +69,7 @@ export const HomeSlider = () => {
           </For>
         </div>
       </div>
-      <div class="mb-10 mt-6 flex flex-col p-4 lg:my-20 lg:mb-28 lg:items-center lg:pt-2">
+      <div class="mb-10 mt-6 flex flex-col p-4 lg:my-24 lg:mb-28 lg:items-center lg:pt-2">
         <span class="text-center text-[12.5px] text-primary lg:max-w-2xl lg:text-base lg:text-primary/90">
           Relish the unique charm of Tbilisi from our stylish rooms at Hotel
           Flower. Each room harmoniously combines modern elegance with a touch
