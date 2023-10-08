@@ -7,12 +7,7 @@ export const Restaurant = () => {
         Restaurant
       </h5>
       <div class="h-28 w-full lg:m-auto lg:h-60 lg:px-32">
-        <img
-          srcset='/img/home/restaurant-mobile.webp 1024w, /img/home/restaurant-tablet.webp 1536w, /img/home/restaurant-desktop.webp 3200w'
-          src="/img/home/restaurant-mobile.webp"
-          class="h-full  w-full rounded-md object-cover"
-          loading="lazy"
-        />
+        <Image src="/img/home/restaurant" class="h-full  w-full rounded-md object-cover" loading="lazy" />
       </div>
       <span class="block px-5 pb-16 pt-12 text-center text-primary lg:px-0 lg:py-36 lg:pt-20 lg:text-base lg:text-primary/90">
         <span class="text-[12.5px] lg:mx-auto lg:block lg:max-w-2xl lg:text-base lg:text-primary/90">
