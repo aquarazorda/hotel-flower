@@ -41,13 +41,13 @@ export const HomeMainBox = () => {
   return (
     <div
       style={{ height: isDesktop ? `58vh` : '50vh' }}
-      class="overflow-hidden bg-[url('/img/home/main-mobile.webp')] bg-cover bg-bottom bg-no-repeat xl:bg-[url('/img/home/main-tablet.webp')] xl:bg-cover xl:bg-right 2xl:bg-[url('/img/home/main-desktop.webp')]"
+      class="overflow-hidden bg-[url('/img/home/main-mobile.webp')] bg-cover bg-center bg-no-repeat xl:bg-[url('/img/home/main-tablet.webp')] xl:bg-center 2xl:bg-[url('/img/home/main-desktop.webp')]"
     >
       <div
         style={{ "margin-top": (scrollPercent() * 4) + "px" }}
-        class="mt-auto flex h-full flex-col items-center justify-center gap-12 bg-mobile-gradient lg:h-full lg:gap-0"
+        class="mt-auto flex h-full flex-col items-center justify-center gap-12 lg:h-full lg:gap-0 xl:bg-mobile-gradient"
       >
-        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-7xl uppercase leading-extra-tight text-transparent transition lg:block">
+        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-5xl uppercase leading-extra-tight text-transparent transition lg:block">
           Hotel 
           {/* <Show when={scrollPercent() <= 15}> */}
             <br />
