@@ -40,8 +40,8 @@ export const HomeMainBox = () => {
 
   return (
     <div
-      style={{ height: isDesktop ? `58vh` : '59vh' }}
-      class="overflow-hidden bg-[url('/img/home/main-mobile.webp')] bg-bottom bg-no-repeat xl:bg-cover"
+      style={{ height: isDesktop ? `58vh` : '50vh' }}
+      class="overflow-hidden bg-[url('/img/home/main-mobile.webp')] bg-cover bg-bottom bg-no-repeat xl:bg-[url('/img/home/main-tablet.webp')] xl:bg-cover xl:bg-right 2xl:bg-[url('/img/home/main-desktop.webp')]"
     >
       <div
         style={{ "margin-top": (scrollPercent() * 4) + "px" }}

@@ -7,7 +7,7 @@ export default function Phone(props: JSX.IntrinsicElements["svg"]) {
       width="1em"
       height="1em"
       viewBox="0 0 256 256"
-      onClick={() => window.open('tel:+995598688686')}
+      onClick={() => window.location.href = 'tel:+995598688686'}
       {...props}
     >
       <path
