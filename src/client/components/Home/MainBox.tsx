@@ -45,9 +45,9 @@ export const HomeMainBox = () => {
     >
       <div
         style={{ "margin-top": (scrollPercent() * 4) + "px" }}
-        class="mt-auto flex h-full flex-col items-center justify-center gap-12 lg:h-full lg:gap-0 xl:bg-mobile-gradient"
+        class="mt-auto flex h-full flex-col items-center justify-center gap-12 bg-mobile-gradient lg:h-full lg:gap-0 xl:bg-landing-gradient"
       >
-        <h1 class="hidden bg-text-gradient bg-clip-text p-2 text-center font-shippori text-5xl uppercase leading-extra-tight text-transparent transition lg:block">
+        <h1 class="bg-text-gradient bg-clip-text p-2 text-center font-shippori text-6xl uppercase leading-extra-tight text-transparent transition lg:block">
           Hotel 
           {/* <Show when={scrollPercent() <= 15}> */}
             <br />

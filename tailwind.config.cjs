@@ -28,7 +28,7 @@ module.exports = {
         'landing-btn': '0px 12px 32px rgba(0, 0, 0, 0.25)'
       },
       backgroundImage: {
-        'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.47) 0%, rgba(15, 23, 23, 0.45) 0.01%, rgba(10, 23, 23, 0.25) 100%)",
+        'landing-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.61) 42.71%, rgba(15, 23, 23, 0.65) 46.88%, rgba(10, 23, 23, 0.00) 100%)",
         'text-gradient': 'linear-gradient(180deg,#fff,hsla(0,0%,100%,.85))',
         'mobile-gradient': "linear-gradient(180deg, rgba(10, 12, 12, 0.25) 0%, rgba(15, 23, 23, 0.25) 0.01%, rgba(10, 23, 23, 0.25) 100%)"
       },
