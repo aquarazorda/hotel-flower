@@ -1,8 +1,5 @@
-import { createEffect } from "solid-js";
 import { ServerError, createServerAction$, redirect } from "solid-start/server";
 import { P, isMatching } from "ts-pattern";
-import { setCmsLoggedIn } from "./(nav)";
-import { useNavigate } from "solid-start";
 import { auth } from "~/server/auth";
 import { LuciaError } from "lucia";
 
@@ -12,14 +9,12 @@ const userSchema = {
 };
 
 export default function Login() {
-  const navigate = useNavigate();
   const [authenticating, { Form }] = createServerAction$(
     async (form: FormData) => {
       const data = Object.fromEntries(form.entries()) as P.infer<
         typeof userSchema
       >;
       if (isMatching(userSchema, data)) {
-        console.log(data);
         try {
           const key = await auth.useKey(
             "username",
@@ -40,7 +35,6 @@ export default function Login() {
             },
           });
         } catch (e) {
-          console.log(e);
           if (
             e instanceof LuciaError &&
             (e.message === "AUTH_INVALID_KEY_ID" ||

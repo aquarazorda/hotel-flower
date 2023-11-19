@@ -7,7 +7,7 @@ import "lucia/polyfill/node";
 
 export const auth = lucia({
   middleware: web(),
-  env: "PROD",
+  env: import.meta.env.PROD ? "PROD" : "DEV",
   sessionCookie: {
     expires: false,
   },

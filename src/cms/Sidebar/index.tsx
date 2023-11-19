@@ -4,7 +4,7 @@ import { NavItem } from "./NavItem";
 import { RoomIcon } from "~/client/assets/icons/Room";
 import { ListIcon } from "~/client/assets/icons/ListIcon";
 import { NavSubItems } from "./NavSubItem";
-import { useCookies } from '~/shared/utils/cookies';
+import { useCookies } from "~/shared/utils/cookies";
 
 export type NavItemType = {
   icon?: Component;
@@ -27,16 +27,16 @@ const navItems = [
 
 export const Sidebar = () => {
   const cookies = useCookies();
-  const defaultValue = cookies.getCookie('navBar') || [];
+  const defaultValue = cookies.getCookie("navBar") || [];
   const [navOpen, setNavOpen] = createSignal<string[]>(defaultValue);
 
   const setAndSave = (value: string[]) => {
-   setNavOpen(value);
-   cookies.setCookie('navBar', value)
+    setNavOpen(value);
+    cookies.setCookie("navBar", value);
   };
 
   return (
-    <nav class="w-1/6 bg-[#303641] text-stone-400">
+    <nav class="fixed h-screen w-48 bg-[#303641] text-stone-400">
       <div class="flex items-center justify-center border-b border-b-[#454a54b3] p-3">
         <h1 class="text-center font-shippori text-white">
           HOTEL
@@ -44,7 +44,11 @@ export const Sidebar = () => {
           FLOWER
         </h1>
       </div>
-      <Accordion.Root multiple onChange={setAndSave} defaultValue={defaultValue}>
+      <Accordion.Root
+        multiple
+        onChange={setAndSave}
+        defaultValue={defaultValue}
+      >
         <For each={navItems}>
           {(item) => (
             <NavItem

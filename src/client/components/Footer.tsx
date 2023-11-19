@@ -1,6 +1,7 @@
-import { A } from "solid-start";
+import { A, useLocation } from "solid-start";
 import Instagram from "../assets/icons/Instagram";
 import Phone from "../assets/icons/Phone";
+import { Show } from "solid-js";
 
 const MobileFooter = () => (
   <footer class="flex flex-col bg-secondary p-7 text-xs text-white lg:hidden lg:p-16">
@@ -87,10 +88,12 @@ const DesktopFooter = () => (
 );
 
 export default function Footer() {
+  const isCms = useLocation().pathname.includes("/cms");
+
   return (
-    <>
+    <Show when={!isCms}>
       <MobileFooter />
       <DesktopFooter />
-    </>
+    </Show>
   );
 }
