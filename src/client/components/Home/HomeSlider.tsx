@@ -12,10 +12,11 @@ export const HomeSlider = () => {
   const navigate = useNavigate();
   const { isDesktop } = useDevice();
 
-  const data = createMemo(() =>
-    routeData.data
-      ?.filter(({ type }) => type === "room")
-      .splice(0, isDesktop ? 8 : 6)
+  const data = createMemo(
+    () =>
+      routeData.data
+        ?.filter(({ type }) => type === "room")
+        .splice(0, isDesktop ? 8 : 6),
   );
 
   const [slider, { update }] = createSlider(
@@ -26,14 +27,14 @@ export const HomeSlider = () => {
         perView: "auto",
         spacing: isDesktop ? 32 : 9,
       },
-    }))
+    })),
   );
 
-  onMount(() => {
-    setTimeout(() => {
-      update();
-    }, 500);
-  });
+  // onMount(() => {
+  //   setTimeout(() => {
+  //     update();
+  //   }, 500);
+  // });
 
   return (
     <div>
