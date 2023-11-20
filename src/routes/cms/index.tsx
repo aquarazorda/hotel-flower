@@ -1,7 +1,17 @@
+import { createServerData$, redirect } from "solid-start/server";
 import { Sidebar } from "~/cms/Sidebar";
-import { routeData } from "~/routes/cms/(nav)";
+import { auth } from "~/server/auth";
 
-export { routeData };
+export const routeData = () => {
+  return createServerData$(async (_, event) => {
+    const authRequest = auth.handleRequest(event.request);
+    const session = await authRequest.validate();
+
+    if (!session) {
+      return redirect("/cms/login");
+    }
+  });
+};
 
 export default function CmsMain() {
   return (
@@ -13,4 +23,3 @@ export default function CmsMain() {
     </div>
   );
 }
-
