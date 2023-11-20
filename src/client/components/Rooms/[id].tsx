@@ -23,7 +23,7 @@ import { Portal } from "solid-js/web";
 import BookingModal from "~/client/components/Booking/modal";
 import { calculatePrices } from "~/server/lib/otelms/prices";
 import { getRoomRouteData } from "~/client/query/getRoomRouteData";
-import Image from '../Image';
+import Image from "../Image";
 
 export default function Room() {
   const { room } = useRouteData<typeof getRoomRouteData>();
@@ -83,7 +83,11 @@ export default function Room() {
           <div use:slider class="flex h-96 lg:h-auto lg:max-h-[80vh]">
             <Index each={room.data?.info?.pictures}>
               {(item, idx) => (
-                <Image src={`/img/${room.data?.roomId}/${item()}`} loading={idx !== 0 ?'lazy' : 'eager'} class='object-cover lg:max-h-[80vh]'/>
+                <Image
+                  src={`/img/${room.data?.roomId}/${item()}`}
+                  loading={idx !== 0 ? "lazy" : "eager"}
+                  class="object-cover lg:max-h-[80vh]"
+                />
               )}
             </Index>
           </div>
@@ -98,14 +102,7 @@ export default function Room() {
         <div class="flex flex-col px-8 lg:mb-40 lg:flex-1 lg:flex-row lg:justify-around lg:px-0 lg:pt-20">
           <div class="font-shippori lg:my-auto lg:flex lg:w-2/5 lg:flex-col">
             <h2 class="text-lg text-secondaryHover">{room.data?.name}</h2>
-            <p class="mt-5">
-              At the hotel all rooms include air conditioning, a seating area, a
-              flat-screen TV with satellite channels, a safety deposit box and a
-              private bathroom with a shower, free toiletries and a hairdryer.
-              Each room is equipped with a kettle, while certain rooms also
-              offer a balcony and others also have river views. At Hotel Flower
-              rooms are fitted with bed linen and towels.
-            </p>
+            <p class="mt-5">{room.data?.info?.description} </p>
             <p class="mt-2 hidden lg:block">
               The accommodation provides an ironing service, as well as business
               facilities like fax and photocopying. Non-stop information is
@@ -147,7 +144,14 @@ export default function Room() {
             </p>
           </div>
           <Suspense>
-            <Show when={room.data?.prices} fallback={<div class="m-auto text-center font-shippori text-base">Booking for this room is not available.</div>}>
+            <Show
+              when={room.data?.prices}
+              fallback={
+                <div class="m-auto text-center font-shippori text-base">
+                  Booking for this room is not available.
+                </div>
+              }
+            >
               <div class="my-12 flex flex-col items-center lg:my-0 lg:w-2/5">
                 <div class="flex h-full flex-col justify-center">
                   <DatePicker

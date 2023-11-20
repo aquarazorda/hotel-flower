@@ -30,12 +30,13 @@ export const HomeSlider = () => {
     })),
   );
 
+  console.log(data());
   // onMount(() => {
   //   setTimeout(() => {
   //     update();
   //   }, 500);
   // });
-
+  //
   return (
     <div>
       <h5 class="mb-8 text-center font-shippori text-base font-medium text-primary lg:mb-12 lg:mt-4 lg:text-2xl lg:font-normal">
@@ -56,7 +57,7 @@ export const HomeSlider = () => {
                     loading="lazy"
                     class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat object-cover
                     lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
-                    src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
+                    src={`/img/${room.roomId}/${room.info?.pictures?.[0] || 0}`}
                   />
                   {/* <div class="hidden lg:block">
                       <span class="lg:mt-auto lg:text-xl">{room.name}</span>

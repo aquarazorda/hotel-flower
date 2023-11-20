@@ -1,5 +1,4 @@
-import { Show, createSignal } from "solid-js";
-import { Navigate, Outlet, redirect } from "solid-start";
+import { Outlet, redirect } from "solid-start";
 import { createServerData$ } from "solid-start/server";
 import { Sidebar } from "~/cms/Sidebar";
 import { auth } from "~/server/auth";
@@ -24,9 +23,4 @@ export default function Cms() {
       </div>
     </div>
   );
-  // return (
-  //   <Show when={cmsLoggedIn()} fallback={<Navigate href={"/cms/login"} />}>
-  //     <h1>Admin area</h1>
-  //   </Show>
-  // );
 }

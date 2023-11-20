@@ -1,11 +1,11 @@
-import { For } from 'solid-js';
-import RoomsFilter from '../Filter/RoomsFIlter';
-import { Button, Toast, toaster } from '@kobalte/core';
-import { A, useNavigate, useRouteData } from 'solid-start';
-import { getRooms } from '~/server/db/rooms';
-import { Portal } from 'solid-js/web';
-import { Icon } from '../Icons';
-import Image from '../Image';
+import { For } from "solid-js";
+import RoomsFilter from "../Filter/RoomsFIlter";
+import { Button, Toast, toaster } from "@kobalte/core";
+import { A, useNavigate, useRouteData } from "solid-start";
+import { getRooms } from "~/server/db/rooms";
+import { Portal } from "solid-js/web";
+import { Icon } from "../Icons";
+import Image from "../Image";
 
 export default function Rooms() {
   const roomsData = useRouteData<ReturnType<typeof getRooms>>();
@@ -30,11 +30,11 @@ export default function Rooms() {
           {(room) => (
             <article class="flex flex-col">
               <Image
-                src={`/img/${room.roomId}/${room.info?.pictures[0] || 0}`}
+                src={`/img/${room.roomId}/${room.info?.pictures?.[0] || 0}`}
                 onClick={() => navigate(`./${room.roomId}`)}
                 class="flex h-64 cursor-pointer flex-col gap-1 rounded-2xl object-cover object-center text-white lg:aspect-[1.17] lg:h-auto"
               />
-                {/* <div class="h-full w-full rounded-xl bg-black/10" /> */}
+              {/* <div class="h-full w-full rounded-xl bg-black/10" /> */}
               <div class="mt-5 flex flex-col gap-2 lg:mb-5">
                 <h2 class="mt-auto flex justify-between font-medium text-zinc-500">
                   <A href={`./${room.roomId}`}>{room.name}</A>
@@ -42,11 +42,8 @@ export default function Rooms() {
                     <Icon name="share" />
                   </Button.Root>
                 </h2>
-                <p class="w-full pr-2 text-xs text-zinc-500 xl:pr-0">
-                  Ideally located in Tbilisi City, Hotel offers a buffet
-                  breakfast and free WiFi throughout the property. Each
-                  accommodation at the 4-star hotel has city views, and guests
-                  can enjoy access to a shared lounge and to a terrace.
+                <p class="line-clamp-4 w-full pr-2 text-xs text-zinc-500 xl:pr-0">
+                  {room.info?.description}{" "}
                 </p>
                 {/* <div class="mt-2 flex gap-1 text-black">
                     <For each={Array(room.persons)}>

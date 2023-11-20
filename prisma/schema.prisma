@@ -28,7 +28,7 @@ model RoomInfo {
   updatedAt   DateTime @updatedAt
   roomId      Int      @unique
   room        Room?    @relation(fields: [roomId], references: [roomId])
-  description String?
+  description String?  @db.VarChar(2000)
   pictures    Json?
   persons     Int      @default(3)
   extraPerson Boolean  @default(true)
