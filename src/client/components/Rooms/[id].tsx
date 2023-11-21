@@ -83,10 +83,13 @@ export default function Room() {
       <Meta itemprop="description" content={room.data?.info?.description} />
       <Meta
         itemprop="image"
-        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
       />
 
-      <Meta property="og:url" content="https://www.flowertbilisi.com" />
+      <Meta
+        property="og:url"
+        content={`https://www.flowertbilisi.com/room/${room.data?.roomId}`}
+      />
       <Meta property="og:type" content="website" />
       <Meta property="og:title" content={`Hotel Flower - ${room.data?.name}`} />
       <Meta property="og:description" content={room.data?.info?.description} />
