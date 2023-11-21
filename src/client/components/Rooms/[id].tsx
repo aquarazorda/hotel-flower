@@ -88,7 +88,7 @@ export default function Room() {
 
       <Meta
         property="og:url"
-        content={`https://www.flowertbilisi.com/room/${room.data?.roomId}`}
+        content={`https://www.flowertbilisi.com/rooms/${room.data?.roomId}`}
       />
       <Meta property="og:type" content="website" />
       <Meta property="og:title" content={`Hotel Flower - ${room.data?.name}`} />
