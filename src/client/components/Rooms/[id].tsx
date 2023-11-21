@@ -92,7 +92,7 @@ export default function Room() {
       <Meta property="og:description" content={room.data?.info?.description} />
       <Meta
         property="og:image"
-        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
       />
 
       <Meta name="twitter:card" content="summary_large_image" />
@@ -103,7 +103,7 @@ export default function Room() {
       <Meta name="twitter:description" content={room.data?.info?.description} />
       <Meta
         name="twitter:image"
-        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
       />
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 lg:mb-0 lg:flex-row">
         <div class="relative overflow-hidden font-shippori lg:max-h-[80vh] lg:w-5/12">
