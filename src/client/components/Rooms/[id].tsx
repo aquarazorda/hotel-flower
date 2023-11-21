@@ -9,7 +9,7 @@ import {
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import { createSlider } from "solid-slider";
-import { useRouteData } from "solid-start";
+import { Head, Meta, Title, useRouteData } from "solid-start";
 
 import "solid-slider/slider.css";
 import { CancelRounded } from "~/client/assets/icons/CancelRounded";
@@ -77,6 +77,34 @@ export default function Room() {
 
   return (
     <Suspense>
+      <Title>Hotel Flower - {room.data?.name}</Title>
+      <Meta name="description" content={room.data?.info?.description} />
+      <Meta itemprop="name" content={`Hotel Flower - ${room.data?.name}`} />
+      <Meta itemprop="description" content={room.data?.info?.description} />
+      <Meta
+        itemprop="image"
+        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+      />
+
+      <Meta property="og:url" content="https://www.flowertbilisi.com" />
+      <Meta property="og:type" content="website" />
+      <Meta property="og:title" content={`Hotel Flower - ${room.data?.name}`} />
+      <Meta property="og:description" content={room.data?.info?.description} />
+      <Meta
+        property="og:image"
+        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+      />
+
+      <Meta name="twitter:card" content="summary_large_image" />
+      <Meta
+        name="twitter:title"
+        content={`Hotel Flower - ${room.data?.name}`}
+      />
+      <Meta name="twitter:description" content={room.data?.info?.description} />
+      <Meta
+        name="twitter:image"
+        content={`/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+      />
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 lg:mb-0 lg:flex-row">
         <div class="relative overflow-hidden font-shippori lg:max-h-[80vh] lg:w-5/12">
           {/* @ts-ignore */}

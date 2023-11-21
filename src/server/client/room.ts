@@ -19,7 +19,6 @@ export const saveRoomInfo = mutation$({
   key: "save-room-info",
   mutationFn: async ({ payload }) => {
     const { roomId, ...rest } = payload;
-    console.log(roomId, rest);
     const res = await prisma.roomInfo.upsert({
       where: {
         roomId,
@@ -54,4 +53,3 @@ export const saveRoomOrder = mutation$({
     }),
   ),
 });
-
