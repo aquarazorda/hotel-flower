@@ -17,7 +17,7 @@ export default defineConfig({
     exclude: ["@tanstack/solid-query"],
   },
   ssr: {
-    noExternal: ["@kobalte/core"],
+    noExternal: ["@kobalte/core", "@splidejs/splide"],
     external: ["@prisma/client"],
   },
 });

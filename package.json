@@ -32,6 +32,7 @@
     "@solid-primitives/scroll": "^2.0.20",
     "@solidjs/meta": "^0.29.1",
     "@solidjs/router": "^0.9.1",
+    "@splidejs/splide": "^4.1.4",
     "@tanstack/solid-query": "^5.8.4",
     "@thisbeyond/solid-dnd": "^0.7.5",
     "@types/node": "^20.9.2",
