@@ -3,7 +3,7 @@ import { Index } from "solid-js";
 type Props = {
   count: number | any[];
   current: number;
-  moveTo: (idx: number) => void;
+  moveTo?: (idx: number) => void;
 };
 
 export default function SliderDots(props: Props) {
@@ -14,7 +14,7 @@ export default function SliderDots(props: Props) {
       {(room, idx) => (
         <div
           class="h-2 w-2 cursor-pointer rounded-full hover:bg-neutral-400"
-          onClick={() => props.moveTo(idx)}
+          onClick={() => props.moveTo?.(idx)}
           classList={{
             "bg-neutral-400": idx === props.current,
             "bg-zinc-300": idx !== props.current,

@@ -1,9 +1,7 @@
-import { For, Index, Show, createMemo, onMount } from "solid-js";
-import { createSlider } from "solid-slider";
+import { For, Show, createEffect, createMemo, onCleanup } from "solid-js";
 import Splide from "@splidejs/splide";
-import "solid-slider/slider.css";
 import { useDevice } from "~/server/lib/device";
-import { A, useNavigate, useRouteData } from "solid-start";
+import { useNavigate, useRouteData } from "solid-start";
 import { getRooms } from "~/server/db/rooms";
 import Image from "../Image";
 import "@splidejs/splide/css/core";
@@ -22,16 +20,20 @@ export const HomeSlider = () => {
         .splice(0, isDesktop ? 8 : 6),
   );
 
-  onMount(() => {
-    if (!slider) return;
+  createEffect(() => {
+    if (!slider || !data()) return;
 
-    new Splide(slider, {
+    const splide = new Splide(slider, {
       type: "slide",
       arrows: false,
       autoWidth: true,
       gap: isDesktop ? "32px" : "9px",
       snap: true,
-    }).mount();
+    });
+
+    splide.mount();
+
+    onCleanup(() => splide.destroy());
   });
 
   return (
@@ -56,15 +58,6 @@ export const HomeSlider = () => {
                           room.info?.pictures?.[0] || 0
                         }`}
                       />
-                      {/* <div class="hidden lg:block">
-                      <span class="lg:mt-auto lg:text-xl">{room.name}</span>
-                      <A
-                        href="/todo"
-                        class="mt-3 cursor-pointer rounded-lg bg-zinc-300/90 px-3 py-2 hover:bg-zinc-300/100"
-                      >
-                        See More
-                      </A>
-                    </div> */}
                     </div>
                     <Show when={idx() === data.length - 1 && isDesktop}>
                       <div class="hidden min-w-[123px] lg:block" />

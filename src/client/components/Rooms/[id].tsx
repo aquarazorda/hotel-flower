@@ -5,13 +5,11 @@ import {
   createEffect,
   createMemo,
   createSignal,
-  onMount,
+  onCleanup,
 } from "solid-js";
 import { createStore } from "solid-js/store";
-import { createSlider } from "solid-slider";
-import { Head, Meta, Title, useRouteData } from "solid-start";
+import { Meta, Title, useRouteData } from "solid-start";
 
-import "solid-slider/slider.css";
 import { CancelRounded } from "~/client/assets/icons/CancelRounded";
 import { CheckRounded } from "~/client/assets/icons/CheckRounded";
 import { Button } from "~/client/components/Button";
@@ -24,6 +22,8 @@ import BookingModal from "~/client/components/Booking/modal";
 import { calculatePrices } from "~/server/lib/otelms/prices";
 import { getRoomRouteData } from "~/client/query/getRoomRouteData";
 import Image from "../Image";
+import Splide from "@splidejs/splide";
+import "@splidejs/splide/css/core";
 
 export default function Room() {
   const { room } = useRouteData<typeof getRoomRouteData>();
@@ -31,20 +31,41 @@ export default function Room() {
 
   const [dateValues, setDateValues] = createSignal<string[]>();
   const { isDesktop } = useDevice();
-  const [loaded, setLoaded] = createStore<Record<number, boolean>>({ 0: true });
-  const [slider, { moveTo, current, update }] = createSlider({
-    mode: "snap",
-    loop: true,
-    vertical: isDesktop,
-    slides: {
-      perView: 1,
-    },
+
+  let slider: HTMLDivElement | undefined;
+
+  const [sliderState, setSliderState] = createStore<{
+    idx: number;
+    go: (idx: number) => void;
+  }>({
+    idx: 0,
+    go: () => {},
   });
 
-  onMount(() => {
-    setTimeout(() => {
-      update();
-    }, 500);
+  createEffect(() => {
+    if (!slider || !room.data) return;
+
+    const splide = new Splide(slider, {
+      type: "slide",
+      direction: !isDesktop ? "ltr" : "ttb",
+      arrows: false,
+      autoWidth: true,
+      snap: true,
+      pagination: false,
+      height: "100%",
+      perPage: 1,
+    });
+
+    splide.mount();
+
+    setSliderState({
+      idx: 0,
+      go: (idx: number) => splide.go(idx),
+    });
+
+    splide.on("move", (idx) => setSliderState("idx", idx));
+
+    onCleanup(() => splide.destroy());
   });
 
   const price = createMemo(() => {
@@ -66,24 +87,22 @@ export default function Room() {
   };
 
   createEffect(() => {
-    setLoaded(current(), true);
-  });
-
-  createEffect(() => {
     bookingOpen()
       ? document.body.classList.add("overflow-hidden")
       : document.body.classList.remove("overflow-hidden");
   });
 
+  const title = createMemo(() => `Hotel Flower - ${room.data?.name}`);
+
   return (
     <Suspense>
-      <Title>Hotel Flower - {room.data?.name}</Title>
+      <Title>{title()}</Title>
       <Meta name="description" content={room.data?.info?.description} />
       <Meta itemprop="name" content={`Hotel Flower - ${room.data?.name}`} />
       <Meta itemprop="description" content={room.data?.info?.description} />
       <Meta
         itemprop="image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
       />
 
       <Meta
@@ -95,7 +114,7 @@ export default function Room() {
       <Meta property="og:description" content={room.data?.info?.description} />
       <Meta
         property="og:image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
       />
 
       <Meta name="twitter:card" content="summary_large_image" />
@@ -106,28 +125,32 @@ export default function Room() {
       <Meta name="twitter:description" content={room.data?.info?.description} />
       <Meta
         name="twitter:image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures[0]}-tablet.webp`}
+        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
       />
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 lg:mb-0 lg:flex-row">
-        <div class="relative overflow-hidden font-shippori lg:max-h-[80vh] lg:w-5/12">
-          {/* @ts-ignore */}
-          <div use:slider class="flex h-96 lg:h-auto lg:max-h-[80vh]">
-            <Index each={room.data?.info?.pictures}>
-              {(item, idx) => (
-                <Image
-                  src={`/img/${room.data?.roomId}/${item()}`}
-                  loading={idx !== 0 ? "lazy" : "eager"}
-                  class="object-cover lg:max-h-[80vh]"
-                />
-              )}
-            </Index>
+        <div
+          ref={slider}
+          class="splide relative overflow-hidden font-shippori lg:max-h-[100vh] lg:w-5/12"
+        >
+          <div class="splide__track flex h-96 lg:h-auto ">
+            <div class="splide__list">
+              <Index each={room.data?.info?.pictures}>
+                {(item, idx) => (
+                  <Image
+                    src={`/img/${room.data?.roomId}/${item()}`}
+                    loading={idx !== 0 ? "lazy" : "eager"}
+                    class="splide__slide h-full object-cover"
+                  />
+                )}
+              </Index>
+            </div>
           </div>
         </div>
         <div class="flex gap-2 px-8 font-shippori lg:flex-col lg:justify-center lg:px-0">
           <SliderDots
             count={room.data?.info?.pictures?.length || 3}
-            current={current()}
-            moveTo={moveTo}
+            current={sliderState.idx}
+            moveTo={sliderState.go}
           />
         </div>
         <div class="flex flex-col px-8 lg:mb-40 lg:flex-1 lg:flex-row lg:justify-around lg:px-0 lg:pt-20">
