@@ -29,7 +29,7 @@ export const HomeSlider = () => {
       type: "slide",
       arrows: false,
       autoWidth: true,
-      gap: "1rem",
+      gap: isDesktop ? "32px" : "9px",
       snap: true,
     }).mount();
   });
@@ -40,16 +40,13 @@ export const HomeSlider = () => {
         Rooms
       </h5>
       <div class="cursor-pointer pl-4 lg:pl-4">
-        <div ref={slider} class="splide flex">
+        <div ref={slider} class="splide flex lg:ml-28">
           <div class="splide__track">
             <ul class="splide__list">
               <For each={data()}>
                 {(room, idx) => (
                   <>
-                    <div
-                      class="splide__slide relative min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit"
-                      classList={{ "lg:ml-28": idx() === 0 }}
-                    >
+                    <div class="splide__slide relative min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit">
                       <Image
                         onClick={() => navigate("/rooms/" + room.roomId)}
                         loading="lazy"
