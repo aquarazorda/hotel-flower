@@ -14,7 +14,7 @@ import {
 } from "solid-start";
 import "./root.css";
 import Footer from "./client/components/Footer";
-import { QueryClient, QueryClientProvider } from '@tanstack/solid-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,13 +22,12 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-      staleTime: 1000 * 60 * 3, 
-    }
-  }
-})
+      staleTime: 1000 * 60 * 3,
+    },
+  },
+});
 
 export default function Root() {
-  
   return (
     <Html lang="en">
       <Head>
@@ -64,7 +63,9 @@ export default function Root() {
           <ErrorBoundary>
             <QueryClientProvider client={queryClient}>
               <Routes>
-                <FileRoutes />
+                <Suspense>
+                  <FileRoutes />
+                </Suspense>
               </Routes>
               <Footer />
             </QueryClientProvider>

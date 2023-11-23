@@ -8,7 +8,7 @@ import {
   onCleanup,
 } from "solid-js";
 import { createStore } from "solid-js/store";
-import { Meta, Title, useRouteData } from "solid-start";
+import { useRouteData } from "solid-start";
 
 import { CancelRounded } from "~/client/assets/icons/CancelRounded";
 import { CheckRounded } from "~/client/assets/icons/CheckRounded";
@@ -23,6 +23,7 @@ import { calculatePrices } from "~/server/lib/otelms/prices";
 import { getRoomRouteData } from "~/client/query/getRoomRouteData";
 import Image from "../Image";
 import Splide from "@splidejs/splide";
+import MetaData from "~/client/components/Meta";
 import "@splidejs/splide/css/core";
 
 export default function Room() {
@@ -92,40 +93,13 @@ export default function Room() {
       : document.body.classList.remove("overflow-hidden");
   });
 
-  const title = createMemo(() => `Hotel Flower - ${room.data?.name}`);
-
   return (
     <Suspense>
-      <Title>{title()}</Title>
-      <Meta name="description" content={room.data?.info?.description} />
-      <Meta itemprop="name" content={`Hotel Flower - ${room.data?.name}`} />
-      <Meta itemprop="description" content={room.data?.info?.description} />
-      <Meta
-        itemprop="image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
-      />
-
-      <Meta
-        property="og:url"
-        content={`https://www.flowertbilisi.com/rooms/${room.data?.roomId}`}
-      />
-      <Meta property="og:type" content="website" />
-      <Meta property="og:title" content={`Hotel Flower - ${room.data?.name}`} />
-      <Meta property="og:description" content={room.data?.info?.description} />
-      <Meta
-        property="og:image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
-      />
-
-      <Meta name="twitter:card" content="summary_large_image" />
-      <Meta
-        name="twitter:title"
-        content={`Hotel Flower - ${room.data?.name}`}
-      />
-      <Meta name="twitter:description" content={room.data?.info?.description} />
-      <Meta
-        name="twitter:image"
-        content={`https://flowertbilisi.com/img/${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-tablet.webp`}
+      <MetaData
+        title={`Hotel Flower - ${room.data?.name}`}
+        description={room.data?.info?.description}
+        url={`rooms/${room.data?.roomId}`}
+        imgUrl={`${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-thumb.webp`}
       />
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 lg:mb-0 lg:flex-row">
         <div
@@ -168,7 +142,7 @@ export default function Room() {
               <h3 class="text-base">Amenities</h3>
               <ul class="grid gap-4 lg:grid-cols-auto-fill">
                 <li class="flex items-center gap-4 whitespace-nowrap">
-                  <CancelRounded /> Non smoking rooms
+                  <CancelRounded /> Non smoking room
                 </li>
                 <li class="flex items-center gap-4 whitespace-nowrap">
                   <CheckRounded /> Private parking
