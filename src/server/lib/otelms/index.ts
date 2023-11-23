@@ -1,6 +1,6 @@
 import server$ from "solid-start/server";
 import { load } from "cheerio";
-import { getCurrentDate, getFutureDate } from '~/shared/utils';
+import { getCurrentDate, getFutureDate } from "~/shared/utils";
 
 export const getLoginCookies = server$(async () => {
   const { MS_LOGIN_URL, MS_LOGIN_EMAIL, MS_LOGIN_PASSWORD } = process.env;

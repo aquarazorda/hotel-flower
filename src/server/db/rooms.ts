@@ -9,12 +9,12 @@ const blockedDateSchema = z.array(
   z.object({
     from: z.string(),
     to: z.string(),
-  })
+  }),
 );
 
 export const getRooms = query$({
   schema: z.object({
-    type: z.union([z.literal('suite'), z.literal('room')]).optional(),
+    type: z.union([z.literal("suite"), z.literal("room")]).optional(),
   }),
   queryFn: async ({ payload }) => {
     const rooms = await prisma.room.findMany({
@@ -26,7 +26,7 @@ export const getRooms = query$({
         name: true,
         prices: true,
         roomId: true,
-        order: true
+        order: true,
       },
       orderBy: {
         order: "asc",
@@ -34,11 +34,11 @@ export const getRooms = query$({
       where: {
         type: {
           equals: payload?.type,
-        }
-      }
+        },
+      },
     });
-  
-    return rooms as RoomWithFullData[]; 
+
+    return rooms as RoomWithFullData[];
   },
   key: "rooms-list",
 });
@@ -104,7 +104,7 @@ export const getRoom = server$(async (roomId: number) => {
 
 export const saveBookings = server$(async () => {
   const data = await getBookedDates();
-
+  console.log(data);
   await prisma.blockedDate.deleteMany({});
   const q = await prisma.blockedDate.createMany({
     data,

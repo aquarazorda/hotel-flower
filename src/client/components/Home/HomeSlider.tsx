@@ -48,12 +48,12 @@ export const HomeSlider = () => {
               <For each={data()}>
                 {(room, idx) => (
                   <>
-                    <div class="splide__slide relative min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit">
+                    <div class="splide__slide relative aspect-square min-w-[123px] text-sm text-white lg:min-w-fit">
                       <Image
                         onClick={() => navigate("/rooms/" + room.roomId)}
                         loading="lazy"
-                        class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat object-cover
-                    lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
+                        class="flex aspect-square h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
+                    object-cover lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
                         src={`/img/${room.roomId}/${
                           room.info?.pictures?.[0] || 0
                         }`}
