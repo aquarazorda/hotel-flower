@@ -27,7 +27,7 @@ export const HomeSlider = () => {
       type: "slide",
       arrows: false,
       autoWidth: true,
-      gap: isDesktop ? "32px" : "4px",
+      gap: isDesktop ? "32px" : "6px",
       snap: true,
     });
 
