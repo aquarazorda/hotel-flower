@@ -27,7 +27,7 @@ export const HomeSlider = () => {
       type: "slide",
       arrows: false,
       autoWidth: true,
-      gap: isDesktop ? "32px" : "9px",
+      gap: isDesktop ? "32px" : "3px",
       snap: true,
     });
 
@@ -48,12 +48,16 @@ export const HomeSlider = () => {
               <For each={data()}>
                 {(room, idx) => (
                   <>
-                    <div class="splide__slide relative aspect-square min-w-[123px] text-sm text-white lg:min-w-fit">
+                    <div
+                      class="splide__slide relative min-w-[123px] text-sm text-white lg:aspect-square lg:min-w-fit"
+                      style={{ "aspect-ratio": !isDesktop ? "10/10" : "" }}
+                    >
                       <Image
                         onClick={() => navigate("/rooms/" + room.roomId)}
                         loading="lazy"
-                        class="flex aspect-square h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat
-                    object-cover lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
+                        style={{ "aspect-ratio": !isDesktop ? "9/10" : "" }}
+                        class="flex h-32 items-end rounded-lg bg-cover bg-center bg-no-repeat object-cover
+                    lg:aspect-square lg:min-h-[264px] lg:flex-col lg:items-start lg:font-semibold"
                         src={`/img/${room.roomId}/${
                           room.info?.pictures?.[0] || 0
                         }`}
