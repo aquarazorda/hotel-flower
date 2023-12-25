@@ -63,7 +63,9 @@ export default function Root() {
           <ErrorBoundary>
             <QueryClientProvider client={queryClient}>
               <Routes>
-                <FileRoutes />
+                <Suspense>
+                  <FileRoutes />
+                </Suspense>
               </Routes>
               <Footer />
             </QueryClientProvider>

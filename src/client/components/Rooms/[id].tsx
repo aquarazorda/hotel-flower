@@ -8,6 +8,7 @@ import {
   onCleanup,
 } from "solid-js";
 import { createStore } from "solid-js/store";
+import { useRouteData } from "solid-start";
 
 import { CancelRounded } from "~/client/assets/icons/CancelRounded";
 import { CheckRounded } from "~/client/assets/icons/CheckRounded";
@@ -19,18 +20,14 @@ import { getLastDayOfMonth } from "~/shared/utils";
 import { Portal } from "solid-js/web";
 import BookingModal from "~/client/components/Booking/modal";
 import { calculatePrices } from "~/server/lib/otelms/prices";
+import { getRoomRouteData } from "~/client/query/getRoomRouteData";
 import Image from "../Image";
 import Splide from "@splidejs/splide";
 import MetaData from "~/client/components/Meta";
 import "@splidejs/splide/css/core";
-import { RoomWithFullData } from "~/server/db/zod";
 
-type Props = {
-  room: RoomWithFullData;
-};
-
-export default function Room(props: Props) {
-  const room = createMemo(() => props.room);
+export default function Room() {
+  const { room } = useRouteData<typeof getRoomRouteData>();
   const [bookingOpen, setBookingOpen] = createSignal(false);
 
   const [dateValues, setDateValues] = createSignal<string[]>();
@@ -47,7 +44,7 @@ export default function Room(props: Props) {
   });
 
   createEffect(() => {
-    if (!slider || !room) return;
+    if (!slider || !room.data) return;
 
     const splide = new Splide(slider, {
       type: "slide",
@@ -73,16 +70,16 @@ export default function Room(props: Props) {
   });
 
   const price = createMemo(() => {
-    if (dateValues() && dateValues()!.length > 1 && room()) {
-      return calculatePrices(dateValues()!, room());
+    if (dateValues() && dateValues()!.length > 1 && room.data) {
+      return calculatePrices(dateValues()!, room.data);
     }
 
     return 0;
   });
 
   const maxDate = createMemo(() => {
-    if (!room()?.prices?.list) return undefined;
-    const keys = Object.keys(room()?.prices?.list);
+    if (!room.data?.prices?.list) return undefined;
+    const keys = Object.keys(room.data?.prices?.list);
     return getLastDayOfMonth(keys[keys.length - 1]);
   });
 
@@ -97,12 +94,12 @@ export default function Room(props: Props) {
   });
 
   return (
-    <>
+    <Suspense>
       <MetaData
-        title={`Hotel Flower - ${room()?.name}`}
-        description={room()?.info?.description}
-        url={`rooms/${room()?.roomId}`}
-        imgUrl={`${room()?.roomId}/${room()?.info?.pictures?.[0]}-thumb.webp`}
+        title={`Hotel Flower - ${room.data?.name}`}
+        description={room.data?.info?.description}
+        url={`rooms/${room.data?.roomId}`}
+        imgUrl={`${room.data?.roomId}/${room.data?.info?.pictures?.[0]}-thumb.webp`}
       />
       <main class="mb-10 flex flex-col gap-6 text-xs text-neutral-500 lg:mb-0 lg:flex-row">
         <div
@@ -111,10 +108,10 @@ export default function Room(props: Props) {
         >
           <div class="splide__track flex h-96 lg:h-auto ">
             <div class="splide__list">
-              <Index each={room()?.info?.pictures}>
+              <Index each={room.data?.info?.pictures}>
                 {(item, idx) => (
                   <Image
-                    src={`/img/${room()?.roomId}/${item()}`}
+                    src={`/img/${room.data?.roomId}/${item()}`}
                     loading={idx !== 0 ? "lazy" : "eager"}
                     class="splide__slide h-full object-cover"
                   />
@@ -125,15 +122,15 @@ export default function Room(props: Props) {
         </div>
         <div class="flex gap-2 px-8 font-shippori lg:flex-col lg:justify-center lg:px-0">
           <SliderDots
-            count={room()?.info?.pictures?.length || 3}
+            count={room.data?.info?.pictures?.length || 3}
             current={sliderState.idx}
             moveTo={sliderState.go}
           />
         </div>
         <div class="flex flex-col px-8 lg:mb-40 lg:flex-1 lg:flex-row lg:justify-around lg:px-0 lg:pt-20">
           <div class="font-shippori lg:my-auto lg:flex lg:w-2/5 lg:flex-col">
-            <h2 class="text-lg text-secondaryHover">{room()?.name}</h2>
-            <p class="mt-5">{room()?.info?.description} </p>
+            <h2 class="text-lg text-secondaryHover">{room.data?.name}</h2>
+            <p class="mt-5">{room.data?.info?.description} </p>
             <p class="mt-2 hidden lg:block">
               The accommodation provides an ironing service, as well as business
               facilities like fax and photocopying. Non-stop information is
@@ -176,7 +173,7 @@ export default function Room(props: Props) {
           </div>
           <Suspense>
             <Show
-              when={room()?.prices}
+              when={room.data?.prices}
               fallback={
                 <div class="m-auto text-center font-shippori text-base">
                   Booking for this room is not available.
@@ -192,8 +189,8 @@ export default function Room(props: Props) {
                     maxDate={maxDate()}
                     onChange={onCalendarChange}
                     dateFormat="Y-m-d"
-                    isLoading={false}
-                    disable={room()?.blockedDate?.dates || []}
+                    isLoading={room.isLoading}
+                    disable={room.data?.blockedDate?.dates || []}
                   />
                   <div class="px-2">
                     <p class="mt-6 flex w-full justify-between">
@@ -224,12 +221,12 @@ export default function Room(props: Props) {
         <Portal>
           <BookingModal
             setBookingOpen={setBookingOpen}
-            room={room()!}
+            room={room.data!}
             price={price()}
             dates={dateValues()!}
           />
         </Portal>
       </Show>
-    </>
+    </Suspense>
   );
 }

@@ -1,4 +1,4 @@
-import { Meta, Title } from "solid-start";
+import { Meta, Title } from "@solidjs/meta";
 
 type Props = {
   title: string;
